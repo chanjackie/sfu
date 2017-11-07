@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <math.h>
+
+int main(void)
+{
+	float i = 0;
+	int check = 1;
+	while (check) {		
+		check = scanf("%f", &i);
+		if (check == EOF) {
+			printf("Done.\n");
+			break;
+		}
+		int a = floor(i);
+		int b = round(i);
+		int c = ceil(i);
+		printf("%d %d %d\n", a, b, c);	
+	}
+	return 0;
+}

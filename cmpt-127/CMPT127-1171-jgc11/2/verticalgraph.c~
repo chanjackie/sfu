@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int main() {
+	int columns = 0;
+	int height[80] = {0};
+	int currentheight = 0;
+	int k;
+	int scan = scanf("%d", &currentheight);
+	int maxheight = 0;
+	while (1) {
+		if (scan == EOF) {
+			break;
+		}
+		columns++;
+		height[k] += currentheight;
+		k++;
+		scan = scanf("%d", &currentheight);
+	}
+	for (k=0;k<columns;k++){
+		if (maxheight < height[k]) {
+			maxheight = height[k];
+		}	
+	}
+	for (k=maxheight;k>0;k--) {
+		int l;
+		for (l=0;l<columns;l++) {
+			if (k <= height[l]) {
+				printf("#");
+			} else {
+				printf(" ");
+			}
+		}
+		printf("\n");
+	}
+}

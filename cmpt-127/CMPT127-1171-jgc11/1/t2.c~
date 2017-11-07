@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main(void)
+{
+	unsigned long int a = sizeof(char) * 8;
+	unsigned long int b = sizeof(unsigned char) * 8;
+	unsigned long int c = sizeof(int) * 8;
+	unsigned long int d = sizeof(unsigned int) * 8;
+	unsigned long int e = sizeof(long) * 8;
+	unsigned long int f = sizeof(unsigned long) * 8;
+	unsigned long int g = sizeof(float) * 8;
+	unsigned long int h = sizeof(double) * 8;
+	unsigned long int i = sizeof(long double) * 8;
+	printf("%lu %lu %lu %lu %lu %lu %lu %lu %lu\n", a, b, c, d, e, f, g, h ,i);
+	printf("%lu\n", sizeof(float));
+	return 0;
+}
