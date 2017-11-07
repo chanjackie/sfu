@@ -131,7 +131,7 @@ B:
 	.type	A, @object
 	.size	A, 16
 A:
-	.byte	4
+	.byte	5
 	.byte	11
 	.byte	10
 	.byte	3
