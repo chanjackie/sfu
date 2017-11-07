@@ -1,47 +1,48 @@
 
+    # var map
+    # %r14d - i
+    # %r15d - j
+    # %rdi - A[N] base pointer
+    # %rsi - B[N] base pointer
+    # %rdx - C[N] base pointer
+    # %rcx - n
     .globl matrix_prod
 matrix_prod:            # void matrix_prod(void *A, void *B, void *C, int n);
     xorl %eax, %eax
-    movl $0, %r8d       # i <- 0
-    movl $0, %r9d       # j <- 0
-loop:
-    cmpl %ecx, %r8d
+    pushq %r14
+    pushq %r15
+    movq $0, %r14      # i <- 0
+    movq $0, %r15       # j <- 0
+loop:                   
+    cmpq %rcx, %r14     # for (i=0;i<n;i++) {
     jge endloop
 inloop:
-    cmpl %ecx, %r9d     # for (j=0;j<n;j++) {
+    cmpq %rcx, %r15     # for (j=0;j<n;j++) {
     jge endin
-    pushq %rdx
-    movq %rcx, %rdx
     pushq %rcx
-    movq %r8, %rcx
-    pushq %r8
-    movq %r9, %r8
-    pushq %r9
-    pushq %rdi
-    pushq %rsi
-    call dot_prod
-    popq %rsi
-    popq %rdi
-    popq %r9
-    popq %r8
-    popq %rcx
-    popq %rdx
-    pushq %rdi
-    movq %rax, %rdi
-    pushq %rsi
-    movq $17, %rsi
     pushq %rdx
+    pushq %rsi
+    pushq %rdi
+    movq %rcx, %rdx
+    movq %r14, %rcx
+    movq %r15, %r8
+    call dot_prod
+    movq %rax, %rdi
+    movq $17, %rsi
     call mod
-    popq %rdx
-    popq %rsi
     popq %rdi
+    popq %rsi
+    popq %rdx
+    popq %rcx
     movq %rax, (%rdx)
-    addq $8, %rdx
-    incl %r9d
+    incq %rdx
+    incq %r15
     jmp inloop
 endin:
-    movl $0, %r9d
-    incl %r8d
+    movq $0, %r15
+    incq %r14
     jmp loop
 endloop:
+    popq %r15
+    popq %r14
 	ret
