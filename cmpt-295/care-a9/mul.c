@@ -10,8 +10,9 @@ int **mul(int **A, int rA, int cA, int **B, int rB, int cB) {
     }
 
 
-    /*
+    
     // alg1
+    /*
     int **C = newMatrix(rA, cB);
     if (C == NULL) return C;
 
@@ -27,7 +28,6 @@ int **mul(int **A, int rA, int cA, int **B, int rB, int cB) {
         }
     }
     */
-
 
     /*
     // alg2
@@ -74,6 +74,24 @@ int **mul(int **A, int rA, int cA, int **B, int rB, int cB) {
     }
     */
 
+    // alg4
+    int **C = newMatrix(rA, cB);
+    int **D = newMatrix(rB, cB);
+    int i, j, k, total;
+    for (i=0;i<rB;i++) {
+        for (j=0;j<cB;j++) {
+            D[j][i] = B[i][j];
+        }
+    }
+    for (i=0;i<rA;i++) {
+        for (j=0;j<cB;j++) {
+            total = 0;
+            for (k=0;k<cA;k++) {
+                total += A[i][k]*D[j][k];
+            }
+            C[i][j] = total;
+        }
+    }
 
     return C;
 }

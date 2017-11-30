@@ -133,5 +133,5 @@ main:
 	.section	.text.startup
 .LHOTE1:
 	.comm	total,8,8
-	.ident	"GCC: (Ubuntu 5.4.0-6ubuntu1~16.04.5) 5.4.0 20160609"
+	.ident	"GCC: (Ubuntu 5.4.1-2ubuntu1~16.04) 5.4.1 20160904"
 	.section	.note.GNU-stack,"",@progbits
