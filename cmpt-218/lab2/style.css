@@ -1,0 +1,16 @@
+@font-face {
+	font-family: "digital_clock";
+	src: url(./digital-dismay.otf) format("opentype");
+}
+
+ul {
+	font-family: "digital_clock";
+	position: relative;
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: row;
+	right: 25px;
+	font-size: 50px;
+	list-style-type: none;
+
+}

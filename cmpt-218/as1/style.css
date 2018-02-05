@@ -1,0 +1,33 @@
+@font-face {
+	font-family: "supreme";
+	src: url(./SUPREME.ttf) format("truetype");
+}
+
+table, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	height: 40px;
+	width: 500px;
+}
+
+table, tr:hover, td:first-child {
+	font-family: "supreme";
+	font-size: 20px;
+	width: 700px;
+	text-align: right;
+	background-color: lightyellow;
+}
+table > caption {
+	font-size: 50px;
+}
+table, tr:first-child {
+	height: 90px;
+	text-align: center;
+	vertical-align: bottom;
+}
+button {
+	padding: 20px;
+	font-family: "supreme";
+	font-size: 25px;
+	background-color: lightyellow;
+}

@@ -1,0 +1,20 @@
+{ "books": 
+  [{
+    "publisher":"Scribner",
+    "year":1929,
+    "title":"A Farewell to Arms",
+    "author": {
+      "firstname":"Ernest",
+      "lastname":"Hemingway"
+    }
+   },
+   {
+    "publisher":"Penguin",
+    "year":1937,
+    "title":"Of Mice and Men",
+    "author": {
+      "firstname":"John",
+      "lastname":"Steinbeck"
+    }
+   }]
+}

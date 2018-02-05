@@ -1,0 +1,33 @@
+img {
+  vertical-align: text-top;
+}
+
+img:hover{
+  opacity: 0.5;
+}
+
+section#about {
+  text-align: center;
+  border: #000 solid 1px;
+  background-color: yellow;
+  position: relative;
+  top: 50px;
+  left: 50px;
+  z-index:-1;
+}
+
+#courses{
+  border: 1px solid black;
+  background-color: red;
+}
+
+nav > ul {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+}
+
+#last{
+  order: 99;
+  -webkit-order: 99;
+}

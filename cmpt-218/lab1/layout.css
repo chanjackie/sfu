@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+/* These are styles for all screen sizes  */
+
+/* Flex Layout Styles */
+
+body {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: column;
+	flex-flow: column;
+}
+
+section#sheet > img.size1{
+	width: 100%;
+}
+
+/* header styles */
+header{
+	display: flex;
+	display: -webkit-flex;
+	background-color: #eee;
+	padding: 1em;
+}
+
+/* nav List styles  */
+nav > ul {
+	font-family: sans-serif;
+	background-color: lightgrey;
+	list-style-type: none;
+}
+
+nav > ul > li > a {
+	color: darkred;
+	text-decoration: none;
+}
+
+/* Footer styles */
+footer {
+	order: 99;
+	text-align: center;
+}

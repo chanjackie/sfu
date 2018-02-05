@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>jgc11 Nonogram</title>
+		<link rel="stylesheet" href="./style.css">
+		<script src="./script.js" async></script>
+	</head>
+	<body>
+		<table id="myTable">
+			<caption><EM>JGC11's Nonogram</EM></caption>
+			<tr class="row" id="topRow">
+				<td></td>
+				<td>1<br>1</td>
+				<td>8</td>
+				<td>3<br>1</td>
+				<td>4<br>2<br>1</td>
+				<td>7<br>2<br>1</td>
+				<td>1<br>4<br>2<br>1</td>
+				<td>4<br>1</td>
+				<td>1<br>2<br> 4</td>
+				<td>2<br>1<br>4</td>
+				<td>3<br>2<br>1</td>
+				<td>4<br>1<br>2<br>1</td>
+				<td>1<br>1<br>2<br>2<br>1</td>
+				<td>1<br>1<br>1<br>1</td>
+				<td>8</td>
+				<td>1<br>1<br>1</td>
+			</tr>
+			<tr class="row">
+				<td id="r1">1</td>
+				<td class="x" id="r11" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r12" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r13" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r14" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r15" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r16" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r17" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r18" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r19" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r110" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r111" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r112" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r113" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r114" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r115" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+			</tr>
+			<tr class="row">
+				<td id="r2">2</td>
+				<td class="x" id="r21" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r22" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r23" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r24" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r25" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r26" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r27" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r28" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r29" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r210" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r211" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r212" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r213" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r214" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r215" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+			</tr>
+			<tr class="row">
+				<td id="r3">1</td>
+				<td class="x" id="r31" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r32" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r33" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r34" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r35" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r36" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r37" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r38" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r39" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r310" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r311" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r312" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r313" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r314" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r315" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+			</tr>
+			<tr class="row">
+				<td id="r4">2 2</td>
+				<td class="x" id="r41" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r42" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r43" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r44" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r45" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r46" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r47" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r48" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r49" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r410" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r411" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r412" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r413" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r414" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r415" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+			</tr>
+			<tr class="row">
+				<td id="r5">1 2</td>
+				<td class="x" id="r51" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r52" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r53" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r54" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r55" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r56" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r57" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r58" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r59" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r510" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r511" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r512" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r513" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r514" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r515" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+			</tr>
+			<tr class="row">
+				<td id="r6">9</td>
+				<td class="x" id="r61" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r62" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r63" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r64" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r65" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r66" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r67" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r68" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r69" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r610" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r611" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r612" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r613" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r614" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r615" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+			</tr>
+			<tr class="row">
+				<td id="r7">5 1 1 1</td>
+				<td class="x" id="r71" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r72" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r73" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r74" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r75" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r76" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r77" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r78" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r79" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r710" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r711" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r712" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r713" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r714" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r715" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+			</tr>
+			<tr class="row">
+				<td id="r8">7 1 1 1</td>
+				<td class="x" id="r81" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r82" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r83" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r84" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r85" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r86" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r87" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r88" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r89" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r810" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r811" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r812" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r813" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r814" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r815" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+			</tr>
+			<tr class="row">
+				<td id="r9">15</td>
+				<td class="z" id="r91" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r92" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r93" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r94" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r95" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r96" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r97" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r98" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r99" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r910" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r911" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r912" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r913" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r914" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r915" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+			</tr>
+			<tr class="row">
+				<td>1 1</td>
+				<td class="x" id="r101" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r102" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r103" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r104" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r105" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r106" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r107" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r108" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r109" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1010" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1011" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1012" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1013" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r1014" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1015" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+			</tr>
+			<tr class="row">
+				<td>1 3 2 1</td>
+				<td class="x" id="r11c1" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r11c2" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r11c3" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r11c4" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r11c5" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r116" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r117" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r118" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r119" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1110" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r1111" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r1112" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1113" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r1114" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1115" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+			</tr>
+			<tr class="row">
+				<td>1 3 2 2 1</td>
+				<td class="x" id="r121" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r122" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r123" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r124" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r125" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r126" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r127" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r128" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r129" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1210" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r1211" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r1212" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1213" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r1214" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1215" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+			</tr>
+			<tr class="row">
+				<td>1 2 1</td>
+				<td class="x" id="r131" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r132" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r133" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r134" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r135" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r136" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r137" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r138" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r139" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1310" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1311" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1312" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1313" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r1314" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1315" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+			</tr>
+			<tr class="row">
+				<td>1 2 1</td>
+				<td class="x" id="r141" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r142" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r143" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r144" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r145" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r146" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r147" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r148" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r149" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1410" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1411" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1412" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1413" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r1414" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="x" id="r1415" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+			</tr>
+			<tr class="row">
+				<td>15</td>
+				<td class="z" id="r151" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r152" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r153" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r154" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r155" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r156" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r157" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r158" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r159" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r1510" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r1511" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r1512" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r1513" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r1514" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+				<td class="z" id="r1515" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)"></td>
+			</tr>
+		</table>
+		<br>
+		<button id="reset" onclick="reset()">RESET</button>
+		<button id="reveal" onclick="reveal()">REVEAL</button>
+	</body>
+</html>
