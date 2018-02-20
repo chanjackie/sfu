@@ -132,7 +132,7 @@ main:
 	.p2align 3
 .L8:
 #APP
-# 54 "main.c" 1
+# 58 "main.c" 1
 	cpuid
 	rdtscp
 	movl %eax, %esi
@@ -160,7 +160,7 @@ main:
 	movl	48(%rsp), %esi
 	call	min_max_avg
 #APP
-# 65 "main.c" 1
+# 69 "main.c" 1
 	cpuid
 	rdtscp
 	movl %eax, %esi

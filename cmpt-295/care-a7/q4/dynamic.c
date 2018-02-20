@@ -1,4 +1,6 @@
 
+void foo2(void);
+
 int *new_42(void) {
     int x;
     int *ret;
@@ -8,4 +10,8 @@ int *new_42(void) {
 
     return ret;
 } // new_42
+
+void foo(int *a) {
+	foo2();
+} // foo
 
