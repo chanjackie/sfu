@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>jgc11</title>
+		<script src="./script.js" async></script>
+	</head>
+	<body>
+		<h1>INFO FORM</h1>
+		<form name='infoform' method='POST' action='http://localhost:12834'>
+			<div id="entry1">
+				<h2>ENTRY 1</h2>
+				<label for="fname">FIRST NAME:</label> <input id = "fname" placeholder='JOHN' name='fname' type='text' /> <br />
+	       		<label for="lname">LAST NAME:</label> <input name='lname' placeholder='SMITH' type='text' /> <br />
+	       		<label for="bday">BIRTHDAY:</label> <input name='bday' placeholder='JAN 1 2018' type='text'/> <br />
+	       	</div>
+       		<input type="button" value="ADD ENTRY" onClick="addEntry('entry1');"/>
+       		<input type='submit' value='SEND' />
+       	</form>
+	</body>
+</html>
