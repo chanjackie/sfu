@@ -6,16 +6,17 @@
 	</head>
 	<body>
 		<h1>INFO FORM</h1>
+		<var value=1 id="count"/>
 		<form name="users" method='POST'>
 			<div id="entry1">
 				<h2>ENTRY 1</h2>
-				<label for="fname">FIRST NAME:</label> <input id = "fname" placeholder='JOHN' name='fname' type='text' /> <br />
+				<label for="fname">FIRST NAME:</label> <input placeholder='JOHN' name='fname' type='text' /> <br />
 	       		<label for="lname">LAST NAME:</label> <input name='lname' placeholder='SMITH' type='text' /> <br />
 	       		<label for="bday">BIRTHDAY:</label> <input name='bday' type='date'/> <br />
 	       		<label for="email">EMAIL(s):</label> <input name='email' type='email'/> <br/>
 	       	</div>
        		<input type="button" value="ADD ENTRY" onClick="addEntry('entry1');"/>
-       		<input type="reset" value="RESET ENTRIES"/>
+       		<input type="reset" value="RESET ALL ENTRIES"/>
        		<input type='submit' value='SEND' />
        	</form>
 	</body>

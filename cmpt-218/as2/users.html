@@ -2,18 +2,17 @@
 <html lang="en">
 	<head>
 		<title>jgc11 - USERS</title>
-		<script src="./script.js" async></script>
-		<script>
-			$(function() {
-				var users = [];
-				$.getJSON('./data/users.json', function(data) {
-					
-				})
-			})
-
-		</script>
+		<script type="text/javascript" src="./script.js" async></script>
 	</head>
-	<body>
-
+	<body onload="init()">
+		<h1>USERS</h1>
+		<table id="userTable" border="2">
+			<thead>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Birthday</th>
+				<th>Email(s)</th>
+			</thead>
+		</table>
 	</body>
 </html>
