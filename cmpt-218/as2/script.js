@@ -13,7 +13,7 @@ function addEntry(entryNum) {
 	}
 }
 
-function loadJSON(callback) {
+/*function loadJSON(callback) {
 	var xobj = new XMLHttpRequest();
 	xobj.overrideMimeType("application/json");
 	xobj.open('GET', './data/users.json', true);
@@ -34,3 +34,4 @@ function init() {
 		tRow.appendTo(document.getElementById(userTable))
 	});
 }
+*/

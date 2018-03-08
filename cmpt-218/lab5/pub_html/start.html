@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
+
+    <title>Users</title>
+
+    <link rel="stylesheet" href="./css/style.css"/>
+
+</head>
+<body>
+
+    <h1>Add user - START.HTML</h1>
+
+    <ul></ul>
+
+    <section>
+      <form action="/users-api" method="post">
+          <input type="text" id="fname" name="fname" placeholder="first name" required /> <br />
+          <input type="text" id="lname" name="lname" placeholder="last name" required /> <br />
+          <input type="number" name="age" id="age" placeholder="age" step="1" required /> <br />
+          <button>Add User</button>
+      </form>
+    </section>
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/script.js"></script>
+
+</body>
+</html>

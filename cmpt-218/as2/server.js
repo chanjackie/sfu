@@ -57,7 +57,7 @@ server.on('request', function(req,res){
 			res.end();
 		});
 	} else if (req.method === 'GET' && req.url === '/users.html'){
-		fs.readFile("./users.html", function (err, contents) {
+		fs.readFile("./data/users.json", function (err, contents) {
 			if (err) {
 				res.writeHead(404);
 				res.write('404 Error');
@@ -71,19 +71,6 @@ server.on('request', function(req,res){
 	} else if (req.method === 'GET' && req.url.match(/^\/.+\.js$/)){
 		var jspath = path.join(__dirname,req.url);
 		fs.readFile(jspath, function(err, contents){
-			if (err) {
-				res.writeHead(404);
-				res.write('404 Error');
-				res.end();
-			} else {
-				res.writeHead(200, {"Content-Type": "text/javascript"});
-				res.write(contents);
-				res.end();
-			}
-		})
-	} else if (req.method === 'GET' && req.url.match(/^\/.+\.json$/)){
-		var jsonpath = path.join(__dirname,req.url);
-		fs.readFile(jsonpath, function(err, contents){
 			if (err) {
 				res.writeHead(404);
 				res.write('404 Error');
