@@ -1,0 +1,70 @@
+[
+	{
+		"id": "0001",
+		"type": "donut",
+		"name": "Cake",
+		"ppu": 0.55,
+		"batters":
+			{
+				"batter":
+					[
+						"Regular",
+						"Chocolate",
+						"Blueberry",
+						"Devil's Food"
+					]
+			},
+		"topping":
+			[
+				"None",
+				"Glazed",
+				"Sugar",
+			  "Powdered Sugar",
+				"Chocolate with Honey",
+				"Chocolate",
+				"Maple"
+			]
+	},
+	{
+		"id": "0002",
+		"type": "donut",
+		"name": "Raised",
+		"ppu": 0.75,
+		"batters":
+			{
+				"batter":
+					[
+						"Regular"
+					]
+			},
+		"topping":
+			[
+        "None",
+				"Glazed",
+				"Sugar",
+				"Chocolate",
+				"Maple"
+			]
+	},
+	{
+		"id": "0003",
+		"type": "donut",
+		"name": "Old Fashioned",
+		"ppu": 0.55,
+		"batters":
+			{
+				"batter":
+					[
+						"Regular",
+						"Chocolate"
+					]
+			},
+		"topping":
+			[
+        "None",
+				"Glazed",
+				"Chocolate",
+				"Maple"
+			]
+	}
+]
