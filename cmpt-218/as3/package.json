@@ -1,0 +1,16 @@
+{
+  "name": "asn_3",
+  "version": "1.0.0",
+  "description": "simple check-in system",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jackie Chan 301310345",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongodb": "^3.0.5",
+    "node-dev": "^3.1.3"
+  }
+}

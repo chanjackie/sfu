@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="minimum-scale=1.0, width=device-width, maxiumum-scale=1.0, user-scalable=no"/>
+	<meta charset="utf-8">
+	<title>ADMIN</title>
+	<link rel="stylesheet" href="./css/style.css"/>
+</head>
+<body>
+	<h1>Admin Landing</h1>
+	<br />
+	<section>
+		<form method='POST' action='/admincheckin'>
+			<label for="_id">Check-in ID:</label> <br />
+			<input type="text" id="_id" name="_id" required />
+			<br />
+			<input type="submit" value="Start Check-in" />
+		</form>
+		<form method='POST' action='/checkinhist'>
+			<input type="submit" value="View History" />
+		</form>
+	</section>
+	<br />
+</body>
+</html>

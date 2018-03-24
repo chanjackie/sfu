@@ -1,0 +1,33 @@
+body {
+  font-family: sans-serif;
+}
+
+input, button{
+  border-radius: 10px;
+  border: 2px solid black;
+  padding: 5px;
+  width: 200px;
+  height: 50px;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+button{
+  width: 215px;
+}
+
+section{
+  margin-top:50px;
+  border-radius: 10px;
+  border: 1px solid black;
+  width: 230px;
+  padding: 20px;
+}
+
+span:hover{
+  cursor:pointer;
+}
+
+ul{
+  list-style-type: none;
+}
