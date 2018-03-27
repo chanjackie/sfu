@@ -5,7 +5,31 @@
 	<meta charset="utf-8">
 	<title>CHECK-IN</title>
 	<link rel="stylesheet" href="./css/style.css"/>
+	<script src="./js/script.js"></script>
+	<script src="./js/jquery.min.js"></script>
 </head>
-<body>
+<body onload="grabDate()">
+	<h1>USER CHECK-IN</h1>
+	<br />
+	<h2 id="displayDate"></h2>
+	<section>
+		<form method='POST' action='/checkin'>
+			<label for="_id">Check-in String:</label> <br />
+			<input type="text" id="_id" name="_id" placeholder="Check-in String" required />
+			<br />
+			<label for="name">Name:</label> <br />
+			<input type="text" id="name" name="name" placeholder="Name" required />
+			<br />
+			<label for="userid">User ID:</label> <br />
+			<input type="text" id="userid" name="userid" placeholder="User ID" required />
+			<br />
+			<input type="hidden" name="date" id="currentDate" />
+			<input type="submit" value="CHECK-IN" />
+		</form>
+		<br />
+		<form method='POST' action='/return'>
+			<input type="submit" value="RETURN" />
+		</form>
+	</section>
 </body>
 </html>

@@ -3,19 +3,17 @@
 <head>
 	<meta content="minimum-scale=1.0, width=device-width, maxiumum-scale=1.0, user-scalable=no"/>
 	<meta charset="utf-8">
-	<title>ADMIN_CHECK-IN</title>
-	<link rel="stylesheet" href="./css/style.css"/>
+	<title>CHECK-IN HISTORY</title>
+	<link rel="stylesheet" href="./css/histStyle.css"/>
 	<script src="./js/script.js"></script>
 	<script src="./js/jquery.min.js"></script>
 </head>
-<body onload="adminCheckDisplay()">
-	<h1>Check-in now!</h1> <br />
-	<label for="cid">Check-in ID: </label> <br />
+<body onload="histDisplay()">
+	<h1>Previous Check-ins:</h1> <br />
 	<ul></ul>
 	<br />
-	<form method="POST" action="/adminlanding">
-		<input type="submit" value="Stop check-in" />
+	<form method="POST" action="/exitHist">
+		<input type="submit" value="Return" />
 	</form>
-
 </body>
 </html>
