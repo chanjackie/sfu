@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="minimum-scale=1.0, width=device-width, maxiumum-scale=1.0, user-scalable=no"/>
+	<meta charset="utf-8">
+	<title id="title">LANDING</title>
+	<link rel="stylesheet" href="./css/style.css"/>
+	<script src="./js/script.js"></script>
+	<script src="./js/jquery.min.js"></script>
+</head>
+<body onload = "grabStats()">
+	<h1 id="header">Welcome</h1>
+	<h1 id="displayDate" onload="grabDate()"></h1>
+	<section style="background-color:tan">
+		<label for="winloss">WINS:LOSSES</label>
+		<h1 id="winloss" style="text-align: center"></h1>
+	</section>
+	<section style="background-color:silver">
+		<button>PLAY</button>
+	</section>
+	<br />
+	<form method='GET' action='/login.html'>
+		<input type="submit" value="Log-out" />
+	</form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="minimum-scale=1.0, width=device-width, maxiumum-scale=1.0, user-scalable=no"/>
+	<meta charset="utf-8">
+	<title>LOGIN</title>
+	<link rel="stylesheet" href="./css/style.css"/>
+</head>
+<body>
+	<h1>USER LOGIN - LOGIN.HTML</h1>
+	<br />
+	<section style="background-color:black">
+		<form method='POST' action='/userlanding'>
+			<label for="_id" style="color:white">Username:</label> <br />
+			<input type="text" id="_id" name="_id" placeholder="username" required />
+			<br />
+			<label for="pword" style="color:white">Password:</label> <br />
+			<input type="password" id="pword" name="pword" placeholder="password" required />
+			<br />
+			<input type="submit" value="Login" />
+		</form>
+	</section>
+	<br />
+	<form method='GET' action='/register.html'>
+		<input type="submit" value="Sign-up now!" />
+	</form>
+</body>
+</html>
