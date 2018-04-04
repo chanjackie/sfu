@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="minimum-scale=1.0, width=device-width, maxiumum-scale=1.0, user-scalable=no"/>
+	<meta charset="utf-8">
+	<title>3D TIC-TAC-TOE</title>
+	<link rel="stylesheet" href="./css/board.css"/>
+	<script src="./js/boardscript.js" async></script>
+	<script src="./js/jquery.min.js"></script>
+</head>
+<body>
+	<h1>3D TIC-TAC-TOE</h1>
+	<br />
+	<section id="board" style="background-color:black">
+		<!-- <div id="grid1">
+			<div class="row1">
+				<div class="square" x="0" y="0" z="0"></div>
+				<div class="square" x="1" y="0" z="0"></div>
+				<div class="square" x="2" y="0" z="0"></div>
+			</div>
+			<div class="row2">
+				<div class="square" x="0" y="1" z="0"></div>
+				<div class="square" x="1" y="1" z="0"></div>
+				<div class="square" x="2" y="1" z="0"></div>
+			</div>
+			<div class="row3">
+				<div class="square" x="0" y="2" z="0"></div>
+				<div class="square" x="1" y="2" z="0"></div>
+				<div class="square" x="2" y="2" z="0"></div>
+			</div>
+		</div> <br />
+		<div id="grid2">
+			<div class="row1">
+				<div class="square" x="0" y="0" z="1"></div>
+				<div class="square" x="1" y="0" z="1"></div>
+				<div class="square" x="2" y="0" z="1"></div>
+			</div>
+			<div class="row2">
+				<div class="square" x="0" y="1" z="1"></div>
+				<div class="square" x="1" y="1" z="1"></div>
+				<div class="square" x="2" y="1" z="1"></div>
+			</div>
+			<div class="row3">
+				<div class="square" x="0" y="2" z="1"></div>
+				<div class="square" x="1" y="2" z="1"></div>
+				<div class="square" x="2" y="2" z="1"></div>
+			</div>
+		</div> <br />
+		<div id="grid3">
+			<div class="row1">
+				<div class="square" x="0" y="0" z="2"></div>
+				<div class="square" x="1" y="0" z="2"></div>
+				<div class="square" x="2" y="0" z="2"></div>
+			</div>
+			<div class="row2">
+				<div class="square" x="0" y="1" z="2"></div>
+				<div class="square" x="1" y="1" z="2"></div>
+				<div class="square" x="2" y="1" z="2"></div>
+			</div>
+			<div class="row3">
+				<div class="square" x="0" y="2" z="2"></div>
+				<div class="square" x="1" y="2" z="2"></div>
+				<div class="square" x="2" y="2" z="2"></div>
+			</div>
+		</div> -->
+		<table id="grid1">
+			<tr class="row1">
+				<td id="000" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="0" y="0" z="0"></td>
+				<td id="100" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="1" y="0" z="0"></td>
+				<td id="200" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="2" y="0" z="0"></td>
+			</tr>
+			<tr class="row2">
+				<td id="010" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="0" y="1" z="0"></td>
+				<td id="110" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="1" y="1" z="0"></td>
+				<td id="210" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="2" y="1" z="0"></td>
+			</tr>
+			<tr class="row3">
+				<td id="020" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="0" y="2" z="0"></td>
+				<td id="120" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="1" y="2" z="0"></td>
+				<td id="220" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="2" y="2" z="0"></td>
+			</tr>
+		</table> <br />
+		<table id="grid2">
+			<tr class="row1">
+				<td id="001" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="0" y="0" z="1"></td>
+				<td id="101" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="1" y="0" z="1"></td>
+				<td id="201" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="2" y="0" z="1"></td>
+			</tr>
+			<tr class="row2">
+				<td id="011" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="0" y="1" z="1"></td>
+				<td id="111" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="1" y="1" z="1"></td>
+				<td id="211" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="2" y="1" z="1"></td>
+			</tr>
+			<tr class="row3">
+				<td id="021" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="0" y="2" z="1"></td>
+				<td id="121" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="1" y="2" z="1"></td>
+				<td id="221" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="2" y="2" z="1"></td>
+			</tr>
+		</table> <br />
+		<table id="grid3">
+			<tr class="row1">
+				<td id="002" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="0" y="0" z="2"></td>
+				<td id="102" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="1" y="0" z="2"></td>
+				<td id="202" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="2" y="0" z="2"></td>
+			</tr>
+			<tr class="row2">
+				<td id="012" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="0" y="1" z="2"></td>
+				<td id="112" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="1" y="1" z="2"></td>
+				<td id="212" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="2" y="1" z="2"></td>
+			</tr>
+			<tr class="row3">
+				<td id="022" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="0" y="2" z="2"></td>
+				<td id="122" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="1" y="2" z="2"></td>
+				<td id="222" onmouseover="hover(this.id)" onmouseout="unhover(this.id)" onclick="fill(this.id)" x="2" y="2" z="2"></td>
+			</tr>
+		</table>
+	</section>
+	<br />
+	<form method="GET" action="/quit">
+		<input type="submit" value="QUIT" />
+	</form>
+</body>
+</html>

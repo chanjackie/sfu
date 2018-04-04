@@ -37,7 +37,7 @@ app.use(express.urlencoded({extended:false}));
 
 app.use('/', function(req,res,next) {
 	console.log(req.method, 'request: ', req.url, JSON.stringify(req.body));
-	if (req.url === "/userlanding.html" || req.url === "thankyou.html") {
+	if (req.url === "/userlanding.html" || req.url === "/thankyou.html" || req.url === "/board.html") {
 		if (!loggedin) {
 			console.log("Nice try kid");
 			res.redirect('/login.html');
@@ -58,14 +58,27 @@ app.post('/userlanding', function(req,res,next) {
 			console.log("Incorrect password");
 			res.redirect('/login.html');
 		} else {
-			user._id = req.body._id;
-			user.pword = req.body.pword;
-			user.win = req.body.win;
-			user.loss = req.body.loss;
+			user._id = result[0]._id;
+			user.pword = result[0].pword;
+			user.win = result[0].win;
+			user.loss = result[0].loss;
+			console.log("User info:", user);
 			loggedin = true;
 			res.redirect('/userlanding.html');
 		}
 	});
+});
+
+app.get('/quit', function(req,res,next) {
+	user.loss++;
+	collection.update({_id:user._id}, {$set:{loss:user.loss}});
+	loggedin=true;
+	res.redirect('/userlanding.html');
+});
+
+app.get('/play', function(req,res,next) {
+	loggedin=true;
+	res.redirect("/board.html");
 });
 
 app.get('/stats', function(req,res,next) {

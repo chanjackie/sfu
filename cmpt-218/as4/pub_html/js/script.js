@@ -1,14 +1,14 @@
-function register() {
+/*function register() {
 	var i = document.getElementById("pword");
 	var x = document.getElementById("confirmpword");
-	console.log(i.pword);
-	console.log(x.confirmpword);
-	if (i.pword != x.confirmpword) {
+	console.log(i);
+	console.log(x);
+	if (i != x) {
 		alert("Passwords don't match!");
 		return;
 	}
 }
-
+*/
 function grabStats() {
 	console.log("Calling GET /stats");
 	$.ajax({
