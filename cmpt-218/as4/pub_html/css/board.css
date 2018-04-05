@@ -17,6 +17,22 @@ input, button{
 	margin-top: 60px;
 }*/
 
+table {
+  transform: skewX(-40deg);
+  position: relative;
+  left: 70px;
+}
+
+/*#grid1 {
+  position: relative;
+  left: 80px;
+}
+
+#grid2 {
+  position: relative;
+  left: 40px;
+}*/
+
 td { 
 	display: flex;
 	display: -webkit-flex;
@@ -31,7 +47,7 @@ td {
 
 #board {
   padding: 35px;
-	width: 200px;
+	width: 340px;
 	border-radius: 25px;
 	border: 2px solid grey;
 }
