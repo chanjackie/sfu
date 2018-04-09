@@ -1,0 +1,51 @@
+body {
+    background-color: #eee;
+    color: #343;
+    font-family: sans-serif;
+}
+
+body input,
+body label {
+    display: block;
+}
+
+#number {
+    text-align: center;
+    color:red;
+}
+
+
+input {
+    outline: none;
+    border: 1px solid black;
+    background-color: white;
+    color: #343;
+    padding: 1em .5em;
+    display: block;
+    font-size: 1.5em;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+
+#discon{
+  padding-top:1.6em;
+  padding-left: 0.4em;
+  padding-right: 0.4em;
+  border: 1px solid black;
+
+  cursor: pointer;
+}
+
+
+div#messages {
+    margin-left: 1em;
+}
+
+form {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}

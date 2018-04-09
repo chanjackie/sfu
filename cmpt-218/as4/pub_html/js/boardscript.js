@@ -9,6 +9,28 @@ var count2 = 0;
 
 win[0] = [["0","0","0"],["1","0","0"],["2","0","0"]];
 
+var socket = io("http://localhost:12834/board.html");
+var uname = "unknown";
+
+function getName(){
+	$.ajax({
+		method: 'get',
+		url: '/getName',
+		data: '',
+		success: setName
+	});
+}
+
+function setName(data) {
+	console.log("username:", data);
+	uname = data;
+}
+
+socket.on('connect', function() {
+	var msg = uname + " has connected!";
+	socket.emit('display', msg);
+})
+
 
 function hover(a) {
 	var k = document.getElementById(a);

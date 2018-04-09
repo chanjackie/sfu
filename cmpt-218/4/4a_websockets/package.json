@@ -1,0 +1,17 @@
+{
+  "name": "4a_websockets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sio-server.js",
+  "dependencies": {
+    "express": "^4.13.3",
+    "socket.io": "^1.3.7",
+    "socket.io-client": "^1.3.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

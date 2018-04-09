@@ -9,6 +9,8 @@
 	}
 }
 */
+/**/
+
 function grabStats() {
 	console.log("Calling GET /stats");
 	$.ajax({
@@ -20,6 +22,7 @@ function grabStats() {
 }
 
 function displayStats(data) {
+	uname = data[0]._id;
 	document.getElementById("title").innerHTML = data[0]._id + " LANDING";
 	document.getElementById("header").innerHTML = "Welcome " + data[0]._id;
 	document.getElementById("winloss").innerHTML = data[0].win + ":" + data[0].loss;

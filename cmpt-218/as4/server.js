@@ -5,6 +5,7 @@ var express = require('express');
 var app = express();
 var http = require('http');
 var MongoClient = require('mongodb').MongoClient
+
 var collection = null;
 
 //var url = 'mongodb://jgc11:jp8j/Fdl@127.0.0.1:27017/as3-218?authSource=admin';
@@ -31,6 +32,10 @@ var user = {
 	"win": 0,
 	"loss": 0
 }
+var server = http.createServer(app).listen(port);
+console.log('Port', port);
+
+var io = require('socket.io')(server);
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
@@ -48,7 +53,15 @@ app.use('/', function(req,res,next) {
 });
 
 app.use('/', express.static('./pub_html', options));
-	
+
+io.on('connection', function(socket) {
+	console.log("Socket connection");
+	socket.on('display', function(msg) {
+		socket.broadcast.emit('message', msg);
+	})
+	//socket.on()
+});
+
 app.post('/userlanding', function(req,res,next) {
 	collection.find({_id:req.body._id}).toArray(function(err, result) {
 		if (result.length == 0) {
@@ -81,6 +94,10 @@ app.get('/play', function(req,res,next) {
 	res.redirect("/board.html");
 });
 
+app.get('/getName', function(req,res,next) {
+	res.json(user._id);
+})
+
 app.get('/stats', function(req,res,next) {
 	collection.find({_id:user._id}).toArray(function(err, result) {
 		console.log("Feeding ", result);
@@ -105,6 +122,3 @@ app.post('/register', function(req,res,next) {
 		});
 	}
 });
-
-http.createServer(app).listen(port);
-console.log('Port', port);

@@ -5,10 +5,11 @@
 	<meta charset="utf-8">
 	<title>3D TIC-TAC-TOE</title>
 	<link rel="stylesheet" href="./css/board.css"/>
-	<script src="./js/boardscript.js" async></script>
 	<script src="./js/jquery.min.js"></script>
+	<script src="./js/socket.io.js"></script>
+	<script src="./js/boardscript.js"></script>
 </head>
-<body>
+<body onload="getName()">
 	<h1>3D TIC-TAC-TOE</h1>
 	<br />
 	<section id="board" style="background-color:black">
