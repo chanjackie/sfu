@@ -1,40 +1,140 @@
 // Global Variables
 var win = [];
 var n = 1;
-var p1moves = [[]];
-var p2moves = [[]];
+var p1moves = [];
+var p2moves = [];
 var p1turn = true;
 var count1 = 0;
 var count2 = 0;
+var yourturn = false;
+var moves=0;
 
-win[0] = [["0","0","0"],["1","0","0"],["2","0","0"]];
 
-var socket = io("http://localhost:12834/board.html");
-var uname = "unknown";
+//All win paths sourced from http://jsfiddle.net/Vvwaz/1/
+win[0] = [[0,0,0],[1,0,0],[2,0,0]];
+win[1] = [[0,1,0],[1,1,0],[2,1,0]];
+win[2] = [[0,2,0],[1,2,0],[2,2,0]];
+win[3] = [[0,0,0],[0,1,0],[0,2,0]];
+win[4] = [[1,0,0],[1,1,0],[1,2,0]];
+win[5] = [[2,0,0],[2,1,0],[2,2,0]];
+win[6] = [[0,0,0],[1,1,0],[2,2,0]];
+win[7] = [[2,0,0],[1,1,0],[0,2,0]];
 
-function getName(){
-	$.ajax({
-		method: 'get',
-		url: '/getName',
-		data: '',
-		success: setName
-	});
+// Everything in the middle level (z=1)
+win[8] = [[0,0,1],[1,0,1],[2,0,1]];
+win[9] = [[0,1,1],[1,1,1],[2,1,1]];
+win[10] = [[0,2,1],[1,2,1],[2,2,1]];
+win[11] = [[0,0,1],[0,1,1],[0,2,1]];
+win[12] = [[1,0,1],[1,1,1],[1,2,1]];
+win[13] = [[2,0,1],[2,1,1],[2,2,1]];
+win[14] = [[0,0,1],[1,1,1],[2,2,1]];
+win[15] = [[2,0,1],[1,1,1],[0,2,1]];
+
+// Everything in the top layer (z=2)
+win[16] = [[0,0,2],[1,0,2],[2,0,2]];
+win[17] = [[0,1,2],[1,1,2],[2,1,2]];
+win[18] = [[0,2,2],[1,2,2],[2,2,2]];
+win[19] = [[0,0,2],[0,1,2],[0,2,2]];
+win[20] = [[1,0,2],[1,1,2],[1,2,2]];
+win[21] = [[2,0,2],[2,1,2],[2,2,2]];
+win[22] = [[0,0,2],[1,1,2],[2,2,2]];
+win[23] = [[2,0,2],[1,1,2],[0,2,2]];
+
+// All the straight columns
+win[24] = [[0,0,0],[0,0,1],[0,0,2]];
+win[25] = [[1,0,0],[1,0,1],[1,0,2]];
+win[26] = [[2,0,0],[2,0,1],[2,0,2]];     
+win[27] = [[0,1,0],[0,1,1],[0,1,2]];
+win[28] = [[1,1,0],[1,1,1],[1,1,2]];
+win[29] = [[2,1,0],[2,1,1],[2,1,2]];      
+win[30] = [[0,2,0],[0,2,1],[0,2,2]];
+win[31] = [[1,2,0],[1,2,1],[1,2,2]];
+win[32] = [[2,2,0],[2,2,1],[2,2,2]];
+
+// All the diagonal columns - back to front
+win[33] = [[0,0,0],[0,1,1],[0,2,2]];
+win[34] = [[1,0,0],[1,1,1],[1,2,2]];
+win[35] = [[2,0,0],[2,1,1],[2,2,2]];
+
+// All the diagonal columns - front to back
+win[36] = [[0,2,0],[0,1,1],[0,0,2]];
+win[37] = [[1,2,0],[1,1,1],[1,0,2]];
+win[38] = [[2,2,0],[2,1,1],[2,0,2]];
+
+// All the diagonal columns - left to right
+win[39] = [[0,0,0],[1,0,1],[2,0,2]];
+win[40] = [[0,1,0],[1,1,1],[2,1,2]];
+win[41] = [[0,2,0],[1,2,1],[2,2,2]];
+
+// All the diagonal columns - right to left
+win[42] = [[2,0,0],[1,0,1],[0,0,2]];
+win[43] = [[2,1,0],[1,1,1],[0,1,2]];
+win[44] = [[2,2,0],[1,2,1],[0,2,2]];
+
+// All the diagonal columns - corner to corner
+win[45] = [[0,0,0],[1,1,1],[2,2,2]];
+win[46] = [[0,2,0],[1,1,1],[2,0,2]];
+win[47] = [[2,0,0],[1,1,1],[0,2,2]];
+win[47] = [[2,2,0],[1,1,1],[0,0,2]];
+
+var socket = io("localhost:12834");
+var user = {
+	"_id":"unknown",
+	"win":0,
+	"loss":0,
+	"player1":false
 }
 
-function setName(data) {
-	console.log("username:", data);
-	uname = data;
+
+function setData(data) {
+	console.log("received data:", data);
+	document.getElementById("playerName").value = data[0]._id;
+	user._id = data[0]._id;
+	user.win = data[0].win;
+	user.loss = data[0].loss;
+	user.player1 = data[0].player1;
+	var msg = user._id + " has connected!";
+	if (user.player1) {console.log("This is player 1!");}
+	else {console.log("This is player 2!");}
+	socket.emit('broadcast', msg);	
 }
 
 socket.on('connect', function() {
-	var msg = uname + " has connected!";
-	socket.emit('display', msg);
-})
+	console.log("received connect emit");
+	$.ajax({
+		method: 'get',
+		url: '/stats',
+		data: '',
+		success: setData
+	});
+});
+
+socket.on('userCon', function(msg) {
+	console.log("received userCon emit");
+	var p = document.createElement("p");
+	p.innerText = msg;
+	document.querySelector("#currentUsers").appendChild(p);
+});
+
+socket.on('changeTurn', function(data) {
+	var k = document.getElementById(data);
+	moves++;
+	if (p1turn) {
+		k.style.backgroundColor = "crimson";
+		p1turn = false;
+	} else {
+		k.style.backgroundColor = "navy";
+		p1turn = true;
+	}
+	if (moves == 27) {
+		alert("It's a draw!");
+	}
+});
 
 
 function hover(a) {
 	var k = document.getElementById(a);
-	if (p1turn) {
+	if (user.player1) {
 		if (k.style.backgroundColor != "crimson" && k.style.backgroundColor != "navy") {
 			k.style.backgroundColor = "lightcoral";
 		}
@@ -56,15 +156,12 @@ function unhover(a) {
 
 function fill(a) {
 	var k = document.getElementById(a);
-	if (p1turn) {
+	if (p1turn && user.player1) {
 		if (k.style.backgroundColor != "crimson") {
-			k.style.backgroundColor = "crimson";
 			checkwin(a);
 		}
-	}
-	else {
+	} else if (!p1turn && !user.player1){
 		if (k.style.backgroundColor != "navy") {
-			k.style.backgroundColor = "navy";
 			checkwin(a);
 		}
 	}
@@ -76,57 +173,31 @@ function checkwin(data) {
 	var y = k.getAttribute("y");
 	var z = k.getAttribute("z");
 	console.log(x, y, z);
+	socket.emit('updateTurn', data);
 	if (p1turn) {
-		p1moves[count1].push([x,y,z]);
-		console.log("Player 1 moves:", p1moves[count1]);
-		console.log("Win[0]:", win[0]);
-		console.log(p1moves[0].length);
-		if (p1moves[0].length == win[0].length){
-			for (var i=0;i<p1moves[0].length;i++) {
-				for (var x=0;x<3;x++) {
-					console.log("P1:",p1moves[count1][i][x],"WIN:",win[0][i][x]);
-					if (p1moves[count1][i][x] !== win[0][i][x]) {
-						console.log("not equal");
-						p1turn = false;
-						return;
+		p1moves.push([x,y,z]);
+		var count = 0;
+		if (p1moves.length >= 3) {
+			for (var n=0;n<48;n++) {
+				var l = 0;
+				for (var i=0;i<p1moves.length;i++) {
+					var inner = 0;
+					for (var x=0;x<3;x++) {
+						if (p1moves[i][x] == win[n][l][x]) {
+							inner++;
+						}
+						if(inner==3) {
+							console.log("l++");
+							l++;
+						}
+					}
+					if (l == 3) {
+						alert("P1 Wins!");
 					}
 				}
 			}
-			alert("Player 1 wins!");
 		}
-		p1turn = false;
 	}
 	else {
-		p2moves[count2].push([x,y,z]);
-		console.log("Player 2 moves:", p2moves);
-		/*for (var i=0;i<n;i++) {
-			if (p2moves == win[i]) {
-				alert("Player 2 wins!");
-			}
-		}*/
-		//count2++;
-		p1turn = true;
 	}
-}
-
-function arraysEqual(a, b) {
-	console.log("start check");
-  if (a === b) return true;
-  console.log("checking null");
-  if (a == null || b == null) return false;
-  console.log("checking length");
-  if (a.length != b.length) return false;
-
-  // If you don't care about the order of the elements inside
-  // the array, you should sort both arrays here.
-  console.log("running for loop");
-  for (var i = 0; i < a.length; ++i) {
-    if (a[i] !== b[i]) {
-    	console.log(a[i], b[i]);
-    	console.log("error in for loop");
-    	return false;
-    }
-  }
-  console.log("all clear");
-  return true;
 }

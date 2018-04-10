@@ -9,7 +9,7 @@
 	<script src="./js/socket.io.js"></script>
 	<script src="./js/boardscript.js"></script>
 </head>
-<body onload="getName()">
+<body>
 	<h1>3D TIC-TAC-TOE</h1>
 	<br />
 	<section id="board" style="background-color:black">
@@ -117,8 +117,14 @@
 		</table>
 	</section>
 	<br />
-	<form method="GET" action="/quit">
-		<input type="submit" value="QUIT" />
+	<form method="POST" action="/disconnect">
+		<input id="playerName" type="hidden" name="_id" value="" />
+		<input type="submit" value="DISCONNECT" />
 	</form>
+	<!-- <button onclick="discon()">DISCONNECT (LOSS)</button> -->
+	<section id="userDisplay">
+		<h1>CURRENT USERS:</h1>
+		<div id="currentUsers"></div>
+	</section>
 </body>
 </html>

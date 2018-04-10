@@ -30,8 +30,10 @@ var user = {
 	"_id": "",
 	"pword": "",
 	"win": 0,
-	"loss": 0
+	"loss": 0,
+	"player1": false
 }
+var inRoom = 0;
 var server = http.createServer(app).listen(port);
 console.log('Port', port);
 
@@ -56,10 +58,14 @@ app.use('/', express.static('./pub_html', options));
 
 io.on('connection', function(socket) {
 	console.log("Socket connection");
-	socket.on('display', function(msg) {
-		socket.broadcast.emit('message', msg);
-	})
-	//socket.on()
+	socket.on('broadcast', function(msg) {
+		socket.broadcast.emit('userCon', msg);
+		socket.emit('userCon', msg);
+	});
+	socket.on('updateTurn', function(data) {
+		socket.broadcast.emit('changeTurn', data);
+		socket.emit('changeTurn', data);
+	});
 });
 
 app.post('/userlanding', function(req,res,next) {
@@ -75,6 +81,7 @@ app.post('/userlanding', function(req,res,next) {
 			user.pword = result[0].pword;
 			user.win = result[0].win;
 			user.loss = result[0].loss;
+			user.player1 = result[0].player1;
 			console.log("User info:", user);
 			loggedin = true;
 			res.redirect('/userlanding.html');
@@ -82,23 +89,47 @@ app.post('/userlanding', function(req,res,next) {
 	});
 });
 
-app.get('/quit', function(req,res,next) {
-	user.loss++;
-	collection.update({_id:user._id}, {$set:{loss:user.loss}});
+app.post('/disconnect', function(req,res,next) {
+	console.log(req.body._id, "has disconnected");
+	user._id = req.body._id;
+	if (inRoom==2) {
+		collection.update({_id:user._id}, {$inc:{loss:1}});
+	}
+	inRoom--;
 	loggedin=true;
 	res.redirect('/userlanding.html');
 });
 
-app.get('/play', function(req,res,next) {
+
+app.post('/play', function(req,res,next) {
 	loggedin=true;
-	res.redirect("/board.html");
+	user._id = req.body._id;
+	if (inRoom == 0) {
+		inRoom++;
+		user.player1 = true;
+		collection.update({_id:user._id}, {$set:{player1:true}});
+		res.redirect("/board.html");
+	} else {
+		res.redirect("/userlanding.html");
+	}
 });
 
-app.get('/getName', function(req,res,next) {
-	res.json(user._id);
-})
+app.post('/join', function(req,res,next) {
+	loggedin=true;
+	user._id = req.body._id;
+	if (inRoom==1) {
+		inRoom++;
+		user.player1 = false;
+		collection.update({_id:user._id}, {$set:{player1:false}});
+		res.redirect("/board.html");
+	} else {
+		res.redirect("/userlanding.html");
+	}
+});
+
 
 app.get('/stats', function(req,res,next) {
+	console.log("Finding user", user._id);
 	collection.find({_id:user._id}).toArray(function(err, result) {
 		console.log("Feeding ", result);
 		res.json(result);
@@ -115,7 +146,7 @@ app.post('/register', function(req,res,next) {
 				console.log("User already exists in database");
 				res.redirect('/register.html');
 			} else {
-				collection.save({_id:req.body._id, pword:req.body.pword, win:0, loss:0});
+				collection.save({_id:req.body._id, pword:req.body.pword, win:0, loss:0, player1:false});
 				loggedin = true;
 				res.redirect('/thankyou.html');
 			}

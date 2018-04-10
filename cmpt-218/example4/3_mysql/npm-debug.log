@@ -1,0 +1,62 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'install', '--save', 'mysql' ]
+2 info using npm@3.5.2
+3 info using node@v4.2.6
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData mysql
+8 silly fetchNamedPackageData mysql
+9 silly mapToRegistry name mysql
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry uri https://registry.npmjs.org/mysql
+13 verbose request uri https://registry.npmjs.org/mysql
+14 verbose request no auth needed
+15 info attempt registry request try #1 at 1:44:20 PM
+16 verbose request id 17e7f1585a406e02
+17 verbose etag "5aaa4a36-24a17"
+18 verbose lastModified Thu, 15 Mar 2018 10:25:58 GMT
+19 http request GET https://registry.npmjs.org/mysql
+20 http 304 https://registry.npmjs.org/mysql
+21 verbose headers { date: 'Wed, 21 Mar 2018 20:44:21 GMT',
+21 verbose headers   via: '1.1 varnish',
+21 verbose headers   'cache-control': 'max-age=300',
+21 verbose headers   etag: '"5aaa4a36-24a17"',
+21 verbose headers   age: '6668',
+21 verbose headers   connection: 'keep-alive',
+21 verbose headers   'x-served-by': 'cache-sea1024-SEA',
+21 verbose headers   'x-cache': 'HIT',
+21 verbose headers   'x-cache-hits': '11',
+21 verbose headers   'x-timer': 'S1521665061.321711,VS0,VE0',
+21 verbose headers   vary: 'Accept-Encoding, Accept' }
+22 silly get cb [ 304,
+22 silly get   { date: 'Wed, 21 Mar 2018 20:44:21 GMT',
+22 silly get     via: '1.1 varnish',
+22 silly get     'cache-control': 'max-age=300',
+22 silly get     etag: '"5aaa4a36-24a17"',
+22 silly get     age: '6668',
+22 silly get     connection: 'keep-alive',
+22 silly get     'x-served-by': 'cache-sea1024-SEA',
+22 silly get     'x-cache': 'HIT',
+22 silly get     'x-cache-hits': '11',
+22 silly get     'x-timer': 'S1521665061.321711,VS0,VE0',
+22 silly get     vary: 'Accept-Encoding, Accept' } ]
+23 verbose etag https://registry.npmjs.org/mysql from cache
+24 verbose get saving mysql to /home/jgc11/.npm/registry.npmjs.org/mysql/.cache.json
+25 verbose stack TypeError: gid must be an unsigned int
+25 verbose stack     at TypeError (native)
+25 verbose stack     at Object.fs.chown (fs.js:1033:11)
+25 verbose stack     at Object.chown (/usr/share/npm/node_modules/graceful-fs/polyfills.js:208:17)
+25 verbose stack     at /usr/share/npm/node_modules/chownr/chownr.js:12:43
+25 verbose stack     at /usr/share/npm/node_modules/graceful-fs/graceful-fs.js:140:16
+25 verbose stack     at FSReqWrap.oncomplete (fs.js:82:15)
+26 verbose cwd /home/jgc11/sfuhome/sfu-cmpt/cmpt-218/example4/3_mysql
+27 error Linux 4.4.0-109-generic
+28 error argv "/usr/bin/nodejs" "/usr/bin/npm" "install" "--save" "mysql"
+29 error node v4.2.6
+30 error npm  v3.5.2
+31 error gid must be an unsigned int
+32 error If you need help, you may report this error at:
+32 error     <https://github.com/npm/npm/issues>
+33 verbose exit [ 1, true ]

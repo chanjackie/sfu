@@ -15,9 +15,16 @@
 		<label for="winloss">WINS:LOSSES</label>
 		<h1 id="winloss" style="text-align: center"></h1>
 	</section>
-	<section style="background-color:silver">
-		<form method='GET' action='/play'>
-			<input type="submit" value="PLAY" />
+	<section style="background-color:silver; width:205px">
+		<form method='POST' action='/play'>
+			<input type="hidden" name="player1" value="true" />
+			<input id="name1" type="hidden" name="_id" value="" />
+			<input type="submit" value="CREATE ROOM" />
+		</form> <br />
+		<form method='POST' action='/join'>
+			<input type="hidden" name="player1" value="false" />
+			<input id="name2" type="hidden" name="_id" value="" />
+			<input type="submit" value="JOIN ROOM" />
 		</form>
 	</section>
 	<br />
