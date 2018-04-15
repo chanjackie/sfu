@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="minimum-scale=1.0, width=device-width, maxiumum-scale=1.0, user-scalable=no"/>
+	<meta charset="utf-8">
+	<title>REGISTER</title>
+	<link rel="stylesheet" href="./css/style.css"/>
+	<script src="./js/script.js"></script>
+	<script src="./js/jquery.min.js"></script>
+</head>
+<body>
+	<h1>Register for Tic-Tac-Toe Account</h1>
+	<section id="register" style="background-color:cyan">
+		<form method='POST' action='/register'>
+			<label for="_id">Username:</label> <br />
+			<input type="text" id="_id" name="_id" placeholder="username" required />
+			<br />
+			<label for="pword">Password:</label> <br />
+			<input type="password" id="pword" name="pword" placeholder="password" required />
+			<br />
+			<label for="confirmpword">Confirm Password:</label> <br />
+			<input type="password" id="confirmpword" name="confirmpword" placeholder="password" required />
+			<br />
+			<button onclick="register()">Sign-up</button>
+		</form>
+	</section>
+	<br />
+	<form method='GET' action='/login.html'>
+		<input type="submit" value="Return" />
+	</form>
+</body>
+</html>

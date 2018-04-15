@@ -6,7 +6,7 @@ var app = express();
 var http = require('http');
 var MongoClient = require('mongodb').MongoClient
 
-var url = 'mongodb://jgc11:jp8j/Fdl@127.0.0.1:27017/cmpt218_jgc11?authSource=admin';
+var url = 'mongodb://jgc11:jp8j3Fdl@127.0.0.1:27017/cmpt218_jgc11?authSource=admin';
 //var url = 'mongodb://root:root@ds123259.mlab.com:23259/cmpt218_jgc11';
 MongoClient.connect(url, function(err, client) {
 	if (err) {throw err;}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="minimum-scale=1.0, width=device-width, maxiumum-scale=1.0, user-scalable=no"/>
+	<meta charset="utf-8">
+	<title>LOGIN</title>
+	<link rel="stylesheet" href="./css/style.css"/>
+	<script src="./js/socket.io.js"></script>
+	<script src="./js/jquery.min.js"></script>
+	<script src="./js/waitscript.js"></script>
+</head>
+<body>
+	<h1>WAITING FOR OTHER PLAYER TO JOIN...</h1>
+	<br />
+	<h1 id="connected"></h1>
+	<section style="background-color:tan">
+		<h1 style="text-align: center">CURRENT USERS:</h1>
+		<div id="currentUsers" style="font-size: 25px; text-align: center"></div>
+	</section>
+	<br />
+	<form id="returnForm" method='POST' action='/returnLanding'>
+		<input class="name" type="hidden" name="_id" value="" />
+		<input onclick="cancelStart()" type="submit" value="RETURN" />
+	</form>
+	<form id="player1" method='POST' action='/join1'>
+		<input class="name" type="hidden" name="_id" value="" />
+	</form>
+	<form id="player2" method='POST' action='/join2'>
+		<input class="name" type="hidden" name="_id" value="" />
+	</form>
+</body>
+</html>
