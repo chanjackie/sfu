@@ -52,10 +52,10 @@ int List_countNodes (struct nodeStruct *head) {
 		return 0;
 	}
 	int length = 1;
-	while (head->next != NULL) {
-		printf("There's something here\n");
+	struct nodeStruct *node = head;
+	while (node->next != NULL) {
 		length++;
-		head = head->next;
+		node = node->next;
 	}
 	return length;
 }
@@ -95,5 +95,12 @@ void List_deleteNode (struct nodeStruct **headRef, struct nodeStruct *node) {
  * Any sorting algorithm is fine.
  */
 void List_sort (struct nodeStruct **headRef) {
+	int count = List_countNodes(*headRef);
+	if (count == 0 || count == 1) {
+		return;
+	} else {
+		//int half = count/2;
+
+	}
 	return;
 }
