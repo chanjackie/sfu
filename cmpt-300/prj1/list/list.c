@@ -86,6 +86,22 @@ struct nodeStruct* List_findNode(struct nodeStruct *head, int item) {
  * should be set to NULL.
  */
 void List_deleteNode (struct nodeStruct **headRef, struct nodeStruct *node) {
+	if (node != NULL) {
+		int count = List_countNodes(*headRef);
+		if (count == 1) {
+			free(*headRef);
+			*headRef = NULL;
+		} else {
+			struct nodeStruct *head = *headRef;
+			struct nodeStruct *prev;
+			while (head->item != node->item) {
+				prev = head;
+				head = head->next;
+			}
+			prev->next = head->next;
+			free(head);
+		}
+	}
 	return;
 }
 
@@ -99,8 +115,60 @@ void List_sort (struct nodeStruct **headRef) {
 	if (count == 0 || count == 1) {
 		return;
 	} else {
-		//int half = count/2;
-
+		int half = (count/2)-1;
+		struct nodeStruct *firstHalf = *headRef;
+		for (int i=0;i<half;i++) {
+			firstHalf = firstHalf->next;
+		}
+		struct nodeStruct *secondHalf = firstHalf->next;
+		firstHalf->next = NULL;
+		firstHalf = *headRef;
+		List_sort(&firstHalf);
+		List_sort(&secondHalf);
+		List_merge(&firstHalf, &secondHalf, headRef);
 	}
+	return;
+}
+
+void List_merge (struct nodeStruct **firstHalf, struct nodeStruct **secondHalf, struct nodeStruct **headRef) {
+	struct nodeStruct *firstHead = *firstHalf;
+	struct nodeStruct *secondHead = *secondHalf;
+	struct nodeStruct *sortedList;
+	if (firstHead->item < secondHead->item) {
+		sortedList = firstHead;
+		firstHead = firstHead->next;
+	} else {
+		sortedList = secondHead;
+		secondHead = secondHead->next;
+	}
+	*headRef = sortedList;
+	while(firstHead != NULL && secondHead != NULL) {
+		if (firstHead->item < secondHead->item) {
+			sortedList->next = firstHead;
+			firstHead = firstHead->next;
+		} else {
+			sortedList->next = secondHead;
+			secondHead = secondHead->next;
+		}
+		sortedList = sortedList->next;
+	}
+	if (firstHead == NULL) {
+		sortedList->next = secondHead;
+	} else {
+		sortedList->next = firstHead;
+	}
+	printf("Sorted ");
+	List_print(headRef);
+	return;
+}
+
+void List_print(struct nodeStruct **headRef) {
+	struct nodeStruct *head = *headRef;
+	printf("Printing list: \n");
+	while (head != NULL) {
+		printf("%d, ", head->item);
+		head = head->next;
+	}
+	printf("\n");
 	return;
 }
