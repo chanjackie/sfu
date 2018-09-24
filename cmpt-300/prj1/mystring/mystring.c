@@ -42,7 +42,6 @@ char  *mystrcpy (char *dst, const char *src)
 		*dst = *src;
 		dst++;
 	}
-	printf("mystrcpy: %s\n", newStr);
 	return newStr;
 }
 
@@ -85,7 +84,6 @@ char *mystrdup(const char *s1)
 		return NULL;
 	}
 	mystrcpy(newString, s1);
-	printf("%s\n", newString);
 	return newString;
 }
 

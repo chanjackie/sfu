@@ -72,6 +72,15 @@ int main(int argc, char** argv)
 	assert(current->next != NULL);
 	List_print(&current);
 
+	struct nodeStruct *nodeOfn5 = List_findNode(head, -5);
+	List_deleteNode(&head, nodeOfn5);
+	List_print(&head);
+	assert(List_countNodes(head) == 10);
+	struct nodeStruct *nodeOf51 = List_findNode(head, 51);
+	List_deleteNode(&head, nodeOf51);
+	List_print(&head);
+	assert(List_countNodes(head) == 9);
+
 	printf("\nExecution finished.\n");
 	return 0;
 }

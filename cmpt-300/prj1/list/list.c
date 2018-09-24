@@ -11,7 +11,6 @@
 struct nodeStruct* List_createNode(int item) {
 	struct nodeStruct *node = malloc(sizeof(struct nodeStruct));
 	node->item = item;
-	printf("node->item: %d\n", node->item);
 	return node;
 }
 
@@ -88,13 +87,15 @@ struct nodeStruct* List_findNode(struct nodeStruct *head, int item) {
 void List_deleteNode (struct nodeStruct **headRef, struct nodeStruct *node) {
 	if (node != NULL) {
 		int count = List_countNodes(*headRef);
-		if (count == 1) {
-			free(*headRef);
-			*headRef = NULL;
+		if (count == 1 || *headRef == node) {
+			struct nodeStruct *nextNode = *headRef;
+			nextNode = nextNode->next;
+			free(node);
+			*headRef = nextNode;
 		} else {
 			struct nodeStruct *head = *headRef;
 			struct nodeStruct *prev;
-			while (head->item != node->item) {
+			while (head != node) {
 				prev = head;
 				head = head->next;
 			}
@@ -157,8 +158,6 @@ void List_merge (struct nodeStruct **firstHalf, struct nodeStruct **secondHalf, 
 	} else {
 		sortedList->next = firstHead;
 	}
-	printf("Sorted ");
-	List_print(headRef);
 	return;
 }
 
