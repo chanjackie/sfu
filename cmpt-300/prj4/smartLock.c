@@ -4,34 +4,33 @@
                            
 int counter = 0;
 struct nodeStruct *head = NULL;
+struct nodeStruct *locks = NULL;
 
+_Bool check_cycle(struct nodeStruct **start, struct nodeStruct **process);
 
 void init_lock(SmartLock* lock) {
     pthread_mutex_init(&(lock->mutex), NULL);
     lock->lockId = counter;
     counter++;
     struct nodeStruct *node = List_createNode(lock, -1);
-    if (List_countNodes(head) == 0) {
-    	List_insertHead(&head, node);
-    } else {
-    	List_insertTail(&head, node);
-    }
-    List_print(&head);
+    List_insertHead(&locks, node);
+    List_print(&locks);
 }
 
 int lock(SmartLock* lock) {
-	struct nodeStruct *lockNode = List_findNode(head, -1, lock->lockId);
+	struct nodeStruct *lockNode = List_findNode(locks, -1, lock->lockId);
 	struct nodeStruct *threadNode = List_findNode(head, pthread_self(), -1);
 	if (threadNode == NULL) {
 		threadNode = List_createNode(NULL, pthread_self());
 	}
 	if (lockNode->next == NULL) {
-		printf("%lu locking lock %d\n", pthread_self(), lock->lockId);
-    	pthread_mutex_lock(&(lock->mutex));
-    	return 1;
-	} else {
-		return 0;
-	}
+        if (!check_cycle(&lockNode, &threadNode)) { 
+            printf("%lu locking lock %d\n", pthread_self(), lock->lockId);
+            pthread_mutex_lock(&(lock->mutex));
+            return 1;
+        }
+    }
+    return 0;
 }
 
 void unlock(SmartLock* lock) {
@@ -46,4 +45,8 @@ void unlock(SmartLock* lock) {
  */
 void cleanup() {
 
+}
+
+_Bool check_cycle(struct nodeStruct **start, struct nodeStruct **process) {
+    return 0;
 }
