@@ -4,7 +4,7 @@
 # final executable to build:
 TARGET= locking
 # .o files to link in (for all .c files)
-OBJS = smartLock.o smartLock_test.o
+OBJS = smartLock.o smartLock_test.o list.o
 
 # Add support for pthread and real-time clock here:
 CFLAGS = -Wall -g -std=c99 -Werror -pthread -D_POSIX_C_SOURCE=199309L
