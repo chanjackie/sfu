@@ -11,12 +11,12 @@ void print_memory(int* p[], int count) {
 }
 
 int main(int argc, char* argv[]) {
-    //initialize_allocator(100, FIRST_FIT);
+    initialize_allocator(100, FIRST_FIT);
     //initialize_allocator(100, BEST_FIT);
-    initialize_allocator(100, WORST_FIT);
-    //printf("Using first fit algorithm on memory size 100\n");
+    //initialize_allocator(100, WORST_FIT);
+    printf("Using first fit algorithm on memory size 100\n");
     //printf("Using best fit algorithm on memory size 100\n");
-    printf("Using worst fit algorithm on memory size 100\n");
+    //printf("Using worst fit algorithm on memory size 100\n");
 
     int* p[50] = {NULL};
     for(int i=0; i<20; ++i) {
@@ -74,13 +74,17 @@ int main(int argc, char* argv[]) {
     p[7] = kalloc(sizeof(double));
     *(p[7]) = 7.0;
     print_memory(p, 20);
+    print_nodes();
     print_statistics();
 
     printf("available_memory %d\n", available_memory());
 
     void* before[100] = {NULL};
     void* after[100] = {NULL};
-    compact_allocation(before, after);
+    int count = compact_allocation(before, after);
+    for (int i=0;i<count; i++) {
+        p[i] = after[i];
+    }
 
     print_statistics();
 

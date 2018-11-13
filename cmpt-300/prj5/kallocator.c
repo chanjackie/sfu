@@ -145,6 +145,16 @@ void kfree(void* _ptr) {
         newFreeChunk->next = free;
         kallocator.free = newFreeChunk;
     }
+    free = kallocator.free;
+    while (free->next != NULL) {
+        if ((free->address + free->size) == free->next->address) {
+            free->size += free->next->size;
+            List_deleteNode(&kallocator.free, free->next);
+        }
+        if (free->next != NULL) {            
+            free = free->next;
+        }
+    }
 
     List_deleteNode(&kallocator.allocated, allocated);    
 }
@@ -154,7 +164,45 @@ int compact_allocation(void** _before, void** _after) {
 
     // compact allocated memory
     // update _before, _after and compacted_size
-
+    struct nodeStruct *allocatedHead = kallocator.allocated;
+    struct nodeStruct *freeHead = kallocator.free;
+    if (allocatedHead == NULL) {
+        return 0;
+    }
+    if (freeHead == NULL) {
+        while (allocatedHead != NULL) {
+            _before[compacted_size] = allocatedHead->address;
+            _after[compacted_size] = allocatedHead->address;
+            allocatedHead = allocatedHead->next;
+            compacted_size++;
+        }
+        return compacted_size;
+    }
+    while (freeHead != NULL) {
+        printf("freeHead->address: %p, allocatedHead->address: %p, freeHead->size: %d\n", freeHead->address, allocatedHead->address, freeHead->size);
+        if (allocatedHead->address == (freeHead->address + freeHead->size)) {
+            _before[compacted_size] = allocatedHead->address;
+            allocatedHead->address = freeHead->address;
+            freeHead->address += allocatedHead->size;
+            _after[compacted_size] = allocatedHead->address;
+            allocatedHead = allocatedHead->next;
+            compacted_size++;
+        } else {
+            if (freeHead->next == NULL) {
+                break;
+            } else if ((freeHead->address + freeHead->size) == freeHead->next->address) {
+                freeHead->size += freeHead->next->size;
+                List_deleteNode(&kallocator.free, freeHead->next);
+            } else {
+                _before[compacted_size] = allocatedHead->address;
+                _after[compacted_size] = allocatedHead->address;
+                allocatedHead = allocatedHead->next;
+                compacted_size++;
+                printf("Ran this\n");
+            }
+        }
+    }
+    printf("Finished compacting\n");
     return compacted_size;
 }
 
@@ -211,5 +259,17 @@ void print_statistics() {
     printf("Smallest free chunk size = %d\n", smallest_free_chunk_size);
 }
 
-
+void print_nodes() {
+    printf("----PRINTING NODES----\n");
+    struct nodeStruct *allocated = kallocator.allocated;
+    struct nodeStruct *free = kallocator.free;
+    while (allocated != NULL) {
+        printf("allocated address: %p, size: %d\n", allocated->address, allocated->size);
+        allocated = allocated->next;
+    }
+    while (free != NULL) {
+        printf("free address: %p, size: %d\n", free->address, free->size);
+        free = free->next;
+    }
+}
 

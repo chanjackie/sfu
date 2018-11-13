@@ -12,4 +12,5 @@ void print_statistics();
 int compact_allocation(void** _before, void** _after);
 void destroy_allocator();
 
+void print_nodes();
 #endif
