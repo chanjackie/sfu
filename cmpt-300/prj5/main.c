@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
     //printf("Using worst fit algorithm on memory size 100\n");
 
     int* p[50] = {NULL};
-    for(int i=0; i<20; ++i) {
+    for(int i=0; i<30; ++i) {
         p[i] = kalloc(sizeof(int));
         if(p[i] == NULL) {
             printf("Allocation failed\n");
@@ -30,6 +30,11 @@ int main(int argc, char* argv[]) {
     }
 
     print_statistics();
+    print_nodes();
+
+    /*kfree(p[0]);
+    p[0] = NULL;
+    print_nodes();*/
 
     for(int i=0; i<20; ++i) {
         if(i%2 == 0)
@@ -57,7 +62,8 @@ int main(int argc, char* argv[]) {
     *(p[2]) = 2.0;
     p[7] = kalloc(sizeof(double));
     *(p[7]) = 7.0;*/
-    print_memory(p, 20);
+    print_memory(p, 30);
+    print_nodes();
     print_statistics();
 
     for (int i=0; i<20; ++i) {
@@ -67,13 +73,16 @@ int main(int argc, char* argv[]) {
         kfree(p[i]);
         p[i] = NULL;
     }
-    print_memory(p, 20);
+    print_memory(p, 30);
+    print_nodes();
     print_statistics();
+    printf("Allocating p[3] size of double\n");
     p[3] = kalloc(sizeof(double));
-    *(p[2]) = 2.0;
+    *(p[3]) = 2.0;
+    printf("Allocating p[7] size of double\n");
     p[7] = kalloc(sizeof(double));
     *(p[7]) = 7.0;
-    print_memory(p, 20);
+    print_memory(p, 30);
     print_nodes();
     print_statistics();
 
@@ -86,6 +95,8 @@ int main(int argc, char* argv[]) {
         p[i] = after[i];
     }
 
+    print_nodes();
+    print_memory(p, 30);
     print_statistics();
 
     // You can assume that the destroy_allocator will always be the 

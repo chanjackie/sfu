@@ -93,11 +93,12 @@ void* kalloc(int _size) {
     if (allocated == NULL) {
         kallocator.allocated = newAllocation;
     } else {
-        while (allocated->next != NULL && allocated->next->address < newAllocation->address) {
+        /*while (allocated->next != NULL && allocated->address < newAllocation->address && allocated->next->address < newAllocation->address) {
             allocated = allocated->next;
-        }
+        }*/
         newAllocation->next = allocated->next;
         allocated->next = newAllocation;
+        List_sort(&kallocator.allocated);
     }
     ptr = newAllocation->address;
     if (_size == free->size) {
@@ -179,8 +180,7 @@ int compact_allocation(void** _before, void** _after) {
         return compacted_size;
     }
     while (freeHead != NULL) {
-        printf("freeHead->address: %p, allocatedHead->address: %p, freeHead->size: %d\n", freeHead->address, allocatedHead->address, freeHead->size);
-        if (allocatedHead->address == (freeHead->address + freeHead->size)) {
+        if (allocatedHead != NULL && allocatedHead->address == (freeHead->address + freeHead->size)) {
             _before[compacted_size] = allocatedHead->address;
             allocatedHead->address = freeHead->address;
             freeHead->address += allocatedHead->size;
@@ -193,16 +193,15 @@ int compact_allocation(void** _before, void** _after) {
             } else if ((freeHead->address + freeHead->size) == freeHead->next->address) {
                 freeHead->size += freeHead->next->size;
                 List_deleteNode(&kallocator.free, freeHead->next);
-            } else {
+            } else if (allocatedHead != NULL) {
                 _before[compacted_size] = allocatedHead->address;
                 _after[compacted_size] = allocatedHead->address;
                 allocatedHead = allocatedHead->next;
                 compacted_size++;
-                printf("Ran this\n");
             }
         }
     }
-    printf("Finished compacting\n");
+    printf("Finished compacting, compacted_size: %d\n", compacted_size);
     return compacted_size;
 }
 
