@@ -90,6 +90,9 @@ void* kalloc(int _size) {
         free = List_findNode(kallocator.free, address_of_fit);
     }
     struct nodeStruct *newAllocation = List_createNode(free->address, _size);
+    if (newAllocation == NULL) {
+        return NULL;
+    }
     if (allocated == NULL) {
         kallocator.allocated = newAllocation;
     } else {

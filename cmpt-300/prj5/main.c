@@ -11,11 +11,11 @@ void print_memory(int* p[], int count) {
 }
 
 int main(int argc, char* argv[]) {
-    initialize_allocator(100, FIRST_FIT);
-    //initialize_allocator(100, BEST_FIT);
+    //initialize_allocator(100, FIRST_FIT);
+    initialize_allocator(100, BEST_FIT);
     //initialize_allocator(100, WORST_FIT);
-    printf("Using first fit algorithm on memory size 100\n");
-    //printf("Using best fit algorithm on memory size 100\n");
+    //printf("Using first fit algorithm on memory size 100\n");
+    printf("Using best fit algorithm on memory size 100\n");
     //printf("Using worst fit algorithm on memory size 100\n");
 
     int* p[50] = {NULL};
@@ -36,14 +36,14 @@ int main(int argc, char* argv[]) {
     p[0] = NULL;
     print_nodes();*/
 
-    for(int i=0; i<20; ++i) {
+    /*for(int i=0; i<20; ++i) {
         if(i%2 == 0)
             continue;
 
         printf("Freeing p[%d]\n", i);
         kfree(p[i]);
         p[i] = NULL;
-    }
+    }*/
 
     /*kfree(p[2]);
     p[2] = NULL;
@@ -62,11 +62,27 @@ int main(int argc, char* argv[]) {
     *(p[2]) = 2.0;
     p[7] = kalloc(sizeof(double));
     *(p[7]) = 7.0;*/
+    kfree(p[24]);
+    p[24] = NULL;
+    kfree(p[23]);
+    p[23] = NULL;
+    kfree(p[7]);
+    p[7] = NULL;
+    kfree(p[5]);
+    p[5] = NULL;
+
     print_memory(p, 30);
     print_nodes();
     print_statistics();
 
-    for (int i=0; i<20; ++i) {
+    p[5] = kalloc(sizeof(char));
+    *(p[5]) = 'a';
+
+    print_memory(p, 30);
+    print_nodes();
+    print_statistics();
+
+    /*for (int i=0; i<20; ++i) {
         if (i%3 != 0 || p[i] == NULL)
             continue;
         printf("Freeing p[%d]\n", i);
@@ -84,19 +100,30 @@ int main(int argc, char* argv[]) {
     *(p[7]) = 7.0;
     print_memory(p, 30);
     print_nodes();
-    print_statistics();
+    print_statistics();*/
 
     printf("available_memory %d\n", available_memory());
 
     void* before[100] = {NULL};
     void* after[100] = {NULL};
     int count = compact_allocation(before, after);
-    for (int i=0;i<count; i++) {
+    for (int i=0;i<count; ++i) {
         p[i] = after[i];
+        *(p[i]) = i;
     }
 
     print_nodes();
-    print_memory(p, 30);
+    print_memory(p, count);
+    print_statistics();
+
+    for (int i=count-1; i>=0; i--) {
+        printf("Freeing p[%d]\n", i);
+        kfree(p[i]);
+        p[i] = NULL;
+    }
+
+    print_nodes();
+    print_memory(p, count);
     print_statistics();
 
     // You can assume that the destroy_allocator will always be the 
