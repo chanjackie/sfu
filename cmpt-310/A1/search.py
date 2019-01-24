@@ -95,7 +95,7 @@ def tinyMazeSearch(problem):
     w = Directions.WEST
     return  [s, s, w, s, w, w, s, w]
 
-def depthFirstSearch(problem):
+def depthFirstSearch(problem, visited = [], initialState = None, path = []):
     """
     Questoin 1.1
     Search the deepest nodes in the search tree first.
@@ -112,14 +112,60 @@ def depthFirstSearch(problem):
 
     """
     "*** YOUR CODE HERE ***"
+    from util import Stack
+    if (problem.isGoalState(problem.getStartState()) == True):
+        return []
+    if (initialState == None):
+        startState = problem.getStartState()
+    else:
+        startState = initialState
+    visited.append(startState)
+    successors = problem.getSuccessors(startState)
+    candidates = Stack()
+    for i in successors:
+        candidates.push(i)
+    while (not candidates.isEmpty()):
+        nextState = candidates.pop()
+        if (problem.isGoalState(nextState[0])):
+            print("FOUND GOAL")
+            path.append(nextState[1])
+            return path
+        if (not (nextState[0] in visited)):
+            if (depthFirstSearch(problem, visited, nextState[0], path) != []):
+                path.insert(0, nextState[1])
+                return path
+    return path
 
 
-def breadthFirstSearch(problem):
+def breadthFirstSearch(problem, visited = [], initialState = None, path = []):
     """Questoin 1.2
      Search the shallowest nodes in the search tree first.
      """
     "*** YOUR CODE HERE ***"
-
+    from util import Queue
+    if (problem.isGoalState(problem.getStartState()) == True):
+        return []
+    if (initialState == None):
+        startState = problem.getStartState()
+    else:
+        startState = initialState
+    visited.append(startState)
+    successors = problem.getSuccessors(startState)
+    if (candidates == None):
+        candidates = Queue()
+    for i in successors:
+        candidates.push(i)
+    while (not candidates.isEmpty()):
+        nextState = candidates.pop()
+        if (problem.isGoalState(nextState[0])):
+            print("FOUND GOAL")
+            path.append(nextState[1])
+            return path
+        if (not (nextState[0] in visited)):
+            if (breadthFirstSearch(problem, visited, nextState[0], path, candidates) != []):
+                path.insert(0, nextState[1])
+                return path
+    return path
 
 
 def nullHeuristic(state, problem=None):
