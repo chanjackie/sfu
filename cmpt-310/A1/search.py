@@ -194,20 +194,15 @@ def breadthFirstSearch(problem, visited = [], initialState = None, path = [], ca
         if (not (nextState[0] in visited)):
             result = breadthFirstSearch(problem, visited, nextState[0], path, candidates)
             if (result != []):
-                print(result)
-                print(calcCoord(getOppositeDirection(result[1]), result[0]))
-                print(nextState[0])
                 if (calcCoord(getOppositeDirection(result[1]), result[0]) == nextState[0]):
                     path.insert(0, nextState[1])    
                     if (startState == problem.getStartState()):
-                        print(path)
                         return path
                     return nextState
                 if (startState == problem.getStartState()):
                     return path
                 return result
     if (startState == problem.getStartState()):
-        print(path)
         return path
     return result
 
@@ -220,7 +215,7 @@ def nullHeuristic(state, problem=None):
     return 0
 
 def aStarSearch(problem, heuristic=nullHeuristic, initialState = None,
-                path = [], candidates = None, cost = 0):
+                path = [], candidates = None, cost = {}, visited = []):
     """Question 1.3
     Search the node that has the lowest combined cost and heuristic first."""
     "*** YOUR CODE HERE ***"
@@ -229,32 +224,40 @@ def aStarSearch(problem, heuristic=nullHeuristic, initialState = None,
         return []
     if (initialState == None):
         startState = problem.getStartState()
+        cost[startState] = 0
     else:
         startState = initialState
-    print("fscore: " + str(cost +(heuristic(startState, problem))) + " at " + str(startState))
+    visited.append(startState)
+    #print("fscore: " + str(cost[startState] +(heuristic(startState, problem))) + " at " + str(startState))
     successors = problem.getSuccessors(startState)
     if (candidates == None):
         candidates = PriorityQueue()
     for i in successors:
-        fscore = cost + heuristic(i[0], problem)
+        if (i[0] in cost):
+            cost[i[0]] += 1
+        else:
+            cost[i[0]] = cost[startState] + 1
+        fscore = cost[i[0]] + heuristic(i[0], problem)
+        #print(str(i[0]) + " in successors fscore: " + str(fscore))
         candidates.update(i, fscore)
     while (not candidates.isEmpty()):
         nextState = candidates.pop()
+        #print(str(nextState) + " fscore: " + str(cost[nextState[0]] + heuristic(nextState[0], problem)))
         if (problem.isGoalState(nextState[0])):
             print("FOUND GOAL")
             path.append(nextState[1])
             return nextState
-        cost += 1
-        result = aStarSearch(problem, heuristic, nextState[0], path, candidates, cost)
-        if (result != []):
-            if (calcCoord(getOppositeDirection(result[1]), result[0]) == nextState[0]):
-                path.insert(0, nextState[1])    
+        if (nextState[0] not in visited):            
+            result = aStarSearch(problem, heuristic, nextState[0], path, candidates, cost, visited)
+            if (result != []):
+                if (calcCoord(getOppositeDirection(result[1]), result[0]) == nextState[0]):
+                    path.insert(0, nextState[1])
+                    if (startState == problem.getStartState()):
+                        return path
+                    return nextState
                 if (startState == problem.getStartState()):
                     return path
-                return nextState
-            if (startState == problem.getStartState()):
-                return path
-            return result
+                return result
     if (startState == problem.getStartState()):
         return path
     return result
@@ -283,6 +286,12 @@ def calcCoord(direction, coord):
     elif (direction == 'South'):
         newCoord = (int(coord[0]), coord[1]-1)
     return newCoord
+
+# def getDirectionToState(start, dest):
+#     if (start[0]-dest[0] == 1): return 'West'
+#     elif (start[0]-dest[0] == -1): return 'East'
+#     elif (start[1]-dest[1] == 1): return 'South'
+#     elif (start[1]-dest[1] == -1): return 'North'
 
 
 # Abbreviations
