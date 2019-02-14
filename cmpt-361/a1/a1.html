@@ -7,14 +7,13 @@ body {
 }
 </style>
 </head>
-<p id="debug"></p>
+<p id="debug" style="color:white"></p>
 <script id="vertex-shader" type="x-shader/x-vertex">
 attribute vec4 vPosition;
-uniform float height;
 void
 main()
 {
-    gl_Position = vPosition + vec4(0, height, 0, 0)  ;
+    gl_Position = vPosition;
 }
 </script>
 
@@ -40,13 +39,25 @@ main()
 }
 </script>
 
+<script id="settled-fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+
+void
+main()
+{
+    gl_FragColor = vec4( 0.0, 0.4, 0.8, 0.6 );
+}
+</script>
+
+
 <script type="text/javascript" src="../Common/webgl-utils.js"></script>
 <script type="text/javascript" src="../Common/initShaders.js"></script>
 <script type="text/javascript" src="../Common/MV.js"></script>
 <script type="text/javascript" src="a1.js"></script>
 
 <body>
-<canvas id="gl-canvas" width="400" height="800">>
+<canvas id="gl-canvas" width="300" height="600">>
 Oops ... your browser doesn't support the HTML5 canvas element
 </canvas>
 </body>
