@@ -37,6 +37,10 @@ function getKey(key) {
 			close();
 		}
 	}
+	if (key.key == " ") {
+		console.log("Dropping!");
+		renderDrop();
+	}
 }
 
 window.addEventListener("keyup", getKeyUp, false);
@@ -666,6 +670,7 @@ function checkClear() {
 		}
 	}
 	for (var h=0;h<rowFullHeights.length;h++) {
+		console.log(rowFullHeights[h]);
 		for (var i=0;i<settledBlocks.length;i++) {
 			if (settledBlocks[i][2][1] >= rowFullHeights[h]) {			
 				for (var j=0;j<6;j++) {
@@ -676,6 +681,49 @@ function checkClear() {
 		}
 		for (var n=h;n<rowFullHeights.length;n++) {
 			rowFullHeights[n] -= 0.1;
+			rowFullHeights[n] = Math.round(rowFullHeights[n] * 10)/10;
 		}
 	}
+}
+
+function renderDrop() {
+	var cBlockCopy = JSON.parse(JSON.stringify(currentBlock));
+	for (var i=0;i<currentBlock.length;i++) {
+		for (var x=0;x<6;x++) {
+			currentBlock[i][x][1] += -0.10;
+			currentBlock[i][x][1] = Math.round(currentBlock[i][x][1] * 10)/10;
+		}
+	}
+	while (!isColliding(true)) {
+		cBlockCopy = JSON.parse(JSON.stringify(currentBlock));
+		for (var i=0;i<currentBlock.length;i++) {
+			for (var x=0;x<6;x++) {
+				currentBlock[i][x][1] += -0.10;
+				currentBlock[i][x][1] = Math.round(currentBlock[i][x][1] * 10)/10;
+			}
+		}
+	}
+	currentBlock = cBlockCopy;
+	settledBlocks = settledBlocks.concat(currentBlock);
+	checkClear();
+	randomizeBlock();
+	// If rotated piece would collide with wall/block, revert back; Don't allow rotation
+	var vertices = convertToRenderable(currentBlock);
+	var vBuffer = gl.createBuffer();
+    program = initShaders( gl, "vertex-shader", "fragment-shader" );
+	gl.useProgram( program );
+    // Binding the vertex buffer
+	gl.bindBuffer(gl.ARRAY_BUFFER, vBuffer);
+	gl.bufferData( gl.ARRAY_BUFFER, flatten(vertices), gl.STATIC_DRAW ); 
+	// Associate out shader variables with our data buffer
+	var vPosition = gl.getAttribLocation( program, "vPosition" );
+	gl.vertexAttribPointer( vPosition, 2, gl.FLOAT, false, 0, 0 );
+	gl.enableVertexAttribArray( vPosition );       	
+	// Drawing currentBlock
+	gl.drawArrays( gl.TRIANGLES, 0, vertices.length );
+	
+    if (settledBlocks.length > 0)
+    	drawSettledBlocks();
+
+    drawGrid();
 }
