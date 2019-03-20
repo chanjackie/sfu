@@ -2,26 +2,42 @@
 <html>
 <head>
 	<title> BUNNY - JGC11 </title>
-	<header style="color: black"> BUNNY - WRITTEN BY JGC11 </header>
+	<header style="color: white"> BUNNY - WRITTEN BY JGC11 </header>
 </head>
+<style>
+body{background-color: black}
+</style>
 <p id="debug" style="color:white"></p>
 <script id="vertex-shader" type="x-shader/x-vertex">
 attribute vec4 vPosition;
-uniform mat4 pMatrix;
+attribute vec4 vColor;
+
+uniform mat4 mvMatrix;
+uniform mat4 projMatrix;
+uniform mat4 transMatrix;
+uniform mat4 rotMatrix;
+
+varying vec4 vert_color;
+
 void
 main()
 {
-    gl_Position = pMatrix * vPosition;
+    vec4 aPosition = transMatrix * rotMatrix * vPosition;
+    gl_Position = projMatrix * mvMatrix * aPosition;
+    vert_color = vColor;
 }
 </script>
 
 <script id="fragment-shader" type="x-shader/x-fragment">
 precision mediump float;
 
+varying vec4 vert_color;
+
 void
 main()
 {
-    gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );
+    gl_FragColor = vert_color;
+    // gl_FragColor = vec4(0.7, 0.7, 0.7, 1.0);
 }
 </script>
 
@@ -31,9 +47,10 @@ main()
 <script type="text/javascript" src="a2.js"></script>
 <script type="text/javascript" src="bunny.js"></script>
 
-<body>
-<canvas id="gl-canvas" width="800" height="600">>
+<body oncontextmenu="return false;">
+<canvas id="gl-canvas" width="1200" height="900">>
 Oops ... your browser doesn't support the HTML5 canvas element
 </canvas>
+<p style="color: white">Press 'r' to reset the bunny's position.</p>
 </body>
 </html>
