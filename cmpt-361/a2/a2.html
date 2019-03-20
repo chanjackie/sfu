@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> BUNNY - JGC11 </title>
+	<header style="color: black"> BUNNY - WRITTEN BY JGC11 </header>
+</head>
+<p id="debug" style="color:white"></p>
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+uniform mat4 pMatrix;
+void
+main()
+{
+    gl_Position = pMatrix * vPosition;
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+
+void
+main()
+{
+    gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );
+}
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="a2.js"></script>
+<script type="text/javascript" src="bunny.js"></script>
+
+<body>
+<canvas id="gl-canvas" width="800" height="600">>
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</body>
+</html>
