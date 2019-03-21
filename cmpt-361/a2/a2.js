@@ -1,11 +1,15 @@
 var canvas;
 var gl;
 var vBuffer;
-// var cBuffer;
-// var cData = [];
+var normalsBuffer;
+var vertices;
+var faces;
 var program;
 var viewMatrix;
 var vData = [];
+var tMatrix = mat4();
+var rMatrix = mat4();
+var faceNormals = [];
 var wireCube = [
 	-.15, -.15, -.15,
      .15, -.15, -.15,
@@ -29,9 +33,7 @@ var cubeIndices = [
     1, 5,
     2, 6,
     3, 7,
-  ];
-var tMatrix = mat4();
-var rMatrix = mat4();
+];
 var cubeTMatrix = translate(5, 5, 0);
 var cubeRotate = 0;
 
@@ -45,18 +47,17 @@ window.onload = function init() {
 
 	// Creating the vertex buffer	
 	vBuffer = gl.createBuffer();
+	normalsBuffer = gl.createBuffer();
 	// cBuffer = gl.createBuffer();	
 
 	// Store bunny vertices data
-	var vertices = get_vertices();
-	var faces = get_faces();
+	vertices = get_vertices();
+	faces = get_faces();
 	for (var i=0; i<faces.length; i++) {
 		for (var j=0; j<3; j++) {
 			vData.push(vertices[faces[i][j]-1]);
-			//cData.push(vertices[faces[i][j]-1]);
 		}
 	}
-
 	// Create mv matrix
 	var eye = vec3(0.0, 0.0, 10.0);
 	var at = vec3(0.0, 0.0, 0.0);
@@ -71,6 +72,7 @@ window.onload = function init() {
 	var pMatrix = perspective(fovy, aspect, near, far);
 	viewMatrix = mult(pMatrix, mv);
 
+	calculateNormals();
 	render();
 	renderWireFrames();
 };
@@ -136,9 +138,12 @@ window.addEventListener("keydown", function(event) {
 });
 
 function render() {
-    program = initShaders( gl, "bunny-vertex-shader", "fragment-shader" );
+    program = initShaders( gl, "bunny-vertex-shader", "bunny-fragment-shader" );
 	gl.useProgram( program );
+	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
+	gl.enable(gl.CULL_FACE);
+	//gl.enable(gl.DEPTH_TEST);
     // Binding the vertex buffer
 	gl.bindBuffer(gl.ARRAY_BUFFER, vBuffer);
 	gl.bufferData( gl.ARRAY_BUFFER, flatten(vData), gl.STATIC_DRAW ); 
@@ -150,16 +155,20 @@ function render() {
 	gl.vertexAttribPointer( vPosition, 3, gl.FLOAT, false, 0, 0 );
 	gl.enableVertexAttribArray( vPosition );
 
-	// Binding the color buffer
-	// gl.bindBuffer(gl.ARRAY_BUFFER, cBuffer);
-	// gl.bufferData( gl.ARRAY_BUFFER, flatten(cData), gl.STATIC_DRAW );
-	// gl.vertexAttribPointer( vColor, 3, gl.FLOAT, true, 0, 0);
-	// gl.enableVertexAttribArray( vColor );
+	gl.bindBuffer(gl.ARRAY_BUFFER, normalsBuffer);
+	gl.bufferData(gl.ARRAY_BUFFER, flatten(faceNormals), gl.STATIC_DRAW);
+	var vNormal = gl.getAttribLocation(program, "vNormal");
+	gl.vertexAttribPointer(vNormal, 3, gl.FLOAT, false, 0, 0);
+	gl.enableVertexAttribArray(vNormal);
 
 	// Associate transformation matrix and modelview matrix with uniform attributes
 	var transformMatrix = mult(tMatrix, rMatrix);
 	gl.uniformMatrix4fv(mvMatrix, false, flatten(viewMatrix));
 	gl.uniformMatrix4fv(transMatrix, false, flatten(transformMatrix));
+
+	// Associate lightDirection in fragment shader
+	var revLightDirection = gl.getUniformLocation(program, "revLightDirection");
+	gl.uniform3fv(revLightDirection, normalize(vec3(5.0, 5.0, 0.0)));
 
 	// Draw the bunny
 	gl.drawArrays( gl.TRIANGLES, 0, vData.length);
@@ -167,7 +176,7 @@ function render() {
 }
 
 function renderWireFrames() {
-	program = initShaders( gl, "wireframe-vertex-shader", "fragment-shader" );
+	program = initShaders( gl, "wireframe-vertex-shader", "wireframe-fragment-shader" );
 	gl.useProgram( program );
 
     // Binding the vertex buffer
@@ -186,17 +195,9 @@ function renderWireFrames() {
 	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, wBuffer);
 	gl.bufferData( gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(cubeIndices), gl.STATIC_DRAW);
 
-	// Binding the color buffer
-	// gl.bindBuffer(gl.ARRAY_BUFFER, cBuffer);
-	// gl.bufferData( gl.ARRAY_BUFFER, flatten(cData), gl.STATIC_DRAW );
-	// gl.vertexAttribPointer( vColor, 3, gl.FLOAT, true, 0, 0);
-	// gl.enableVertexAttribArray( vColor );
-
 	// Associate transformation matrix and modelview matrix with uniform attributes
 	var cubeRMatrix = rotate(cubeRotate, vec3(0.0, 1.0, 0.0));
 	var transformMatrix = mult(cubeRMatrix, cubeTMatrix);
-	// var scaleMatrix = scalem(0.3, 0.3, 0.3);
-	// transformMatrix = mult(scaleMatrix, transformMatrix);
 	gl.uniformMatrix4fv(mvMatrix, false, flatten(viewMatrix));
 	gl.uniformMatrix4fv(transMatrix, false, flatten(transformMatrix));
 
@@ -207,4 +208,15 @@ function renderWireFrames() {
 		if (cubeRotate == 360){ cubeRotate = 0; }
 	}
 	requestAnimationFrame(renderWireFrames);
+}
+
+function calculateNormals() {
+	for (var i=0; i<vData.length-2; i+=3) {
+		var edge1 = subtract(vData[i], vData[i+1]);
+		var edge2 = subtract(vData[i], vData[i+2]);
+		var normal = normalize(cross(edge1, edge2));
+		faceNormals.push(normal);
+		faceNormals.push(normal);
+		faceNormals.push(normal);
+	}
 }

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> TETRIS - JGC11 </title>
+	<header style="color: white"> TETRIS - WRITTEN BY JGC11 </header>
+<style>
+body {
+	background-color: #333333;
+}
+</style>
+</head>
+<p id="debug" style="color:white"></p>
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+void
+main()
+{
+    gl_Position = vPosition;
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+
+void
+main()
+{
+    gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );
+}
+</script>
+
+<script id="grid-fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+
+void
+main()
+{
+    gl_FragColor = vec4( 0.8, 0.8, 0.8, 0.3 );
+}
+</script>
+
+<script id="settled-fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+
+void
+main()
+{
+    gl_FragColor = vec4( 0.0, 0.7, 0.8, 0.6 );
+}
+</script>
+
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="a1.js"></script>
+
+<body>
+<canvas id="gl-canvas" width="300" height="600">>
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+<p style="color: white">Press 'r' to reset, and press 'q' to quit.</p>
+</body>
+</html>
