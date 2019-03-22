@@ -5,7 +5,8 @@ var normalsBuffer;
 var vertices;
 var faces;
 var program;
-var viewMatrix;
+var mvMatrix;
+var pMatrix;
 var vData = [];
 var tMatrix = mat4();
 var rMatrix = mat4();
@@ -36,6 +37,7 @@ var cubeIndices = [
 ];
 var cubeTMatrix = translate(5, 5, 0);
 var cubeRotate = 0;
+var pointLightPos = vec3(5.0, 5.0, 0.0);
 
 window.onload = function init() {
 
@@ -62,15 +64,15 @@ window.onload = function init() {
 	var eye = vec3(0.0, 0.0, 10.0);
 	var at = vec3(0.0, 0.0, 0.0);
 	var up = vec3(0.0, 1.0, 0.0);
-	var mv = lookAt(eye, at, up);
+	mvMatrix = lookAt(eye, at, up);
 
 	// Create perspective matrix
 	var fovy = 90;
 	var aspect = canvas.width/canvas.height;
-	var near = 0;
+	var near = 0.01;
 	var far = 100;
-	var pMatrix = perspective(fovy, aspect, near, far);
-	viewMatrix = mult(pMatrix, mv);
+	pMatrix = perspective(fovy, aspect, near, far);
+	gl.enable(gl.DEPTH_TEST);
 
 	calculateNormals();
 	render();
@@ -141,16 +143,13 @@ function render() {
     program = initShaders( gl, "bunny-vertex-shader", "bunny-fragment-shader" );
 	gl.useProgram( program );
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
-	gl.enable(gl.CULL_FACE);
-	//gl.enable(gl.DEPTH_TEST);
     // Binding the vertex buffer
 	gl.bindBuffer(gl.ARRAY_BUFFER, vBuffer);
 	gl.bufferData( gl.ARRAY_BUFFER, flatten(vData), gl.STATIC_DRAW ); 
 	// Associate out shader variables with our data buffer
 	var vPosition = gl.getAttribLocation( program, "vPosition" );
-	// var vColor = gl.getAttribLocation( program, "vColor" );
-	var mvMatrix = gl.getUniformLocation( program, "mvMatrix" );
+	var modelViewMatrix = gl.getUniformLocation( program, "modelViewMatrix" );
+	var projectionMatrix = gl.getUniformLocation( program, "projectionMatrix");
 	var transMatrix = gl.getUniformLocation( program, "transMatrix");
 	gl.vertexAttribPointer( vPosition, 3, gl.FLOAT, false, 0, 0 );
 	gl.enableVertexAttribArray( vPosition );
@@ -163,12 +162,13 @@ function render() {
 
 	// Associate transformation matrix and modelview matrix with uniform attributes
 	var transformMatrix = mult(tMatrix, rMatrix);
-	gl.uniformMatrix4fv(mvMatrix, false, flatten(viewMatrix));
+	gl.uniformMatrix4fv(modelViewMatrix, false, flatten(mvMatrix));
+	gl.uniformMatrix4fv(projectionMatrix, false, flatten(pMatrix));
 	gl.uniformMatrix4fv(transMatrix, false, flatten(transformMatrix));
 
 	// Associate lightDirection in fragment shader
-	var revLightDirection = gl.getUniformLocation(program, "revLightDirection");
-	gl.uniform3fv(revLightDirection, normalize(vec3(5.0, 5.0, 0.0)));
+	var lightPosition = gl.getUniformLocation(program, "lightPosition");
+	gl.uniform4fv(lightPosition, vec4(5.0, 5.0, 0.0));
 
 	// Draw the bunny
 	gl.drawArrays( gl.TRIANGLES, 0, vData.length);
@@ -178,15 +178,14 @@ function render() {
 function renderWireFrames() {
 	program = initShaders( gl, "wireframe-vertex-shader", "wireframe-fragment-shader" );
 	gl.useProgram( program );
-
+	// gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     // Binding the vertex buffer
     var wBuffer = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, wBuffer);
 	gl.bufferData( gl.ARRAY_BUFFER, flatten(wireCube), gl.STATIC_DRAW ); 
 	// Associate out shader variables with our data buffer
 	var vPosition = gl.getAttribLocation( program, "vPosition" );
-	// var vColor = gl.getAttribLocation( program, "vColor" );
-	var mvMatrix = gl.getUniformLocation( program, "mvMatrix" );
+	var viewMatrix = gl.getUniformLocation( program, "mvMatrix" );
 	var transMatrix = gl.getUniformLocation( program, "transMatrix");
 	gl.vertexAttribPointer( vPosition, 3, gl.FLOAT, false, 0, 0 );
 	gl.enableVertexAttribArray( vPosition );
@@ -198,7 +197,8 @@ function renderWireFrames() {
 	// Associate transformation matrix and modelview matrix with uniform attributes
 	var cubeRMatrix = rotate(cubeRotate, vec3(0.0, 1.0, 0.0));
 	var transformMatrix = mult(cubeRMatrix, cubeTMatrix);
-	gl.uniformMatrix4fv(mvMatrix, false, flatten(viewMatrix));
+	var vMatrix = mult(pMatrix, mvMatrix);
+	gl.uniformMatrix4fv(viewMatrix, false, flatten(vMatrix));
 	gl.uniformMatrix4fv(transMatrix, false, flatten(transformMatrix));
 
 	// Draw the cube
