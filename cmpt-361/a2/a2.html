@@ -16,16 +16,19 @@ uniform mat4 modelViewMatrix;
 uniform mat4 projectionMatrix;
 uniform mat4 transMatrix;
 uniform vec4 lightPosition;
+uniform mat4 lightRotationMatrix;
 
-varying vec3 N, L;
+varying vec3 N, L, E;
 
 void
 main()
 {
     vec3 pos = -(modelViewMatrix * vPosition).xyz;
-    vec3 light = lightPosition.xyz;
-    L = light - pos;
-    N = (projectionMatrix*vNormal).xyz;
+    vec4 lightPos = lightRotationMatrix * lightPosition;
+    vec3 light = lightPos.xyz;
+    L = normalize(light - pos);
+    N = normalize((projectionMatrix*vNormal).xyz);
+    E = normalize(-pos);
     gl_Position = projectionMatrix * modelViewMatrix * transMatrix * vPosition;
 }
 </script>
@@ -46,17 +49,18 @@ main()
 <script id="bunny-fragment-shader" type="x-shader/x-fragment">
 precision mediump float;
 
-varying vec3 N, L;
+uniform vec4 diffuseProduct;
+uniform float shininess;
+
+varying vec3 N, L, E;
 
 void
 main()
 {	
-    vec3 normal = normalize(N);
-    vec3 lightDir = normalize(L);
-	float light = dot(normal, lightDir);
+	float light = max(dot(N, L), 0.0);
+    light = pow(light, shininess);
     gl_FragColor = vec4(1.0, 1.0, 0.0, 1.0);
     gl_FragColor.rgb *= light;
-    //gl_FragColor.a = 1.0;
 }
 </script>
 

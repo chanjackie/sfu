@@ -10,7 +10,6 @@ var pMatrix;
 var vData = [];
 var tMatrix = mat4();
 var rMatrix = mat4();
-var faceNormals = [];
 var wireCube = [
 	-.15, -.15, -.15,
      .15, -.15, -.15,
@@ -37,7 +36,11 @@ var cubeIndices = [
 ];
 var cubeTMatrix = translate(5, 5, 0);
 var cubeRotate = 0;
-var pointLightPos = vec3(5.0, 5.0, 0.0);
+var pointLightPos = vec4(5.0, 5.0, 0.0);
+var vertexFaceDict = {};
+var vertexNorms = [];
+var gourardNormals = [];
+var difProduct;
 
 window.onload = function init() {
 
@@ -75,6 +78,7 @@ window.onload = function init() {
 	gl.enable(gl.DEPTH_TEST);
 
 	calculateNormals();
+	calculateLightProducts();
 	render();
 	renderWireFrames();
 };
@@ -151,11 +155,12 @@ function render() {
 	var modelViewMatrix = gl.getUniformLocation( program, "modelViewMatrix" );
 	var projectionMatrix = gl.getUniformLocation( program, "projectionMatrix");
 	var transMatrix = gl.getUniformLocation( program, "transMatrix");
+	var lightRotationMatrix = gl.getUniformLocation( program, "lightRotationMatrix");	
 	gl.vertexAttribPointer( vPosition, 3, gl.FLOAT, false, 0, 0 );
 	gl.enableVertexAttribArray( vPosition );
 
 	gl.bindBuffer(gl.ARRAY_BUFFER, normalsBuffer);
-	gl.bufferData(gl.ARRAY_BUFFER, flatten(faceNormals), gl.STATIC_DRAW);
+	gl.bufferData(gl.ARRAY_BUFFER, flatten(gourardNormals), gl.STATIC_DRAW);
 	var vNormal = gl.getAttribLocation(program, "vNormal");
 	gl.vertexAttribPointer(vNormal, 3, gl.FLOAT, false, 0, 0);
 	gl.enableVertexAttribArray(vNormal);
@@ -165,10 +170,16 @@ function render() {
 	gl.uniformMatrix4fv(modelViewMatrix, false, flatten(mvMatrix));
 	gl.uniformMatrix4fv(projectionMatrix, false, flatten(pMatrix));
 	gl.uniformMatrix4fv(transMatrix, false, flatten(transformMatrix));
-
+	
 	// Associate lightDirection in fragment shader
 	var lightPosition = gl.getUniformLocation(program, "lightPosition");
-	gl.uniform4fv(lightPosition, vec4(5.0, 5.0, 0.0));
+	gl.uniform4fv(lightPosition, pointLightPos);
+	var lightRMatrix = rotate(-cubeRotate, vec3(0.0, 1.0, 0.0));
+	gl.uniformMatrix4fv(lightRotationMatrix, false, flatten(lightRMatrix));
+
+	// Associate lighting products
+	var shininess = gl.getUniformLocation(program, "shininess");
+	gl.uniform1f(shininess, 3.0);
 
 	// Draw the bunny
 	gl.drawArrays( gl.TRIANGLES, 0, vData.length);
@@ -211,12 +222,34 @@ function renderWireFrames() {
 }
 
 function calculateNormals() {
+	for (var i=0; i<vertices.length; i++) {
+		vertexFaceDict[vertices[i]] = new Array();
+	}
 	for (var i=0; i<vData.length-2; i+=3) {
 		var edge1 = subtract(vData[i], vData[i+1]);
 		var edge2 = subtract(vData[i], vData[i+2]);
 		var normal = normalize(cross(edge1, edge2));
-		faceNormals.push(normal);
-		faceNormals.push(normal);
-		faceNormals.push(normal);
+		vertexFaceDict[vData[i]].push(normal);
+		vertexFaceDict[vData[i+1]].push(normal);
+		vertexFaceDict[vData[i+2]].push(normal);
 	}
+	for (var key in vertexFaceDict) {
+		var sum = vertexFaceDict[key][0];
+		for (var i=1;i<vertexFaceDict[key].length; i++) {
+			sum = add(sum, vertexFaceDict[key][i]);
+		}
+		for (var j=0;j<3;j++) {
+			sum[j] /= vertexFaceDict[key].length;
+		}
+		vertexNorms.push(sum);
+	}
+	for (var i=0; i<faces.length; i++) {
+		for (var j=0; j<3; j++) {
+			gourardNormals.push(vertexNorms[faces[i][j]-1]);
+		}
+	}
+}
+
+function calculateLightProducts() {
+	return;
 }
