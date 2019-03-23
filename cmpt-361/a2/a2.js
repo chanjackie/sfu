@@ -34,13 +34,41 @@ var cubeIndices = [
     2, 6,
     3, 7,
 ];
+var wireCone = [
+	 0.0,  .35,  0.0,
+	 0.0, -.15,  .15,
+	 0.0, -.15, -.15,
+	-.15, -.15,  .05,
+	-.15, -.15, -.05,
+	 .15, -.15,  .05,
+	 .15, -.15, -.05
+]
+var coneIndices = [
+	0, 1,
+	0, 2,
+	0, 3,
+	0, 4,
+	0, 5,
+	0, 6,
+	1, 3,
+	3, 4,
+	4, 2,
+	2, 6,
+	6, 5,
+	5, 1
+]
 var cubeTMatrix = translate(5, 5, 0);
 var cubeRotate = 0;
+var panAngle = 0;
+var panIncrement = 0.3;
 var pointLightPos = vec4(5.0, 5.0, 0.0);
+var spotLightPos = vec4(0.0, 4.0, 2.0);
 var vertexFaceDict = {};
 var vertexNorms = [];
 var gourardNormals = [];
 var difProduct;
+var ambProduct;
+var specProduct;
 
 window.onload = function init() {
 
@@ -70,7 +98,7 @@ window.onload = function init() {
 	mvMatrix = lookAt(eye, at, up);
 
 	// Create perspective matrix
-	var fovy = 90;
+	var fovy = 60;
 	var aspect = canvas.width/canvas.height;
 	var near = 0.01;
 	var far = 100;
@@ -86,7 +114,7 @@ window.onload = function init() {
 var leftMouseDown = false;
 var rightMouseDown = false;
 var rotateCube = true;
-var rotateCone = true;
+var panCone = true;
 
 window.addEventListener("mousedown", function(event) {
 	if (event.which == 1) {
@@ -141,6 +169,9 @@ window.addEventListener("keydown", function(event) {
 	if (event.key == "p") {
 		rotateCube = !rotateCube;
 	}
+	if (event.key == "s") {
+		panCone = !panCone;
+	}
 });
 
 function render() {
@@ -154,11 +185,10 @@ function render() {
 	var vPosition = gl.getAttribLocation( program, "vPosition" );
 	var modelViewMatrix = gl.getUniformLocation( program, "modelViewMatrix" );
 	var projectionMatrix = gl.getUniformLocation( program, "projectionMatrix");
-	var transMatrix = gl.getUniformLocation( program, "transMatrix");
-	var lightRotationMatrix = gl.getUniformLocation( program, "lightRotationMatrix");	
+	var transformationMatrix = gl.getUniformLocation( program, "transformationMatrix");
 	gl.vertexAttribPointer( vPosition, 3, gl.FLOAT, false, 0, 0 );
 	gl.enableVertexAttribArray( vPosition );
-
+	// Binding the normals buffer
 	gl.bindBuffer(gl.ARRAY_BUFFER, normalsBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, flatten(gourardNormals), gl.STATIC_DRAW);
 	var vNormal = gl.getAttribLocation(program, "vNormal");
@@ -167,19 +197,38 @@ function render() {
 
 	// Associate transformation matrix and modelview matrix with uniform attributes
 	var transformMatrix = mult(tMatrix, rMatrix);
-	gl.uniformMatrix4fv(modelViewMatrix, false, flatten(mvMatrix));
+	var newMVMatrix = mult(mvMatrix, transformMatrix);
+	gl.uniformMatrix4fv(modelViewMatrix, false, flatten(newMVMatrix));
 	gl.uniformMatrix4fv(projectionMatrix, false, flatten(pMatrix));
-	gl.uniformMatrix4fv(transMatrix, false, flatten(transformMatrix));
+	gl.uniformMatrix4fv(transformationMatrix, false, flatten(transformMatrix));
 	
 	// Associate lightDirection in fragment shader
-	var lightPosition = gl.getUniformLocation(program, "lightPosition");
-	gl.uniform4fv(lightPosition, pointLightPos);
-	var lightRMatrix = rotate(-cubeRotate, vec3(0.0, 1.0, 0.0));
+	var pointLightPosition = gl.getUniformLocation(program, "pointLightPosition");
+	gl.uniform4fv(pointLightPosition, flatten(pointLightPos));
+	var lightRMatrix = rotate(cubeRotate, vec3(0.0, 1.0, 1.0));
+	var lightRotationMatrix = gl.getUniformLocation( program, "lightRotationMatrix");	
 	gl.uniformMatrix4fv(lightRotationMatrix, false, flatten(lightRMatrix));
+	var spotLightPosition = gl.getUniformLocation(program, "spotLightPosition");
+	gl.uniform4fv(spotLightPosition, flatten(spotLightPos));
+	var lightPMatrix = rotate(panAngle, vec3(0.0, 1.0, 0.0));
+	var spotLightPosVec3 = vec3(0.0, 2.0, 2.0);
+	var lightDir = lookAt(spotLightPosVec3, vec3(0.0, 0.0, 0.0), vec3(0.0, 1.0, 0.0));
+	lightDir = mult(lightDir, lightPMatrix);
+	lightDir = flatten(lightDir);
+	var lightDirection = vec3(-lightDir[8], lightDir[9], -lightDir[10]);
+	var spotLightDirection = gl.getUniformLocation(program, "spotLightDirection");
+	gl.uniform3fv(spotLightDirection, flatten(lightDirection));
+
 
 	// Associate lighting products
+	var ambientProduct = gl.getUniformLocation(program, "ambientProduct");
+	var diffuseProduct = gl.getUniformLocation(program, "diffuseProduct");
+	var specularProduct = gl.getUniformLocation(program, "specularProduct");
 	var shininess = gl.getUniformLocation(program, "shininess");
-	gl.uniform1f(shininess, 3.0);
+	gl.uniform4fv(ambientProduct, flatten(ambProduct));
+	gl.uniform4fv(diffuseProduct, flatten(difProduct));
+	gl.uniform4fv(specularProduct, flatten(specProduct));
+	gl.uniform1f(shininess, 15.0);
 
 	// Draw the bunny
 	gl.drawArrays( gl.TRIANGLES, 0, vData.length);
@@ -187,9 +236,9 @@ function render() {
 }
 
 function renderWireFrames() {
+	// --RENDER CUBE--
 	program = initShaders( gl, "wireframe-vertex-shader", "wireframe-fragment-shader" );
 	gl.useProgram( program );
-	// gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     // Binding the vertex buffer
     var wBuffer = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, wBuffer);
@@ -217,6 +266,39 @@ function renderWireFrames() {
 	if (rotateCube) {
 		cubeRotate += 1;
 		if (cubeRotate == 360){ cubeRotate = 0; }
+	}
+
+	// --RENDER CONE--
+	var wBuffer = gl.createBuffer();
+	// Binding vertex buffer
+	gl.bindBuffer(gl.ARRAY_BUFFER, wBuffer);
+	gl.bufferData(gl.ARRAY_BUFFER, flatten(wireCone), gl.STATIC_DRAW);	
+	// Associate out shader variables with our data buffer
+	var vPosition = gl.getAttribLocation( program, "vPosition" );
+	var viewMatrix = gl.getUniformLocation( program, "mvMatrix" );
+	var transMatrix = gl.getUniformLocation( program, "transMatrix");
+	gl.vertexAttribPointer( vPosition, 3, gl.FLOAT, false, 0, 0 );
+	gl.enableVertexAttribArray( vPosition );
+
+	var wBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, wBuffer);
+	gl.bufferData( gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(coneIndices), gl.STATIC_DRAW);
+
+	// Associate transformation matrix and modelview matrix with uniform attributes
+	var coneTMatrix = translate(0.0, 4.0, 2.0);
+	var coneRMatrix = rotate(-30, vec3(1.0, 0.0, 0.0));
+	var conePanMatrix = rotate(panAngle, vec3(0.0, 0.0, 1.0));
+	var transformMatrix = mult(coneTMatrix, mult(conePanMatrix, coneRMatrix));
+	var vMatrix = mult(pMatrix, mvMatrix);
+	gl.uniformMatrix4fv(viewMatrix, false, flatten(vMatrix));
+	gl.uniformMatrix4fv(transMatrix, false, flatten(transformMatrix));
+	// Draw the cone
+	gl.drawElements(gl.LINES, cubeIndices.length, gl.UNSIGNED_SHORT, 0);
+	if (panCone) {
+		panAngle += panIncrement;
+		if (Math.abs(panAngle) >= 30) {
+			panIncrement = -panIncrement;
+		}
 	}
 	requestAnimationFrame(renderWireFrames);
 }
@@ -251,5 +333,13 @@ function calculateNormals() {
 }
 
 function calculateLightProducts() {
-	return;
+	var lightAmbient = vec4(0.0, 0.0, 0.0, 1.0);
+	var materialAmbient = vec4(0.8, 0.6, 0.0, 1.0);
+	ambProduct = mult(lightAmbient, materialAmbient);
+	var lightDiffuse = vec4(0.5, 0.5, 0.0, 1.0);
+	var materialDiffuse = vec4(0.4, 0.3, 0.0, 1.0);
+	difProduct = mult(lightDiffuse, materialDiffuse);
+	var lightSpecular = vec4(1.0, 1.0, 1.0, 1.0);
+	var materialSpecular = vec4(1.0, 0.8, 0.0, 1.0);
+	specProduct = mult(lightSpecular, materialSpecular);
 }
