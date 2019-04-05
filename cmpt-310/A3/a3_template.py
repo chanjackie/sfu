@@ -9,7 +9,7 @@ from math import log
 #####################################################
 # Please enter the number of hours you spent on this
 # assignment here
-num_hours_i_spent_on_this_assignment = 0
+num_hours_i_spent_on_this_assignment = 10
 #####################################################
 #####################################################
 
@@ -19,7 +19,9 @@ num_hours_i_spent_on_this_assignment = 0
 # have you found most interesting? Is there a topic that you had trouble
 # understanding? Are there any changes that could improve the value of the
 # course to you? (We will anonymize these before reading them.)
-# <Your feedback goes here>
+# 
+# Recorded lectures are extremely helpful and should be in every class. 
+# Application of topics discussed in class through these assignments has been very fun.
 #####################################################
 #####################################################
 
@@ -52,7 +54,6 @@ def rand_multinomial_iter(iterator):
     return 0
 
 class HMM():
-
     def __init__(self):
         self.num_states = 2
         self.prior = [0.5, 0.5]
@@ -87,7 +88,6 @@ class HMM():
     def logprob(self, sequence, states):
         ###########################################
         # Start your code   
-        # for i in range()
         if (len(sequence) != len(states) or (len(sequence) == 0) or (len(states) == 0)):
             return None
         prob = log(self.prior[states[0]])
@@ -111,32 +111,22 @@ class HMM():
         # Start your code
         M = matrix(len(sequence), self.num_states)
         prev = matrix(len(sequence), self.num_states)
+        # Initialize first row of M and prev
         for n in range(self.num_states):
             for k in range(self.num_states):
                 prob = log(self.prior[k]) + log(self.transition[k][n]) + log(self.emission[k][sequence[0]])
                 if ((M[0][n] == None) or (prob > M[0][n])):
                     M[0][n] = prob
                     prev[0][n] = k
+        # Fill in rest of M and prev
         for t in range(1, len(sequence)):
             for i in range(self.num_states):
                 for j in range(self.num_states):
                     prob = M[t-1][j] + log(self.transition[j][i]) + log(self.emission[j][sequence[t]])
-                    if ((M[t][i] == None) or (prob > M[t][i])):
+                    if (prob > M[t][i]):
                         M[t][i] = prob
-                        prev[t][i] = j                        
-        # print(M)
-        # print(prev)
+                        prev[t][i] = j  
         return bestSequence(M, prev)
-        # return [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        # 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        # 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        # 0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-        # 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-        # 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-        # 1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        # 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        # 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        # 0,0,0,0,0,0,0]
         # End your code
         ###########################################
 
@@ -164,7 +154,7 @@ def matrix(T, D):
     for i in range(T):
         newRow = []
         for j in range(D):
-            newRow.append(None)
+            newRow.append(float("-inf"))
         mat.append(newRow)
     return mat
 
@@ -176,9 +166,12 @@ def bestSequence(M, prev):
         if (M[len(M)-1][i] > max):
             maxIndex = i
             max = M[len(M)-1][i]
-    for n in range(len(M)-1, -1, -1):
-        seq.insert(0, prev[n][maxIndex])
-        maxIndex = prev[n][maxIndex]
+    length = len(M)
+    for n in range(length):
+        val = prev[length-n-1][maxIndex]
+        seq.append(val)
+        maxIndex = val
+    seq.reverse()
     return seq
 
 hmm = HMM()

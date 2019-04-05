@@ -133,6 +133,15 @@ def depthFirstSearch(problem, visited = [], initialState = None, path = []):
         if (not (nextState[0] in visited)):
             if (depthFirstSearch(problem, visited, nextState[0], path) != []):
                 path.insert(0, nextState[1])
+                if (startState == problem.getStartState()):
+                    try:
+                        while (not problem.allCornersReached()):
+                            problem.updateStartState(problem.getLastCornerReached())
+                            result = depthFirstSearch(problem, [], None, [])
+                            for i in result:
+                                path.append(i)
+                    except AttributeError:
+                        pass
                 return path
     return path
 
@@ -142,36 +151,6 @@ def breadthFirstSearch(problem, visited = [], initialState = None, path = [], ca
      Search the shallowest nodes in the search tree first.
      """
     "*** YOUR CODE HERE ***"
-    # from util import Queue
-    # if (problem.isGoalState(problem.getStartState()) == True):
-    #     return []
-    # if (initialState == None):
-    #     startState = problem.getStartState()
-    # else:
-    #     startState = initialState
-    # visited.append(startState)
-    # successors = problem.getSuccessors(startState)
-    # candidates = Queue()
-    # for i in successors:
-    #     candidates.push(i)
-    # while (not candidates.isEmpty()):
-    #     nextState = candidates.pop()
-    #     if (problem.isGoalState(nextState[0])):
-    #         print("FOUND GOAL")
-    #         path.append(nextState[1])
-    #         return path
-    #     if (not (nextState[0] in visited)):
-    #         result = breadthFirstSearch(problem, visited, nextState[0], path, candidates)
-    #         if (result != []):
-    #             if (result[0] in problem.getSuccessors(nextState[0])):
-    #                 path.insert(0, nextState)
-    #                 return path
-    # if (startState == problem.getStartState()):
-    #     solution = []
-    #     for i in range(len(path)):
-    #         solution.insert(0, path[i][1])
-    #     return solution
-    # return path
     from util import Queue
     if (problem.isGoalState(problem.getStartState()) == True):
         return []
@@ -188,18 +167,25 @@ def breadthFirstSearch(problem, visited = [], initialState = None, path = [], ca
     while (not candidates.isEmpty()):
         nextState = candidates.pop()
         if (problem.isGoalState(nextState[0])):
-            print("FOUND GOAL")
+            print("FOUND GOAL: " + str(nextState[0]))
             path.append(nextState[1])
             return nextState
         if (not (nextState[0] in visited)):
             result = breadthFirstSearch(problem, visited, nextState[0], path, candidates)
             if (result != []):
                 if (calcCoord(getOppositeDirection(result[1]), result[0]) == nextState[0]):
-                    path.insert(0, nextState[1])    
-                    if (startState == problem.getStartState()):
-                        return path
-                    return nextState
+                    path.insert(0, nextState[1])
+                    if (not startState == problem.getStartState()):
+                        return nextState
                 if (startState == problem.getStartState()):
+                    try:
+                        while (not problem.allCornersReached()):
+                            problem.updateStartState(problem.getLastCornerReached())
+                            result = breadthFirstSearch(problem, [], None, [], None)
+                            for i in result:
+                                path.append(i)
+                    except AttributeError:
+                        pass
                     return path
                 return result
     if (startState == problem.getStartState()):
@@ -228,7 +214,6 @@ def aStarSearch(problem, heuristic=nullHeuristic, initialState = None,
     else:
         startState = initialState
     visited.append(startState)
-    #print("fscore: " + str(cost[startState] +(heuristic(startState, problem))) + " at " + str(startState))
     successors = problem.getSuccessors(startState)
     if (candidates == None):
         candidates = PriorityQueue()
@@ -238,24 +223,29 @@ def aStarSearch(problem, heuristic=nullHeuristic, initialState = None,
         else:
             cost[i[0]] = cost[startState] + 1
         fscore = cost[i[0]] + heuristic(i[0], problem)
-        #print(str(i[0]) + " in successors fscore: " + str(fscore))
         candidates.update(i, fscore)
     while (not candidates.isEmpty()):
         nextState = candidates.pop()
-        #print(str(nextState) + " fscore: " + str(cost[nextState[0]] + heuristic(nextState[0], problem)))
         if (problem.isGoalState(nextState[0])):
             print("FOUND GOAL")
             path.append(nextState[1])
             return nextState
-        if (nextState[0] not in visited):            
+        if (nextState[0] not in visited):
             result = aStarSearch(problem, heuristic, nextState[0], path, candidates, cost, visited)
             if (result != []):
                 if (calcCoord(getOppositeDirection(result[1]), result[0]) == nextState[0]):
                     path.insert(0, nextState[1])
-                    if (startState == problem.getStartState()):
-                        return path
-                    return nextState
+                    if (not startState == problem.getStartState()):
+                        return nextState
                 if (startState == problem.getStartState()):
+                    try:
+                        while (not problem.allCornersReached()):
+                            problem.updateStartState(problem.getLastCornerReached())
+                            result = aStarSearch(problem, heuristic, None, [], None, {}, [])
+                            for i in result:
+                                path.append(i)
+                    except AttributeError:
+                        pass
                     return path
                 return result
     if (startState == problem.getStartState()):

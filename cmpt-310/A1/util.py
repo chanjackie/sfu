@@ -204,9 +204,6 @@ class PriorityQueue:
                 break
         else:
             self.push(item, priority)
-            
-    def print(self):
-        print(self.heap)
 
 class PriorityQueueWithFunction(PriorityQueue):
     """

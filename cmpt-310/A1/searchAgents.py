@@ -281,22 +281,26 @@ class CornersProblem(search.SearchProblem):
     You must select a suitable state space and successor function
     """
 
-    def __init__(self, startingGameState):
+    def __init__(self, startingGameState, warn=True, visualize=True, costFn = lambda x: 1):
         """
         Stores the walls, pacman's starting position and corners.
         """
         self.walls = startingGameState.getWalls()
         self.startingPosition = startingGameState.getPacmanPosition()
         top, right = self.walls.height-2, self.walls.width-2
-        self.corners = ((1,1), (1,top), (right, 1), (right, top))
+        self.corners = [(1,1), (1,top), (right, 1), (right, top)]
         for corner in self.corners:
             if not startingGameState.hasFood(*corner):
                 print('Warning: no food in corner ' + str(corner))
         self._expanded = 0 # DO NOT CHANGE; Number of search nodes expanded
         # Please add any code here which you would like to use
         # in initializing the problem
-        "*** YOUR CODE HERE ***"
-
+        "*** YOUR CODE HERE ***"        
+        self.costFn = costFn
+        self._visited, self._visitedlist = {}, []
+        self.visualize = visualize
+        self.cornersReached = []
+        self.problemStartState = self.startingPosition
 
     def getStartState(self):
         """
@@ -304,14 +308,25 @@ class CornersProblem(search.SearchProblem):
         space)
         """
         "*** YOUR CODE HERE ***"
-
+        return self.problemStartState
 
     def isGoalState(self, state):
         """
         Returns whether this search state is a goal state of the problem.
         """
         "*** YOUR CODE HERE ***"
-
+        isGoal = False
+        if (state in self.corners):
+            self.cornersReached.insert(0, state)
+            self.corners.remove(state)
+            isGoal = True
+        if len(self.cornersReached) == 4 and self.visualize:
+            self._visitedlist.append(state)
+            import __main__
+            if '_display' in dir(__main__):
+                if 'drawExpandedCells' in dir(__main__._display): #@UndefinedVariable
+                    __main__._display.drawExpandedCells(self._visitedlist) #@UndefinedVariable
+        return isGoal
 
     def getSuccessors(self, state):
         """
@@ -334,9 +349,18 @@ class CornersProblem(search.SearchProblem):
             #   hitsWall = self.walls[nextx][nexty]
 
             "*** YOUR CODE HERE ***"
-
+            x,y = state
+            dx, dy = Actions.directionToVector(action)
+            nextx, nexty = int(x + dx), int(y + dy)
+            if not self.walls[nextx][nexty]:
+                nextState = (nextx, nexty)
+                cost = self.costFn(nextState)
+                successors.append( ( nextState, action, cost) )
 
         self._expanded += 1 # DO NOT CHANGE
+        if state not in self._visited:
+            self._visited[state] = True
+            self._visitedlist.append(state)
         return successors
 
     def getCostOfActions(self, actions):
@@ -351,9 +375,20 @@ class CornersProblem(search.SearchProblem):
             dx, dy = Actions.directionToVector(action) # direction of the action
             x, y = int(x + dx), int(y + dy) # new position
             if self.walls[x][y]: return 999999 # hit wall
-            cost += self.costFn(x,y) # add the cost on this new position
+            cost += self.costFn((x,y)) # add the cost on this new position
         return cost
 
+    def allCornersReached(self):
+        if (len(self.cornersReached) == 4):
+            return True
+        return False
+
+    def getLastCornerReached(self):
+        return self.cornersReached[0]
+
+    def updateStartState(self, state):
+        if (state != None):
+            self.problemStartState = state
 
 def cornersHeuristic(state, problem):
     """
@@ -371,9 +406,14 @@ def cornersHeuristic(state, problem):
     """
     corners = problem.corners # These are the corner coordinates
     walls = problem.walls # These are the walls of the maze, as a Grid (game.py)
-
     "*** YOUR CODE HERE ***"
-
+    heuristic = 0
+    # Heuristic: BFS distance to nearest corner
+    dist = []
+    for i in range(len(corners)):
+        dist.append(abs(state[0] - problem.corners[i][0]) + abs(state[1] - corners[i][1]))
+    heuristic = min(dist)
+    return heuristic
 
 def mazeDistance(point1, point2, gameState):
     """
