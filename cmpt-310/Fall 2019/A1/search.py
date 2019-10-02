@@ -116,8 +116,7 @@ def depthFirstSearch(problem):
     You will get [((x1,y1),'South',1),((x2,y2),'West',1)]
     """
     "*** YOUR CODE HERE ***"
-    from util import Stack as Stack
-    fringe = Stack()
+    fringe = util.Stack()
     childParentDict = {}
     explored = [problem.getStartState()]
     actionsArray = []
@@ -126,16 +125,19 @@ def depthFirstSearch(problem):
         childParentDict[i] = problem.getStartState()
     while not fringe.isEmpty():
         node = fringe.pop()
-        explored.append(node[0])
         if (problem.isGoalState(node[0])):
             print("Found the goal!")
             while (node != problem.getStartState()):
                 actionsArray.insert(0, node[1])
                 node = childParentDict[node]
             break
+        if (node[0] in explored):
+            continue
+        else:
+            explored.append(node[0])
         for i in problem.getSuccessors(node[0]):
-            if (i[0] in explored):
-                continue
+            # if (i[0] in explored):
+            #     continue
             fringe.push(i)
             childParentDict[i] = node
     return actionsArray
@@ -146,15 +148,14 @@ def breadthFirstSearch(problem):
     Q1.2
     Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
-    from util import Queue as Queue
-    fringe = Queue()
+    fringe = util.Queue()
     childParentDict = {}
     explored = [problem.getStartState()]
     actionsArray = []
-    count = 0
     for i in problem.getSuccessors(problem.getStartState()):
         fringe.push(i)
-        explored.append(i[0])
+        # explored.append(i[0])
+        print(i, problem.getStartState())
         childParentDict[i] = problem.getStartState()
     while not fringe.isEmpty():
         node = fringe.pop()
@@ -164,13 +165,16 @@ def breadthFirstSearch(problem):
                 actionsArray.insert(0, node[1])
                 node = childParentDict[node]
             break
+        if (node[0] in explored):
+            continue
+        else:
+            explored.append(node[0])
         for i in problem.getSuccessors(node[0]):
-            if (i[0] in explored):
-                continue
+            # if (i[0] in explored):
+            #     continue
             fringe.push(i)
-            explored.append(i[0])
+            # explored.append(i[0])
             childParentDict[i] = node
-        count += 1
     return actionsArray
 
 
@@ -187,6 +191,40 @@ def aStarSearch(problem, heuristic=nullHeuristic):
     Search the node that has the lowest combined cost and heuristic first."""
     """Call heuristic(s,problem) to get h(s) value."""
     "*** YOUR CODE HERE ***"
+    fringe = util.PriorityQueue()
+    childParentDict = {}
+    explored = [problem.getStartState()]
+    actionsArray = []
+    count = 0
+    for i in problem.getSuccessors(problem.getStartState()):
+        cost = heuristic(i[0], problem) + i[2]
+        fringe.update(i, cost)
+        # explored.append(i[0])
+        childParentDict[i] = problem.getStartState()
+    while not fringe.isEmpty():
+        node = fringe.pop()
+        print("Node: ", node[0], "; Cost so far: ", node[2])
+        if (problem.isGoalState(node[0])):
+            print("Found the goal!")
+            printDataStruct(fringe)
+            while (node != problem.getStartState()):
+                actionsArray.insert(0, node[1])
+                node = childParentDict[node]
+            break
+        if (node[0] in explored):
+            continue
+        else:
+            explored.append(node[0])
+        for i in problem.getSuccessors(node[0]):
+            # if (i[0] in explored):
+            #     continue
+            newNode = (i[0], i[1], i[2]+node[2])
+            cost = heuristic(i[0], problem) + newNode[2]
+            fringe.update(newNode, cost)
+            # explored.append(newNode[0])
+            childParentDict[newNode] = node
+        count += 1
+    return actionsArray
 
 def printDataStruct(struct):
     import copy
@@ -195,6 +233,20 @@ def printDataStruct(struct):
     while not newStruct.isEmpty():
         print(newStruct.pop())
 
+def calcDirection(child, parent):
+    from game import Directions
+    n = Directions.NORTH
+    s = Directions.SOUTH
+    w = Directions.WEST
+    e = Directions.EAST
+    if (child[0] - parent[0] == -1):
+        return w
+    elif (child[0] - parent[0] == 1):
+        return e
+    elif (child[1] - parent[1] == -1):
+        return s
+    else:
+        return n
 
 # Abbreviations
 bfs = breadthFirstSearch
