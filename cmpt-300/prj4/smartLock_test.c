@@ -4,7 +4,7 @@
 #include "smartLock.h"
 #include <pthread.h>
 
-SmartLock glocks[2];
+SmartLock glocks[3];
 
 void *thread_0(void *arg) {
     while (lock(&glocks[0]) == 0); // Force locking glocks[0]
@@ -22,11 +22,13 @@ void *thread_0(void *arg) {
 
 void *thread_1(void *arg) {
     while (1) {
+        printf("thread1 attempting lock 1\n");
         int lock1_res = lock(&glocks[1]);
         sleep(2);
         if (lock1_res) {
+            printf("thread1 attempting lock 0\n");
             int lock0_res = lock(&glocks[0]);
-            if (lock0_res) {
+            if (lock0_res) {              
                 printf("thread 1 is working on critical section for 1 second\n");
                 sleep(1);
                 unlock(&glocks[1]);
@@ -36,13 +38,17 @@ void *thread_1(void *arg) {
             	// If thread_1 is not able to lock glocks[0] now, it will also
             	// unlock glocks[1] and sleep for 1 second before retry so that
             	// thread_0 can acquire glocks[1]
+                printf("Letting go of glocks[1]\n");
                 unlock(&glocks[1]);
                 sleep(1);
             }
+        } else {
+            printf("thread1 failed lock0\n");
         }
     }
     return NULL;
 }
+
 
 /*
  * This is a simple deadlock condition similar to the RAG showed in

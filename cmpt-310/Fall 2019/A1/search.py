@@ -118,16 +118,18 @@ def depthFirstSearch(problem):
     "*** YOUR CODE HERE ***"
     fringe = util.Stack()
     childParentDict = {}
-    explored = [problem.getStartState()]
+    explored = []
     actionsArray = []
-    for i in problem.getSuccessors(problem.getStartState()):
-        fringe.push(i)
-        childParentDict[i] = problem.getStartState()
+    startStateTuple = (problem.getStartState(), '', 0)
+    fringe.push(startStateTuple)
+    # for i in problem.getSuccessors(problem.getStartState()):
+    #     fringe.push(i)
+    #     childParentDict[i] = problem.getStartState()
     while not fringe.isEmpty():
         node = fringe.pop()
         if (problem.isGoalState(node[0])):
             print("Found the goal!")
-            while (node != problem.getStartState()):
+            while (node[0] != problem.getStartState()):
                 actionsArray.insert(0, node[1])
                 node = childParentDict[node]
             break
@@ -136,8 +138,8 @@ def depthFirstSearch(problem):
         else:
             explored.append(node[0])
         for i in problem.getSuccessors(node[0]):
-            # if (i[0] in explored):
-            #     continue
+            if (i[0] in explored):
+                continue
             fringe.push(i)
             childParentDict[i] = node
     return actionsArray
@@ -150,28 +152,34 @@ def breadthFirstSearch(problem):
     "*** YOUR CODE HERE ***"
     fringe = util.Queue()
     childParentDict = {}
-    explored = [problem.getStartState()]
+    # explored = [problem.getStartState()]
+    explored = []
     actionsArray = []
-    for i in problem.getSuccessors(problem.getStartState()):
-        fringe.push(i)
-        # explored.append(i[0])
-        print(i, problem.getStartState())
-        childParentDict[i] = problem.getStartState()
+    startStateTuple = (problem.getStartState(), '', 0)
+    fringe.push(startStateTuple)
+    # for i in problem.getSuccessors(problem.getStartState()):
+    #     fringe.push(i)
+    #     # explored.append(i[0])
+    #     print(i, problem.getStartState())
+    #     childParentDict[i] = problem.getStartState()
     while not fringe.isEmpty():
         node = fringe.pop()
         if (problem.isGoalState(node[0])):
             print("Found the goal!")
-            while (node != problem.getStartState()):
+            count = 0
+            while (node[0] != problem.getStartState()):
+                # print(node)
                 actionsArray.insert(0, node[1])
                 node = childParentDict[node]
+                count += 1
             break
         if (node[0] in explored):
             continue
         else:
             explored.append(node[0])
         for i in problem.getSuccessors(node[0]):
-            # if (i[0] in explored):
-            #     continue
+            if (i[0] in explored):
+                continue
             fringe.push(i)
             # explored.append(i[0])
             childParentDict[i] = node
@@ -193,21 +201,22 @@ def aStarSearch(problem, heuristic=nullHeuristic):
     "*** YOUR CODE HERE ***"
     fringe = util.PriorityQueue()
     childParentDict = {}
-    explored = [problem.getStartState()]
+    explored = []
     actionsArray = []
-    count = 0
-    for i in problem.getSuccessors(problem.getStartState()):
-        cost = heuristic(i[0], problem) + i[2]
-        fringe.update(i, cost)
-        # explored.append(i[0])
-        childParentDict[i] = problem.getStartState()
+    startStateTuple = (problem.getStartState(), '', 0)
+    fringe.push(startStateTuple, 0)
+    # for i in problem.getSuccessors(problem.getStartState()):
+    #     cost = heuristic(i[0], problem) + i[2]
+    #     fringe.update(i, cost)
+    #     # explored.append(i[0])
+    #     childParentDict[i] = problem.getStartState()
     while not fringe.isEmpty():
         node = fringe.pop()
-        print("Node: ", node[0], "; Cost so far: ", node[2])
+        # print("Node: ", node[0], "; Cost so far: ", node[2])
         if (problem.isGoalState(node[0])):
             print("Found the goal!")
             printDataStruct(fringe)
-            while (node != problem.getStartState()):
+            while (node[0] != problem.getStartState()):
                 actionsArray.insert(0, node[1])
                 node = childParentDict[node]
             break
@@ -216,14 +225,13 @@ def aStarSearch(problem, heuristic=nullHeuristic):
         else:
             explored.append(node[0])
         for i in problem.getSuccessors(node[0]):
-            # if (i[0] in explored):
-            #     continue
+            if (i[0] in explored):
+                continue
             newNode = (i[0], i[1], i[2]+node[2])
             cost = heuristic(i[0], problem) + newNode[2]
             fringe.update(newNode, cost)
             # explored.append(newNode[0])
             childParentDict[newNode] = node
-        count += 1
     return actionsArray
 
 def printDataStruct(struct):

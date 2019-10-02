@@ -1,0 +1,20 @@
+1.	xemacs &
+ - 
+2.	cd
+ - Changes directory
+3.	cat ~/.bashrc > tmpfile.txt
+ - 
+4.	ln -s tmpfile.txt ~/tmp-alias
+ - 
+5.	ls -al
+ - 
+6.	chmod a+rwx tmpfile.txt
+ - 
+7.	grep  bash /etc/passwd
+ - 
+8.	ps -ef | more
+ - 
+9.	man 2 chown
+ - 
+10.	gcc test.c 2> error-msg
+ - 

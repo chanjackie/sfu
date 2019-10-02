@@ -361,7 +361,7 @@ class CornersProblem(search.SearchProblem):
             dx, dy = Actions.directionToVector(action)
             nextx, nexty = int(x + dx), int(y + dy)
             newCorners = list(cornersReached)
-            if (nextx, nexty) in self.corners:
+            if ((nextx, nexty) in self.corners) and ((nextx, nexty) not in cornersReached):
                 newCorners.append((nextx, nexty))
             if not self.walls[nextx][nexty]:
                 nextState = (nextx, nexty, tuple(newCorners))
@@ -408,7 +408,12 @@ def cornersHeuristic(state, problem):
     walls = problem.walls # These are the walls of the maze, as a Grid (game.py)
 
     "*** YOUR CODE HERE ***"
-
+    cost = 0
+    for corner in corners:
+        if (corner not in state[2]):
+            cost += util.manhattanDistance(state, corner)
+    
+    return cost
 
 def mazeDistance(point1, point2, gameState):
     """

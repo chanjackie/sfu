@@ -11,14 +11,14 @@ void List_merge (struct nodeStruct **firstHalf, struct nodeStruct **secondHalf, 
 /*
  * Allocate memory for a node of type struct nodeStruct and initialize
  * it with the value item. Return a pointer to the new node.
- */
+ */ 
+
 struct nodeStruct* List_createNode(SmartLock *smartLock, pthread_t threadNum) {
 	struct nodeStruct *node = malloc(sizeof(struct nodeStruct));
 	node->smartLock = smartLock;
 	node->threadNum = threadNum;
 	return node;
 }
-
 
 /*
  * Insert node at the head of the list.
@@ -70,6 +70,7 @@ int List_countNodes (struct nodeStruct *head) {
  */
 struct nodeStruct* List_findNode(struct nodeStruct *head, pthread_t threadNum, int lockId) {
 	if (head == NULL) {
+		printf("NULL HEAD\n");
 		return NULL;
 	}
 	if (threadNum != -1) {		
@@ -178,18 +179,18 @@ void List_merge (struct nodeStruct **firstHalf, struct nodeStruct **secondHalf, 
 */
 void List_print(struct nodeStruct **headRef) {
 	struct nodeStruct *head = *headRef;
-	printf("----Printing list----\n");
-	printf("Processes: \n");
-	while (head != NULL && head->threadNum != -1) {
-		printf("%lu, ", head->threadNum);
+	int count = 0;
+	while (head != NULL) {
+		if (head->threadNum != -1) {			
+			printf("Thread %lu -> ", head->threadNum);
+		} else {
+			printf("Lock %d -> ", head->smartLock->lockId);
+		}
 		head = head->next;
-	}
-	printf("\n");
-	printf("Locks: \n");
-	head = *headRef;
-	while (head != NULL && head->threadNum == -1) {
-		printf("%d, ", head->smartLock->lockId);
-		head = head->next;
+		count++;
+		if (count > 5) {
+			break;
+		}
 	}
 	printf("\n");
 	return;

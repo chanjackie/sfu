@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
     }
 
     print_statistics();
-    print_nodes();
+    // print_nodes();
 
     /*kfree(p[0]);
     p[0] = NULL;
@@ -71,15 +71,15 @@ int main(int argc, char* argv[]) {
     kfree(p[5]);
     p[5] = NULL;
 
-    print_memory(p, 30);
-    print_nodes();
+    // print_memory(p, 30);
+    // print_nodes();
     print_statistics();
 
     p[5] = kalloc(sizeof(char));
     *(p[5]) = 'a';
 
-    print_memory(p, 30);
-    print_nodes();
+    // print_memory(p, 30);
+    // print_nodes();
     print_statistics();
 
     /*for (int i=0; i<20; ++i) {
@@ -112,8 +112,8 @@ int main(int argc, char* argv[]) {
         *(p[i]) = i;
     }
 
-    print_nodes();
-    print_memory(p, count);
+    // print_nodes();
+    // print_memory(p, count);
     print_statistics();
 
     for (int i=count-1; i>=0; i--) {
@@ -122,8 +122,8 @@ int main(int argc, char* argv[]) {
         p[i] = NULL;
     }
 
-    print_nodes();
-    print_memory(p, count);
+    // print_nodes();
+    // print_memory(p, count);
     print_statistics();
 
     // You can assume that the destroy_allocator will always be the 

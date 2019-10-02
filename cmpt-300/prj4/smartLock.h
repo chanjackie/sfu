@@ -16,4 +16,6 @@ void unlock(SmartLock* lock);
 
 void cleanup();
 
+void print_list();
+
 #endif
