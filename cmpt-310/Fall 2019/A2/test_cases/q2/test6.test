@@ -1,0 +1,12 @@
+class: "EvalTest"
+success: "Unit Propagation test6. A SAT sudoku instance with 729 variables"
+failure: "sudoku9_sat.cnf Time out or incorrect result"
+
+# Python statements initializing variables for the test below.
+preamble: """
+import DPLLsat as dp
+"""
+
+# A python expression to be evaluated.  This expression must return the 
+# same result for the student and instructor's code.
+test: "dp.main(['-i', 'sudoku9sat.cnf'])"

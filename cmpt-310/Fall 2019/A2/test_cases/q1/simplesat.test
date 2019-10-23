@@ -1,0 +1,12 @@
+class: "EvalTest"
+success: "Recursive Backtracking test 1. A simple SAT instance"
+failure: "Time out or incorrect result"
+
+# Python statements initializing variables for the test below.
+preamble: """
+import DPLLsat as dp
+"""
+
+# A python expression to be evaluated.  This expression must return the 
+# same result for the student and instructor's code.
+test: "dp.main(['-i', 'simple_v3_c2.cnf'])"
