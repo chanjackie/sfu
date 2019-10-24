@@ -16,7 +16,7 @@
 # Please enter the number of hours you spent on this
 # assignment here
 """
-num_hours_i_spent_on_this_assignment = 0
+num_hours_i_spent_on_this_assignment = 24
 """
 #
 #####################################################
@@ -29,7 +29,8 @@ num_hours_i_spent_on_this_assignment = 0
 # understanding? Are there any changes that could improve the value of the
 # course to you? (We will anonymize these before reading them.)
 """
-<Your feedback goes here>
+Love the usage of PacMan to demonstrate searching algorithms, as it provides a visual representation of our implementation
+in a familiar environment. Look forward to implementing machine learning in an assignment
 
 """
 #####################################################

@@ -410,19 +410,15 @@ def cornersHeuristic(state, problem):
 
     "*** YOUR CODE HERE ***"
     position = (state[0], state[1])
-    unexplored = list(corners)
+    unexplored = list(set(corners) - set(state[2]))
     cost = 0
 
-    for corner in state[2]:
-        if corner in unexplored:
-            unexplored.remove(corner)
-    
-    while len(unexplored) != 0:
-        distances = []
+    for i in range(len(unexplored)):
+        distances = util.PriorityQueue()
         for corner in unexplored:
-            distances.append((util.manhattanDistance(position, corner), corner))
-        cost += min(distances)[0]
-        position = min(distances)[1]
+            distances.push((corner, util.manhattanDistance(position, corner)), util.manhattanDistance(position, corner))
+        position, newCost = distances.pop()
+        cost += newCost
         unexplored.remove(position)
     
     return cost
