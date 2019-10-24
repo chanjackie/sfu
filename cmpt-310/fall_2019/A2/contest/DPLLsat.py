@@ -5,7 +5,7 @@
 # Please enter the number of hours you spent on this
 # assignment here
 """
-num_hours_i_spent_on_this_assignment = 
+num_hours_i_spent_on_this_assignment = 20
 """
 #
 #####################################################
@@ -19,7 +19,8 @@ num_hours_i_spent_on_this_assignment =
 # course to you? (We will anonymize these before reading them.)
 """
 <Your feedback goes here>
-
+Implementing algorithms learned in class is very fun still. More comprehensive notes online
+would be helpful (rather than empty slides with brief notes at the bottom).
 
 """
 #####################################################
@@ -142,6 +143,7 @@ def solve_dpll(instance, verbosity):
 			for i in ret:
 				if ret[i] == True:
 					trueLiterals.append(i)
+			trueLiterals.sort()
 			print(trueLiterals)
 
 
@@ -160,13 +162,27 @@ def DPLL(oClauses, oSymbols, oModel={}):
 		return model
 	if sat == -1:
 		return False
+	pure = pureElim(clauses, symbols)
+	# print(pure)
+	if pure:
+		for i in pure:
+			model[abs(i)] = i>0
+			if abs(i) in symbols:
+				symbols.remove(abs(i))
+		return DPLL(clauses, symbols, model)
+	# print(clauses)
 	prop = propagateUnits(clauses)
+	# print(clauses)
 	# print(prop)
 	if (prop[0]):
-		model[prop[1]] = prop[2]
-		symbols.remove(prop[1])
+		for i in prop[1]:
+			model[abs(i)] = i>0
+			if abs(i) in symbols:
+				symbols.remove(abs(i))
 		return DPLL(clauses, symbols, model)
-	P = symbols.pop()
+	P = pickSymbol(clauses, symbols)
+	# symbols.remove(P)
+	# P = symbols.pop()
 	for value in [True, False]:
 		# print(P, value)
 		model[P] = value
@@ -178,35 +194,85 @@ def DPLL(oClauses, oSymbols, oModel={}):
 def DPLLsat(clauses, model):
 	# print(clauses)
 	# print(model)
+	if (not clauses):
+		return 0
+	if ([] in clauses):
+		return -1
 	for i in model:
 		symbol = i
 		if not model[i]:
 			symbol = -i
 		j = 0
 		while j != len(clauses):
-			if (symbol in clauses[j]):
+			if symbol in clauses[j]:
 				clauses.pop(j)
 			else:
 				j += 1
 		for j in range(len(clauses)):
-			if (-symbol in clauses[j]):
+			while -symbol in clauses[j]:
 				clauses[j].remove(-symbol)
 	# print("---- AFTER REMOVAL ----")
 	# print(clauses)
 	if (not clauses):
 		return 0
-	elif ([] in clauses):
+	if ([] in clauses):
 		return -1
-	else:
-		return 1
+	return 1
 
 def propagateUnits(clauses):
 	# clausesCopy = copy.deepcopy(clauses)
 	# print(clauses)
+	ret = [False]
+	unitClauses = []
 	for i in clauses:
 		if (len(i) == 1):
-			return [True, abs(i[0]), i[0]>0]
-	return [False]
+			unitClauses.append(i[0])
+	if unitClauses:
+		ret = [True, unitClauses]
+	# print(ret)
+	if ret[0]:
+		for i in ret[1]:
+			val = -i
+			for j in range(len(clauses)):
+				while (val in clauses[j]):
+					clauses[j].remove(val)
+	# print(clauses)
+	return ret
+
+def pureElim(clauses, symbols):
+	symbolsSign = {}
+	pureLiterals = []
+	# 0: unassigned, 1: true pure literal
+	# -1: false pure literal, -2: not a pure literal
+	for symbol in symbols:
+		symbolsSign[symbol] = 0
+		for clause in clauses:
+			if symbol in clause:
+				if symbolsSign[symbol] == 0:
+					symbolsSign[symbol] = 1
+				elif symbolsSign[symbol] != 1:
+					symbolsSign[symbol] = -2
+			if -symbol in clause:
+				if symbolsSign[symbol] == 0:
+					symbolsSign[symbol] = -1
+				elif symbolsSign[symbol] != -1:
+					symbolsSign[symbol] = -2
+	for symbol in symbolsSign:
+		sign = symbolsSign[symbol]
+		if sign != -2 and sign != 0:
+			pureLiterals.append(symbol*sign)
+	return pureLiterals
+
+def pickSymbol(clauses, symbols):
+	countDict = {}
+	for symbol in symbols:
+		countDict[symbol] = 0
+		for clause in clauses:
+			if symbol in clause:
+				countDict[symbol] += 1
+	ret = max(countDict, key=countDict.get)
+	symbols.remove(ret)
+	return ret
 
 
 if __name__ == "__main__":
