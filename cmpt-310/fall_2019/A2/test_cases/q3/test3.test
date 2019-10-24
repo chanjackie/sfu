@@ -1,0 +1,12 @@
+class: "EvalTest"
+success: "Pure Literal Elimination test3. An SAT instance with 1000 variables"
+failure: "1000sat.cnf Time out or incorrect result"
+
+# Python statements initializing variables for the test below.
+preamble: """
+import DPLLsat as dp
+"""
+
+# A python expression to be evaluated.  This expression must return the 
+# same result for the student and instructor's code.
+test: "dp.main(['-i', '1000sat.cnf'])"
