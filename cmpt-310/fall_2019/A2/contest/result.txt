@@ -1,9 +1,9 @@
-Pass n=50 time left 0:04:53.094
-Pass n=55 time left 0:04:50.517
-Pass n=60 time left 0:04:29.689
-Pass n=65 time left 0:04:06.643
-Pass n=70 time left 0:02:23.025
-Pass n=75 time left 0:00:18.665
+Pass n=50 time left 0:04:53.331
+Pass n=55 time left 0:04:50.733
+Pass n=60 time left 0:04:30.563
+Pass n=65 time left 0:04:08.268
+Pass n=70 time left 0:02:29.326
+Pass n=75 time left 0:00:23.200
 Time out!
 Largest n =  75
 

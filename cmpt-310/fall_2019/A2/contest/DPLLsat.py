@@ -176,8 +176,10 @@ def DPLL(oClauses, oSymbols, oModel={}):
 	# print(prop)
 	if (prop[0]):
 		for i in prop[1]:
-			model[abs(i)] = i>0
+			if -i in prop[1]:
+				return False
 			if abs(i) in symbols:
+				model[abs(i)] = i>0
 				symbols.remove(abs(i))
 		return DPLL(clauses, symbols, model)
 	P = pickSymbol(clauses, symbols)
