@@ -12,7 +12,7 @@ import operator
 #####################################################
 # Please enter the number of hours you spent on this
 # assignment here
-num_hours_i_spent_on_this_assignment = 0
+num_hours_i_spent_on_this_assignment = 25
 #####################################################
 #####################################################
 
@@ -23,6 +23,8 @@ num_hours_i_spent_on_this_assignment = 0
 # understanding? Are there any changes that could improve the value of the
 # course to you? (We will anonymize these before reading them.)
 # <Your feedback goes here>
+
+# Assignments are a little too intensive towards the end of the semester, when course workloads are generally higher.
 #####################################################
 #####################################################
 
