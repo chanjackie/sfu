@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: com.cmpt354.asn7.Main
-
