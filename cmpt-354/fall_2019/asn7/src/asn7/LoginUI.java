@@ -49,6 +49,7 @@ public class LoginUI extends JFrame {
 
         jLabel1.setText("Username:");
 
+        loginUIUsernameTxt.setText("s_jgc11");
         loginUIUsernameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginUIUsernameTxtActionPerformed(evt);
@@ -70,6 +71,8 @@ public class LoginUI extends JFrame {
                 loginUIExitBtnActionPerformed(evt);
             }
         });
+
+        loginUIPasswordField.setText("367E22e64N6Hg2Nb");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -150,8 +153,6 @@ public class LoginUI extends JFrame {
 
     private void loginUILoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginUILoginBtnActionPerformed
         // TODO add your handling code here:
-        PreparedStatement pstmt = null;
-        ResultSet rs;
         String sSQL = "select * from helpdesk";	//the table was created by helpdesk
         String temp = "";
 
@@ -161,49 +162,25 @@ public class LoginUI extends JFrame {
             return;
         }
         String sPassword = String.valueOf(loginUIPasswordField.getPassword());
-        // ^^^ modify these 2 lines before compiling this program
-        // please replace the username with your CCN id
-        // please get the password from table 'helpdesk' of your course database
-
-        String connectionUrl = "jdbc:sqlserver://cypress;"
-                + "user = " + sUsername + ";"
-                + "password = " + sPassword;
-
-//              System.out.println("\n connectionUrl = " + connectionUrl + "\n\n");
-        try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        } catch (ClassNotFoundException ce) {
-            System.out.println("\n\nNo JDBC Driver for SQL Server; exit now.\n\n");
-            loginUIStatusTxt.setText("No JDBC Driver for SQL Server.");
+        
+        ConSingleton con = ConSingleton.getInstance();
+        if (!con.connect(sUsername, sPassword)) {
+            loginUIStatusTxt.setText("Login failed. The username and/or password was incorrect");
             return;
         }
-
+        
+        ResultSet rs = con.query(sSQL);
         try {
-            con = DriverManager.getConnection(connectionUrl);
-        } catch (SQLException se) {
-            System.out.println("\n\nFail to connect to CSIL SQL Server; exit now.\n\n");
-            System.out.println(se.toString());
-            loginUIStatusTxt.setText("Incorrect username or password.");
-            return;
-        }
-
-        try {
-            pstmt = con.prepareStatement(sSQL);
-            rs = pstmt.executeQuery();
-
-            System.out.println("\nThe table 'helpdesk' contains:\n\n");
-
             while (rs.next()) {
                 temp = rs.getString("username");	//the table has a field 'username'
                 System.out.println(temp);
             }
-            rs.close();
-            System.out.println("\nSuccessfully connected to CSIL SQL Server!\n\n");
-            loginUIStatusTxt.setText("Successfully connected to " + sUsername + ".");
+            rs.close();            
         } catch (SQLException se) {
             System.out.println("\nSQL Exception occurred, the state : "
                     + se.getSQLState() + "\nMessage:\n" + se.getMessage() + "\n");
-            loginUIStatusTxt.setText("Exception occurred.");
+            loginUIStatusTxt.setText("SQL Exception occurred, the state : "
+                    + se.getSQLState() + "\nMessage:\n" + se.getMessage());
             return;
         }
 

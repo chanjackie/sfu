@@ -101,11 +101,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Book Listing"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mainBookListingBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="mainWriteReviewBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Write Review"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mainWriteReviewBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="mainLogoutBtn">
           <Properties>

@@ -13,6 +13,7 @@ import javax.swing.*;
  * @author jgc11
  */
 public class MainMenu extends JFrame {
+    private ConSingleton con;
 
     /**
      * Creates new form MainMenu
@@ -23,6 +24,7 @@ public class MainMenu extends JFrame {
         this.mainSearchListingsBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.mainBookListingBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.mainWriteReviewBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        con = ConSingleton.getInstance();
     }
 
     /**
@@ -53,8 +55,18 @@ public class MainMenu extends JFrame {
         });
 
         mainBookListingBtn.setText("Book Listing");
+        mainBookListingBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainBookListingBtnActionPerformed(evt);
+            }
+        });
 
         mainWriteReviewBtn.setText("Write Review");
+        mainWriteReviewBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainWriteReviewBtnActionPerformed(evt);
+            }
+        });
 
         mainLogoutBtn.setText("Logout");
         mainLogoutBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -116,6 +128,7 @@ public class MainMenu extends JFrame {
 
     private void mainLogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainLogoutBtnActionPerformed
         // TODO add your handling code here:
+        con.destroy();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginUI().setVisible(true);
@@ -131,7 +144,28 @@ public class MainMenu extends JFrame {
                 new SearchListingsUI().setVisible(true);
             }
         });
+        this.dispose();
     }//GEN-LAST:event_mainSearchListingsBtnActionPerformed
+
+    private void mainBookListingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainBookListingBtnActionPerformed
+        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new BookListingsUI().setVisible(true);
+            }
+        });
+        this.dispose();
+    }//GEN-LAST:event_mainBookListingBtnActionPerformed
+
+    private void mainWriteReviewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainWriteReviewBtnActionPerformed
+        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ReviewUI().setVisible(true);
+            }
+        });
+        this.dispose();
+    }//GEN-LAST:event_mainWriteReviewBtnActionPerformed
 
     /**
      * @param args the command line arguments
