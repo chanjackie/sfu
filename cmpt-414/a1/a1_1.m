@@ -8,8 +8,8 @@ im = imread('dark.tif');
 % threshold
 % b = max(max(im));
 % a = min(min(im));
-b = 190;
-a = 25;
+b = 170;
+a = 22;
 pm = 255;
 p0 = 0;
 
@@ -43,4 +43,3 @@ subplot(1,2,2), imshow(im);
 
 % save image to file
 imwrite(newim, 'dark_2.bmp', 'bmp');
-

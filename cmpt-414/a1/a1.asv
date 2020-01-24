@@ -1,42 +1,60 @@
-% 1. Linear stretch and histogram equalization
+% 1. Linear stretch
 % read image
-im = imread('dark.tif');
+% im = imread('dark.tif');
+% 
+% % gray scale, get luminance
+% % im = rgb2gray(im);
+% 
+% % threshold
+% % b = max(max(im));
+% % a = min(min(im));
+% b = 190;
+% a = 25;
+% pm = 255;
+% p0 = 0;
+% 
+% im2 = zeros(size(im));
+% 
+% for i = 1:size(im, 1)
+%     for j = 1:size(im, 2)
+%         if (im(i, j) <= b) && (im(i, j) >= a)
+%             val = ((pm-p0)/(b-a))*(im(i, j)-a) + p0;
+%             im2(i, j) = uint8(val);
+%         elseif im(i, j) > b
+%             im2(i, j) = pm;
+%         else
+%             im2(i, j) = p0;
+%         end
+%     end
+% end
+% % min1 = min(min(im));
+% % max1 = max(max(im));
+% % im2 = round((im-min1)* (255/(max1-min1)));
+% % im2(logical(im >= a & im <= b)) = ((pm-p0)/(b-a));
+% % im2(logical(im > b)) = pm;
+% 
+% % convert im2 to uint8 matrix
+% newim = uint8(im2);
+% disp(max(max(newim)));
+% disp(min(min(newim)));
+% % show image
+% subplot(1,2,1), imshow(newim);
+% subplot(1,2,2), imshow(im);
+% 
+% % save image to file
+% imwrite(newim, 'dark_2.bmp', 'bmp');
 
-% gray scale, get luminance
-% im = rgb2gray(im);
+% 2. Smoothing
+gNoiseIm1 = imread('trees_var002.tif');
+gNoiseIm2 = imread('trees_var010.tif');
+gNoiseIm3 = imread('trees_var025.tif');
+t = [1/9 1/9 1/9;1/9 1/9 1/9;1/9 1/9 1/9];
 
-% threshold
-% b = max(max(im));
-% a = min(min(im));
-b = 203;
-a = 40;
-pm = 255;
-p0 = 0;
+uwAvg = uint8(conv2(gNoiseIm1, t, 'same'));
 
-im2 = zeros(size(im));
-
-for i = 1:size(im, 1)
-    for j = 1:size(im, 2)
-        if (im(i, j) <= b) && (im(i, j) >= a)
-            val = (((pm-p0)/(b-a))*(im(i, j)-a) + p0)/255;
-            im2(i, j) = double(val/255);
-        elseif im(i, j) > b
-            im2(i, j) = pm;
-        else
-            im2(i, j) = p0;
-        end
-    end
-end
-% min1 = min(min(im));
-% max1 = max(max(im));
-% im2 = round((im-min1)* (255/(max1-min1)));
-% im2(logical(im >= a & im <= b)) = ((pm-p0)/(b-a));
-% im2(logical(im > b)) = pm;
-
-% disp(im2);
-% show image
-subplot(1,2,1), imshow(im2);
-subplot(1,2,2), imshow(im);
-
-% save image to file
-imwrite(im2, 'dark_2.bmp', 'bmp');
+subplot(2,3,1), imshow(gNoiseIm1);
+% subplot(2,3,2), imshow(gNoiseIm2);
+% subplot(2,3,3), imshow(gNoiseIm3);
+subplot(2,3,4), imshow(uwAvg);
+% subplot(2,3,5), imshow(gBlur2);
+% subplot(2,3,6), imshow(gBlur3);
