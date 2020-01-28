@@ -1,0 +1,8 @@
+% 3. Sharpening
+
+peppers = imread('peppers.png');
+flowers = imread('flower-glass.tif');
+
+blur1 = [0 1 0;1 -4 1;0 1 0];
+blurPeppers = uint8conv2(peppers, blur1, 'same');
+sharpPeppers = ;
