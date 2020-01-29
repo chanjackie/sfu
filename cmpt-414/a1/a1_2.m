@@ -32,13 +32,13 @@ for i = 1:3
     subplot(row, col, i), imshow(gnIms{i});
     subplot(row, col, i+3), imshow(spIms{i});
     subplot(row, col, i+6), imshow(uwAvgIms{i});
-    imwrite(uwAvgIms{i}, strcat('uw_avg_gn_img',int2str(i),'.bmp'), 'bmp');
+    imwrite(uwAvgIms{i}, strcat('uw_avg_trees_var',int2str(i),'.bmp'), 'bmp');
     subplot(row, col, i+9), imshow(knnIms{i});
-    imwrite(knnIms{i}, strcat('knn_sp_img',int2str(i),'.bmp'), 'bmp');
+    imwrite(knnIms{i}, strcat('knn_trees_salt',int2str(i),'.bmp'), 'bmp');
     subplot(row, col, i+12), imshow(medFiltIms{i});
-    imwrite(medFiltIms{i}, strcat('med_filt_gn_img',int2str(i),'.bmp'), 'bmp');
+    imwrite(medFiltIms{i}, strcat('med_filt_trees_var',int2str(i),'.bmp'), 'bmp');
     subplot(row, col, i+15), imshow(medFiltIms{i+3});
-    imwrite(medFiltIms{i+3}, strcat('med_filt_sp_img',int2str(i),'.bmp'), 'bmp');
+    imwrite(medFiltIms{i+3}, strcat('med_filt_trees_salt',int2str(i),'.bmp'), 'bmp');
 end
 
 function newImg = computeKNearestNeighbours(img, K)
