@@ -39,7 +39,9 @@ disp(max(max(newim)));
 disp(min(min(newim)));
 % show image
 subplot(1,2,1), imshow(newim);
+title('Linear Stretched');
 subplot(1,2,2), imshow(im);
+title('Original');
 
 % save image to file
-imwrite(newim, 'dark_2.bmp', 'bmp');
+imwrite(newim, 'q1_images/dark_2.bmp', 'bmp');

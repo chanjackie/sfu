@@ -6,9 +6,9 @@ spIms{1} = imread('trees_salt004.tif');
 spIms{2} = imread('trees_salt020.tif');
 spIms{3} = imread('trees_salt050.tif');
 t = ones(3,3)*1/9;
-% uwAvgIms = zeros(3, size(gnIms{1}));
-% knnIms = zeros(3, size(spIms{1}));
-% medFiltIms = zeros(6, size(gnIms{1}));
+uwAvgIms = cell(size(gnIms{1}));
+knnIms = cell(size(spIms{1}));
+medFiltIms = cell(size(gnIms{1}));
 for i = 1:3
     uwAvgIms{i} = gnIms{i};
     knnIms{i} = spIms{i};
@@ -30,21 +30,34 @@ row = 3;
 col = 6;
 for i = 1:3
     subplot(row, col, i), imshow(gnIms{i});
+    title(strcat('trees var_',int2str(i)));
     subplot(row, col, i+3), imshow(spIms{i});
+    title(strcat('trees salt_',int2str(i)));
     subplot(row, col, i+6), imshow(uwAvgIms{i});
-    imwrite(uwAvgIms{i}, strcat('uw_avg_trees_var',int2str(i),'.bmp'), 'bmp');
+    title(strcat('trees var uw avg_',int2str(i)));
+    imwrite(uwAvgIms{i}, strcat('q2_images/trees_var_uw_avg_',int2str(i),'.png'), 'png');
     subplot(row, col, i+9), imshow(knnIms{i});
-    imwrite(knnIms{i}, strcat('knn_trees_salt',int2str(i),'.bmp'), 'bmp');
+    title(strcat('trees salt knn_',int2str(i)));
+    imwrite(knnIms{i}, strcat('q2_images/trees_salt_knn_',int2str(i),'.png'), 'png');
     subplot(row, col, i+12), imshow(medFiltIms{i});
-    imwrite(medFiltIms{i}, strcat('med_filt_trees_var',int2str(i),'.bmp'), 'bmp');
+    title(strcat('trees var med filt_',int2str(i)));
+    imwrite(medFiltIms{i}, strcat('q2_images/trees_var_med_filt_',int2str(i),'.png'), 'png');
     subplot(row, col, i+15), imshow(medFiltIms{i+3});
-    imwrite(medFiltIms{i+3}, strcat('med_filt_trees_salt',int2str(i),'.bmp'), 'bmp');
+    title(strcat('trees salt med filt_',int2str(i)));
+    imwrite(medFiltIms{i+3}, strcat('q2_images/trees_salt_med_filt_',int2str(i),'.png'), 'png');
 end
+% subplot(1,3,1), imshow(gnIms{3});
+% title('Original Image');
+% subplot(1,3,2), imshow(uwAvgIms{3});
+% title('Unweighted Average Smoothed');
+% subplot(1,3,3), imshow(medFiltIms{3});
+% title('Median Filtering Smoothed');
 
 function newImg = computeKNearestNeighbours(img, K)
     newImg = uint8(zeros(size(img)));
     for j = 1:size(img, 1)
         for k = 1:size(img, 2)
+            % Get 8 neighbours surrounding current pixel
             neighbours = [img(max(1,j-1), max(1,k-1)), img(j, max(1,k-1))...
                 img(min(size(img,1),j+1), max(1,k-1)), img(max(1,j-1), k)...
                 img(min(size(img,1),j+1), k), img(max(1,j-1), min(size(img,2),k+1))...
