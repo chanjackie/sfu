@@ -1,6 +1,7 @@
 """Basic code for assignment 1."""
 
 import numpy as np
+import math
 import pandas as pd
 from scipy import nanmean
 
@@ -57,7 +58,7 @@ def normalize_data(x):
     
 
 
-def linear_regression(x, t, basis, reg_lambda=0, degree=0, mu=0, s=1):
+def linear_regression(x, t, basis, reg_lambda=0, degree=0, mu=0, s=1, bias=0):
     """Perform linear regression on a training set with specified regularizer lambda and basis
 
     Args:
@@ -75,24 +76,59 @@ def linear_regression(x, t, basis, reg_lambda=0, degree=0, mu=0, s=1):
 
     # Construct the design matrix.
     # Pass the required parameters to this function
-    phi = design_matrix(basis)
-            
+    # train_errs = []
+
+    phi = design_matrix(x, degree, basis, mu, s, bias)
+    phi_pinv = np.linalg.pinv(phi)
+    # print(phi_pinv.shape)
+    # print(phi.shape)
     # Learning Coefficients
     if reg_lambda > 0:
         # regularized regression
-        w = None
+        train_err = 0
+        min_val_err = float('Inf')
+        w = []
+        for n in range(10):
+            train_t = np.vstack([t[:n*10], t[n*10+10:]])
+            train_phi = np.vstack([phi[:n*10], phi[n*10+10:]])
+            train_phi_pinv = np.linalg.pinv(train_phi)
+            train_w = train_phi_pinv * train_t
+            val_err = 0
+            for i in range(train_phi.shape[0]):
+                pred = bias + train_phi[i]*train_w
+                val_err += (train_t[i] - pred)**2
+            val_err = np.sqrt(val_err/train_phi.shape[0])
+            reg_val = 0
+            for i in range(train_w.shape[0]):
+                reg_val += (reg_lambda*train_w[i])**2
+            val_err += reg_val
+            train_err += val_err
+            # if reg_lambda == 0.1:
+            #     print(val_err)
+            if val_err < min_val_err:
+                min_val_err = val_err
+                w = train_w
+        train_err = train_err/10
+        # print(train_err)
+
     else:
         # no regularization
-        w = None
+        w = phi_pinv * t
+        # Measure root mean squared error on training data.
+        train_err = 0
 
-    # Measure root mean squared error on training data.
-    train_err = None
+        for i in range(phi.shape[0]):
+            pred = bias + phi[i]*w
+            train_err += (t[i] - pred)**2
 
-    return (w, train_err)
+        train_err = np.sqrt(train_err/phi.shape[0])
+    # print(train_err)
+
+    return (w, np.asscalar(train_err))
 
 
 
-def design_matrix(basis=None):
+def design_matrix(x, degree=0, basis=None, mu=0, s=1, bias=0):
     """ Compute a design matrix Phi from given input datapoints and basis.
 
     Args:
@@ -103,16 +139,26 @@ def design_matrix(basis=None):
     """
 
     if basis == 'polynomial':
-        phi = None
+        phi = x
+        if (bias > 0):
+            phi = np.hstack([np.ones((x.shape[0], 1)), phi])
+        # phi = x
+        for i in range(1, degree):
+            phi = np.hstack([phi, np.power(x, i+1)])
     elif basis == 'sigmoid':
-        phi = None
+        phi = np.zeros(x.shape)
+        n = 0
+        for i in range(x.shape[0]):
+            phi[i] = 1/(1+math.exp((mu-x[i])/s))
+        phi = np.hstack([np.ones((phi.shape[0], 1)), phi])
+        # print(phi)
     else: 
         assert(False), 'Unknown basis %s' % basis
 
     return phi
 
 
-def evaluate_regression():
+def evaluate_regression(w, x, t, basis, degree=0, mu=0, s=1, bias=0):
     """Evaluate linear regression on a dataset.
 
     Args:
@@ -122,8 +168,15 @@ def evaluate_regression():
       t_est values of regression on inputs
       err RMS error on training set if t is not None
       """
+    phi = design_matrix(x, degree, basis, mu, s, bias)
+    t_est = []
+    err = 0
+    # print(phi.shape)
+    for i in range(phi.shape[0]):
+        t_est.append(np.asscalar(bias + phi[i]*w))
+        err += (t[i] - t_est[i])**2
 
-    t_est = None
-    err = None
-
-    return (t_est, err)
+    err = np.sqrt(err/phi.shape[0])
+    print(err)
+    # print(t_est)
+    return (t_est, np.asscalar(err))
