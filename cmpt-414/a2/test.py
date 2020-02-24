@@ -9,11 +9,12 @@ import matplotlib.pyplot as plt
 from collections import defaultdict
 from scipy.misc import imread
 from skimage.feature import canny
+# from cv2 import Canny as canny
 from scipy.ndimage.filters import sobel
 
 # Good for the b/w test images used
-MIN_CANNY_THRESHOLD = 10
-MAX_CANNY_THRESHOLD = 50
+MIN_CANNY_THRESHOLD = 50
+MAX_CANNY_THRESHOLD = 150
     
 def gradient_orientation(image):
     '''
@@ -23,7 +24,6 @@ def gradient_orientation(image):
     dy = sobel(image, axis=1, mode='constant')
 
     gradient = np.arctan2(dy,dx) * 180 / np.pi
-    print(gradient)
     return gradient
     
 def build_r_table(image, origin):
@@ -32,6 +32,7 @@ def build_r_table(image, origin):
     '''
     edges = canny(image, low_threshold=MIN_CANNY_THRESHOLD, 
                   high_threshold=MAX_CANNY_THRESHOLD)
+    # edges = canny(image, MIN_CANNY_THRESHOLD, MAX_CANNY_THRESHOLD, apertureSize=3)
     gradient = gradient_orientation(edges)
     
     r_table = defaultdict(list)
@@ -39,6 +40,7 @@ def build_r_table(image, origin):
         if value:
             r_table[gradient[i,j]].append((origin[0]-i, origin[1]-j))
 
+    # print(r_table)
     return r_table
 
 def accumulate_gradients(r_table, grayImage):
@@ -47,6 +49,7 @@ def accumulate_gradients(r_table, grayImage):
     '''
     edges = canny(grayImage, low_threshold=MIN_CANNY_THRESHOLD, 
                   high_threshold=MAX_CANNY_THRESHOLD)
+    # edges = canny(grayImage, MIN_CANNY_THRESHOLD, MAX_CANNY_THRESHOLD, apertureSize=3)
     gradient = gradient_orientation(edges)
     
     accumulator = np.zeros(grayImage.shape)
@@ -68,8 +71,10 @@ def general_hough_closure(reference_image):
     '''
     referencePoint = (reference_image.shape[0]/2, reference_image.shape[1]/2)
     r_table = build_r_table(reference_image, referencePoint)
-    
+    print(reference_image)
     def f(query_image):
+        print("f called")
+        print(query_image)
         return accumulate_gradients(r_table, query_image)
         
     return f
@@ -120,19 +125,22 @@ def test_general_hough(gh, reference_image, query):
     plt.scatter([j], [i], marker='x', color='y')
     
     d,f = os.path.split(query)[0], os.path.splitext(os.path.split(query)[1])[0]
-    plt.savefig(os.path.join(d, f + '_output.png'))
-    
+    # plt.savefig(os.path.join(d, f + '_output.png'))
+    plt.show()
     return
 
 def test():
+    # testimages/block.tif
     reference_image = imread("testimages/block.tif", flatten=True)
+    # plt.imshow(reference_image)
+    # plt.show()
     detect_s = general_hough_closure(reference_image)
     test_general_hough(detect_s, reference_image, "testimages/block.tif")
     
-    reference_image = imread("testimages/template_bear.png", flatten=True)
-    detect_s = general_hough_closure(reference_image)
-    test_general_hough(detect_s, reference_image, "testimages/animals.jpg")
-    test_general_hough(detect_s, reference_image, "testimages/animals2.jpg")
+    # reference_image = imread("testimages/template_bear.png", flatten=True)
+    # detect_s = general_hough_closure(reference_image)
+    # test_general_hough(detect_s, reference_image, "testimages/animals.jpg")
+    # test_general_hough(detect_s, reference_image, "testimages/animals2.jpg")
 
 if __name__ == '__main__':
     test()
