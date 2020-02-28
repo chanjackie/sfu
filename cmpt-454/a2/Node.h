@@ -6,21 +6,31 @@ using namespace std;
 
 class Node 
 {
-public:
+private:
 	vector<int> keys;
 	vector<void*> children;
+	int type;
 	Node* parent;
 
-	Node();
-	Node(vector<int> nodeKeys);
-	Node(vector<int> nodeKeys, vector<void*> nodeChildren);
-	Node(vector<int> nodeKeys, vector<void*> nodeChildren, Node* nodeParent);
+public:
+	Node(int nodeType);
+	Node(int nodeType, vector<int> nodeKeys);
+	Node(int nodeType, vector<int> nodeKeys, 
+		vector<void*> nodeChildren);
+	Node(int nodeType, vector<int> nodeKeys, 
+		vector<void*> nodeChildren, Node* nodeParent);
 
 	void setKeys(vector<int> nodeKeys);
 	void setChildren(vector<void*> nodeChildren);
 	void setParent(Node* nodeParent);
+	void setType(int nodeType);
+
+	void addKey(int nodeKey);
+	void addChild(void* nodeChild);
 
 	vector<int> getKeys();
 	vector<void*> getChildren();
 	Node* getParent();
+	int getType();
+
 };
