@@ -1,0 +1,8 @@
+1.
+Based on the results, it seems that daily temperatures are not a good way to predict population density. For example, the two cities
+with the highest population density have rather average max temperatures, and average max temperatures seem to range wildly for all
+population densities with no apparent correlation.
+
+2.
+Keeping the stations data file compressed may be faster due to the smaller file size, allowing pandas to read through the json file
+more quickly.

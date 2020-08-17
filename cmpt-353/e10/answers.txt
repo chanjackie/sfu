@@ -1,0 +1,11 @@
+1.
+(1) reddit-0: 16.358s
+(2) reddit-2 (no schema, no cache): 1m31.048s
+(3) reddit-2 (with schema, no cache): 24.491s
+(4) reddit-2 (with schema, with cache): 19.004s
+
+2.
+Based on the above, it seems that most of the time taken to process the reddit-2 data set is in reading the files, as without a schema the program takes significantly longer to complete.
+
+3.
+I used .cache() after filtering the initial dataframe, as the filtered data was used twice: once for grouping and aggregation to find max view count per hour, and once to join with the aggregated data.

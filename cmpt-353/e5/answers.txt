@@ -1,0 +1,13 @@
+1.
+Of the four suggested transforms, the square root transform got me the closest to satisfying the assumptions of the T-test.
+
+2.
+Original T-test translation: do the number of comments on weekends and weekdays differ?
+
+Transformed T-test translation: does the square root of comments on weekends and weekdays differ?
+
+3.
+I think the original approach does the best job of getting an answer for the original question, if the weekend and weekday counts were both normally distributed and had equal variances, because it most faithfully attempts to answer the original question by not transforming or aggregating the data and actually considering each data point rather than smoothing out noise.
+
+4.
+It seems that more Reddit comments are posted on average on weekdays than weekends. 

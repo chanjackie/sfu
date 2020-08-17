@@ -1,0 +1,9 @@
+1.
+I used .cache() for the 'comments' DataFrame and the 'rel_score_data' DataFrame, because they were used in multiple operations. If I hadn't used .cache(), pyspark would have thrown away the intermediate results after the first operation, and done the work again for any subsequent operations.
+
+
+2.
+reddit-relative without broadcast: 1m2.019s
+reddit-relative with broadcast: 0m47.847s
+
+Marking DataFrames for broadcast allowed the program to run approximately 23% faster.

@@ -191,7 +191,7 @@ def run_ght(template, test, temp_blur=1, ref_blur=3, scale=1, angles=[0],
         
     result_file = template[:len(template)-4] + "_" + test[:len(test)-4] + '_result.png'
     plt.savefig(os.path.join(output_folder, result_file), bbox_inches='tight')
-    # plt.show()
+    plt.show()
 
     plt.clf()
     fig = plt.figure(figsize=(16.0, 9.0))

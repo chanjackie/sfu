@@ -1,0 +1,11 @@
+1.
+It does feel like we're p-hacking, as nothing significant is found until we redo the analysis for a more specific subset of the data (only instructors). I am not comfortable coming to a conclusion at p < 0.05, because it feels like we're p-hacking, and the sample size for the significant results is fairly small.
+
+2.
+We would run 5040 T-tests (7 factorial) if we had done T-tests between each pair of sorting implementation results. The probability of having any false conclusions would be 1 - 0.95^(5040), essentially 100%.
+
+3.
+The ranking of the sorting implementations from fastest to slowest were as follows:
+partition_sort, qs1, [qs2, qs3, qs4, qs5], merge1
+
+partition_sort was clearly the fastest sorting implementation, qs1 was the second fastest, qs2, qs3, qs4, and qs5 were indistinguishable from one another, and merge1 was the slowest sorting implementation.

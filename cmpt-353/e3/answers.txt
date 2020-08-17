@@ -1,0 +1,11 @@
+1. 
+
+When smoothing the CPU temperature, I think I got a better result with LOESS smoothing. LOESS smoothing was able to capture the spikes
+in temperature throughout the day and give a clearer picture of CPU temperature without being too noisy, while Kalman smoothing provided
+similar information with a noiser representation.
+
+2.
+
+The other variables could help with determining next latitude and longitude by affecting the transition matrices, and the transition
+covariance matrix. If we had knowledge of the speed and direction at each timestamp, we would have much more useful transition 
+matrices, which could give a much more accurate prediction of next latitude and longitude.

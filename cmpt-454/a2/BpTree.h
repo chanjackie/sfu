@@ -11,6 +11,10 @@ class BpTree
 private:
 	Node* head;
 	int len;
+	int numValues;
+
+	void splitLeaf(Node* node);
+	void splitInterior(Node* node);
 
 public:
 	BpTree(int keyLen);

@@ -16,8 +16,18 @@ int main() {
 	// }
 
 	BpTree* tree = new BpTree(3);
-	string s("Hi");
-	tree->insert(1, s);
+	string s("what");
+	tree->insert(4, s);
+	s = "fudge";
+	tree->insert(23, s);
+	s = "the";
+	tree->insert(14, s);
+	s = "doin";
+	tree->insert(63, s);
+	s = "we";
+	tree->insert(47, s);
+	s = "is";
+	tree->insert(38, s);
 	tree->printKeys();
 	tree->printValues();
 

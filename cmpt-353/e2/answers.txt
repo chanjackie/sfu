@@ -1,0 +1,10 @@
+1.
+
+The result of the calculation is a pandas series containing the predicted rating at the timestamp of the tweet. Its type is float, and 
+the values range between 10 and 15, steadily increasing as the timestamp increases.
+
+2.
+
+This produces a fit line on the graph because the prediction is a linear relation between the timestamp and a predicted value. The 
+created_at values and timestamp values pair correctly because the timestamp values are the created_at values converted to a numerical 
+value, so each timestamp row in the dataframe corresponds to its datetime created_at value.

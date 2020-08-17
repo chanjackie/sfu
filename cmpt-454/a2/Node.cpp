@@ -57,6 +57,13 @@ void Node::addChild(void* nodeChild) {
 	children.insert(index, nodeChild);
 }
 
+void Node::addKeyChildPair(int nodeKey, void* nodeChild) {
+	auto it = upper_bound(keys.begin(), keys.end(), nodeKey);
+	int index = std::distance(keys.begin(), it);
+	keys.insert(it, nodeKey);
+	children.insert(children.begin()+index, nodeChild);
+}
+
 vector<int> Node::getKeys() {
 	return keys;
 }

@@ -27,6 +27,7 @@ public:
 
 	void addKey(int nodeKey);
 	void addChild(void* nodeChild);
+	void addKeyChildPair(int nodeKey, void* nodeChild);
 
 	vector<int> getKeys();
 	vector<void*> getChildren();

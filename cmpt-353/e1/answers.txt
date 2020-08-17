@@ -1,0 +1,9 @@
+1. 
+I found the calculations with NumPy to be more intuitive to work with and easier to read. While the calculations made with 
+Pandas and NumPy are extremely similar, the code utilizing NumPy calculations are easier read since the NumPy methods can be 
+directly accessed from the np module.
+
+2. 
+The running time of the pivot_months_pandas function was 18.7 ms per loop, and the running time of the pivot_months_loops 
+function was 579 ms per loop. This is likely due to the absence of loops and iteration in the pivot_months_pandas function, 
+and the built in methods being much more efficient.

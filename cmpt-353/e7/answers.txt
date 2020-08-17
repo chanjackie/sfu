@@ -1,0 +1,5 @@
+1. 
+Yes, the residuals are close-enough to being normal to look at the OLS p-value. It is reasonable to conclude that the ratings are increasing as the p-value is well below 0.05.
+
+2.
+I do not think the new "better" prediction does a better job at capturing the true signal in the noise. The predictions are much more noisy, and more difficult to interpret.
