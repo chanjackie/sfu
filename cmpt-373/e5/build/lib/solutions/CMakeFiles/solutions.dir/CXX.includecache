@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/sfu-cmpt/cmpt-373/e5/se-inheritance-template/lib/solutions/include/task02.h
+Support.h
+/mnt/c/sfu-cmpt/cmpt-373/e5/se-inheritance-template/lib/solutions/include/Support.h
+
+/mnt/c/sfu-cmpt/cmpt-373/e5/se-inheritance-template/lib/solutions/task02.cpp
+task02.h
+/mnt/c/sfu-cmpt/cmpt-373/e5/se-inheritance-template/lib/solutions/task02.h
+limits
+-
+set
+-
+iostream
+-
+unordered_map
+-
+
+/mnt/c/sfu-cmpt/cmpt-373/e5/se-inheritance-template/lib/support/include/Support.h
+algorithm
+-
+iterator
+-
+memory
+-
+ostream
+-
+stack
+-
+string
+-
+unordered_map
+-
+vector
+-
+

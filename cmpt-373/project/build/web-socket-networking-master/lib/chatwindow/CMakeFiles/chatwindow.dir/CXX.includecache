@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/chatwindow/include/ChatWindow.h
+functional
+-
+memory
+-
+string
+-
+
+/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/chatwindow/src/ChatWindow.cpp
+ChatWindow.h
+/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/chatwindow/src/ChatWindow.h
+cassert
+-
+form.h
+-
+ncurses.h
+-
+

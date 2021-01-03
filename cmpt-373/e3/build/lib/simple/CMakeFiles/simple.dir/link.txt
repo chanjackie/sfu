@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsimple.a  CMakeFiles/simple.dir/Parallelogram.cpp.o CMakeFiles/simple.dir/Matthews.cpp.o CMakeFiles/simple.dir/Awards.cpp.o
+/usr/bin/ranlib libsimple.a

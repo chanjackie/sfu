@@ -1,0 +1,21 @@
+{
+  "team": [
+    {
+       "name": "Team2 Toki2",
+       "id": "dmk-t2-s2",
+       "compatibility": {
+          "score": 28.6,
+          "comment": "From 'Team2 Toki2' to 'Team2 Toki2'\n'done!'"
+       }
+    }
+    ,{
+       "name": "Team2 Toki1",
+       "id": "vxr-t2-s1",
+       "compatibility": {
+          "score": 11.4,
+          "comment": "From 'Team2 Toki2' to 'Team2 Toki1'\n'done!'"
+       }
+    }
+  ],
+  "extra_comments": "That's all! It was 'fun'! (said Team2 Toki2)"
+}

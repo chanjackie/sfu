@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cc4d21cc-fae2-41ce-835f-634306abe749" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../as1/as1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/as2_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/description.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/com_google_code_gson_gson_2_8_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/project-template.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/as2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ca/cmpt213/as2/JsonFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ca/cmpt213/as2/TeamCSVWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ca/cmpt213/as2/Tokimon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ca/cmpt213/as2/TokimonProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ca/cmpt213/as2/TokimonSorter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ca/cmpt213/as2/TokimonTeam.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ca/cmpt213/as2/TokimonTeamSorter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/dateformat" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/dateformat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/esparse" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/esparse" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/esvalidate" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/esvalidate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/marked" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/marked" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/mime" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/mime" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/node-dev" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/node-dev" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/notify" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/notify" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/semver" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/semver" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/strip-indent" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/strip-indent" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/which" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/as3/node_modules/.bin/which" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/as4_handin/node_modules/.bin/mime" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/as4_handin/node_modules/.bin/mime" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/as4_handin/node_modules/.bin/semver" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/as4_handin/node_modules/.bin/semver" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/lab5/node_modules/.bin/mime" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/lab5/node_modules/.bin/mime" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/cdl" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/cdl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/dateformat" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/dateformat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/esparse" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/esparse" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/esvalidate" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/esvalidate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/marked" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/marked" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/node-dev" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/node-dev" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/notify" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/notify" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/semver" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/semver" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/strip-indent" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/strip-indent" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/which" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/lab6/1_users_mysql/node_modules/.bin/which" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/cdl" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/cdl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/dateformat" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/dateformat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/esparse" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/esparse" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/esvalidate" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/esvalidate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/marked" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/marked" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/mime" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/mime" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/node-dev" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/node-dev" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/semver" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/semver" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/strip-indent" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/strip-indent" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/which" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-218/node_modules/.bin/which" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-276/ServingSizeCalculator" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-276/ServingSizeCalculator" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-276/walkinggroup" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-276/walkinggroup" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-414/captcha-tensorflow" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-414/captcha-tensorflow" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cmpt-459/459project" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmpt-459/459project" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1ifqecHV6AAGwPsUp0hunBc9PUy" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="ca.cmpt213.as2" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="ca.cmpt213.as2.TokimonProcessor" />
+      <module name="as2" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cc4d21cc-fae2-41ce-835f-634306abe749" name="Default Changelist" comment="" />
+      <created>1602309091740</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1602309091740</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="414" y="174" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602393351639">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="174" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1602393351639" />
+    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1602391716664">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1602391716664" />
+    <state x="537" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1602388567422">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="537" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1602388567422" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1602399241506">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1602399241506" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1602399241505">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1602399241505" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1602399241505">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1602399241505" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1602399241506">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1602399241506" />
+    <state x="440" y="94" key="SettingsEditor" timestamp="1602399332624">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1602399332624" />
+    <state x="664" y="411" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1602309410400">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="664" y="411" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1602309410400" />
+    <state x="342" y="140" key="new project wizard" timestamp="1604277626949">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="342" y="140" key="new project wizard/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1604277626949" />
+  </component>
+</project>

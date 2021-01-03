@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../lib/libjson_interpreter.a  CMakeFiles/json_interpreter.dir/src/Parser.cpp.o CMakeFiles/json_interpreter.dir/src/Config.cpp.o CMakeFiles/json_interpreter.dir/src/PerPlayer.cpp.o CMakeFiles/json_interpreter.dir/src/PerAudience.cpp.o CMakeFiles/json_interpreter.dir/src/Constants.cpp.o CMakeFiles/json_interpreter.dir/src/Variables.cpp.o
+/usr/bin/ranlib ../../../lib/libjson_interpreter.a

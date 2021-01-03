@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../solutions.a  CMakeFiles/solutions.dir/task01.cpp.o CMakeFiles/solutions.dir/task02.cpp.o
+/usr/bin/ranlib ../solutions.a

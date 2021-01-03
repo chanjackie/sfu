@@ -1,0 +1,30 @@
+Team#,From Toki,To Toki,Score,Comment,,Extra
+Team 1,,,,,,
+,dmk-t2-s2,vxr-t2-s1,11.4,"From 'Team2 Toki2' to 'Team2 Toki1'
+done!'",,
+,dmk-t2-s2,-,28.6,"From 'Team2 Toki2' to 'Team2 Toki2'
+done!'",,That's all! It was 'fun'! (said Team2 Toki2)
+,vxr-t2-s1,dmk-t2-s2,10.3,"From 'Team2 Toki1' to 'Team2 Toki2'
+done!'",,
+,vxr-t2-s1,-,29.7,"From 'Team2 Toki1' to 'Team2 Toki1'
+done!'",,That's all! It was 'fun'! (said Team2 Toki1)
+,,,,,,
+Team 2,,,,,,
+,elf-t4-s3,nln-t4-s1,31.2,"From 'Team4 Toki3' to 'Team4 Toki1'
+done!'",,
+,elf-t4-s3,oie-t4-s2,23.4,"From 'Team4 Toki3' to 'Team4 Toki2'
+done!'",,
+,elf-t4-s3,-,5.4,"From 'Team4 Toki3' to 'Team4 Toki3'
+done!'",,That's all! It was 'fun'! (said Team4 Toki3)
+,nln-t4-s1,elf-t4-s3,11.4,"From 'Team4 Toki1' to 'Team4 Toki3'
+done!'",,
+,nln-t4-s1,oie-t4-s2,40.7,"From 'Team4 Toki1' to 'Team4 Toki2'
+done!'",,
+,nln-t4-s1,-,7.9,"From 'Team4 Toki1' to 'Team4 Toki1'
+done!'",,That's all! It was 'fun'! (said Team4 Toki1)
+,oie-t4-s2,elf-t4-s3,32.3,"From 'Team4 Toki2' to 'Team4 Toki3'
+done!'",,
+,oie-t4-s2,nln-t4-s1,7.1,"From 'Team4 Toki2' to 'Team4 Toki1'
+done!'",,
+,oie-t4-s2,-,20.9,"From 'Team4 Toki2' to 'Team4 Toki2'
+done!'",,That's all! It was 'fun'! (said Team4 Toki2)

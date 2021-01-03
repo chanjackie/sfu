@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/cursesExample.dir/main.cpp.o  -o ../../bin/cursesExample  -lcurses /usr/lib/x86_64-linux-gnu/libform.so 

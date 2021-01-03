@@ -1,0 +1,105 @@
+1.
+PatientHistory getKittenHistory(const Kitten& kitty);
+
+2.
+void processPatientHistory(PatientHistory pHistory);
+
+3.
+shared_ptr<Dog> getDogForID(DogID id);
+
+4.
+PatientHistory pHist = getKittenHistory(kitten);
+
+5.
+ - unit of measurement is specified in parameter name ouncesConsumed, but not enforced on function call. Thus could be easy to accidentally pass in a value with an incorrect unit of measurement.
+ - ouncesConsumed and hoursRequired are both type double, which makes it easy to accidentally call the function with an incorrect ordering on its parameters (accidentally calling it with trackConsumption(name, hours, ounces), flipping the hours and ounces). 
+ The issues above can be improved by replacing ouncesConsumed and hoursRequired with a pair type which strictly specifies the variables it holds, which utilizes a stronger type to remove any possible confusion on function call.
+ - use of std::string for the name parameter makes it easy to forget what the purpose of the parameter is when calling the function (could be mistaken for a PetID for instance).
+ This can be improved by using a stronger type, such as replacing it with a PetName struct which holds a std::string name.
+
+
+Trench Coat Technologies is dedicated to bringing the best in customer management software to the private investigator (PI) field. Your task is to help design the core classes involved with billing and communicating with clients.
+
+The key interactions that a PI has with a client include (1) billing them and (2) sending messages to them. Clients for private investigators come mainly in two types: (1) corporate bosses and (2) downtrodden schmoes. Naturally, a PI wants to get as much money as possible from corporate bosses while still helping out the downtrodden schmoes by charging them a small flat rate. Thus, the way that they are billed should be different. In addition, corporate bosses don't like to receive messages directly, preferring to receive them through an intermediate courier. Schmoes like the personal touch of stopping by in person to deliver a message. A mid-level schmoe, however, may appreciate receiving messages by courier.
+
+You must design the core classes for modeling clients while making use of inheritance. You should first identify the key concepts and behaviors that you need to model before answering questions. Design the best classes you can with just the information provided. You may ignore arguments to methods.
+
+At a high level, what are the main options you can consider for involving inheritance in this design? What are their tradeoffs? Using examples may help you to explain clearly.
+6.
+The main option for involving inheritance would be using the Client class as a base class, then designing corporate bosses and schmoes as derived classes. Schmoes could be further derived into downtrodden schmoes or mid-level schmoes. With this design, a PI can bill/message a Client without worrying what type of Client it is, since how its billing/messaging is handled will be defined by the derived class. In this situation, we would use an is-a relationship. This is also powerful since a PI may have a list of Clients, and using inheritance allows the Client class to be used polymorphically. Tradeoffs would be that inheritance does not allow the behaviour of a derived class to change. For example, if a downtrodden schmoe moves their way up to become a corporate boss, it's not possible to change their class without creating a new object.
+
+7.
+class PI {
+public:
+	PI();
+	void billClient(...);
+	void messageClient(...);
+	void addClient(...);
+	void removeClient(...);
+private:
+	std::vector<Client> clients;
+};
+
+class Client {
+public:
+	virtual void payBill(...) = 0;
+	virtual void receiveMessage(...) = 0;
+};
+
+class CorporateBoss : public Client {
+public:
+	void payBill(...) { payLargeFee(...); }
+	void receiveMessage(...) { receiveMessageFromCourier(...); }
+};
+
+class Schmoe : public Client {
+public:
+	void payBill(...) { paySmallFlatRate(...); }
+	virtual void receiveMessage(...) = 0;
+};
+
+class DowntroddenSchmoe : public Schmoe {
+public:
+	void receiveMessage(...) { receiveMessagePersonally(...); }
+};
+
+class MidlevelSchmoe : public Schmoe {
+public:
+	void receiveMessage(...) { receiveMessageFromCourier(...); }
+};
+
+8.
+class Client {
+public:
+	Client(ClientType type);
+	void payBill(...) {
+		if (ClientType == corporateboss) { payLargeFee(...); }
+		if (ClientType == downtroddenschmoe || ClientType == midlevelschmoe) { paySmallFlatRate(...); }
+	}
+	void receiveMessage(...) {
+		if (ClientType == corporateboss || ClientType == midlevelschmoe ) { receiveMessageFromCourier(...); }
+		if (ClientType == downtroddenschmoe) { receiveMessagePersonally(...); }
+	}
+private:
+	ClientType type;
+}
+
+9.
+One benefit of this design is that it is able to more flexibly adapt to changing requirements (such as new client types).
+A cost is that this requires more convoluted and complex implementation of the methods responsible for paying bills or receiving messages.
+
+10.
+bool isIncreasing(const std::vector<T>& v) {
+	return std::adjacent_find(v.begin(), v.end(), std::less_equal<T>()) == v.end();
+}
+
+11.
+class IncreaseAsker {
+public:
+	IncreaseAsker(std::vector<T>& vect) : v{vect} {}
+	bool isStillIncreasing() {return std::adjacent_find(v.begin(), v.end(), std::less_equal<T>()) == v.end();}
+private:
+	std::vector<T>& v;
+};
+
+12.

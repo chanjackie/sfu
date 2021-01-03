@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../support.a  CMakeFiles/support.dir/T1Interpreter.cpp.o
+/usr/bin/ranlib ../support.a

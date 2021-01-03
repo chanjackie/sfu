@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/networking/include/Client.h
+memory
+-
+string
+-
+
+/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/networking/include/Server.h
+deque
+-
+functional
+-
+memory
+-
+string
+-
+unordered_map
+-
+
+/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/networking/src/Client.cpp
+Client.h
+/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/networking/src/Client.h
+boost/asio.hpp
+-
+boost/beast.hpp
+-
+deque
+-
+sstream
+-
+
+/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/networking/src/Server.cpp
+Server.h
+/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/networking/src/Server.h
+boost/asio.hpp
+-
+boost/beast.hpp
+-
+

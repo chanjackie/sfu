@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/list_rules/GameVarList.cpp
+algorithm
+-
+iterator
+-
+chrono
+-
+random
+-
+functional
+-
+GameVarList.h
+/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/list_rules/GameVarList.h
+
+/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/list_rules/include/GameVarList.h
+string
+-
+list
+-
+unordered_map
+-
+boost/variant.hpp
+-
+

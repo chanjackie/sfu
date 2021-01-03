@@ -1,0 +1,1 @@
+/usr/bin/c++  -g -fno-rtti -Wall        -fno-omit-frame-pointer -fsanitize=address,undefined   CMakeFiles/unit08.dir/unit08.cpp.o CMakeFiles/doctest-main.dir/doctest.cpp.o  -o ../bin/unit08  ../lib/libsolutions.a ../lib/libsupport.a 

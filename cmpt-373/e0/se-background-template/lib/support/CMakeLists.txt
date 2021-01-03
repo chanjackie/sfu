@@ -1,0 +1,9 @@
+add_library(support)
+target_sources(support
+  PRIVATE
+    Support.cpp
+)
+target_include_directories(support
+  PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+)

@@ -1,0 +1,200 @@
+// ============== Part 1: Value.h ==============
+
+#pragma once
+
+#include <variant>
+#include <string>
+#include <stdexcept>
+#include <ostream>
+#include <vector>
+#include <unordered_map>
+#include <map>
+
+class Value {
+public:     // enums/subclasses
+    enum class Type {
+        INT,
+        BOOL,
+        STRING,
+        ARRAY,
+        MAP
+    };
+    
+    friend std::ostream& operator<<(std::ostream &os, Type t);
+    static std::string TypeToString(Type t);
+
+    class type_error : public std::exception {
+    private:
+        std::string message_;
+    public:
+        explicit type_error(const std::string& message) : message_(message) {}
+        const char* what() const noexcept override {
+            return message_.c_str();
+        }
+    };
+
+    // typedefs
+    // specifically using std::map here rather than std::unordered_map
+    // because Value is defined recursively, which std::map supports and std::unordered_map doesn't
+    using Int = int;
+    using Bool = bool;
+    using String = std::string;
+    using Array = std::vector<Value>;
+    using Map = std::map<std::string, Value>;
+    using value_t = std::variant<Int, Bool, String, Array, Map>;
+
+public:     // functions
+    // constructors
+    explicit Value(int i);
+    explicit Value(bool b);
+    explicit Value(const std::string &s);
+    explicit Value(const Value::Array &arr);
+    explicit Value(const Value::Map &map);
+    Value(const Value &v);
+
+    // assignment operators
+    Value& operator=(const Value &other);
+    Value& operator=(int i);
+    Value& operator=(bool b);
+    Value& operator=(const std::string &s);
+    Value& operator=(const Value::Array &arr);
+    Value& operator=(const Value::Map &map);
+
+    // cmp operator
+    // block comparing values with raw values by design, `Value(3) == 3`
+    // have to convert raw to Value, `Value(3) == Value(3)`
+    bool operator==(const Value &v) const;
+
+    // type getters
+    Type type() const;
+    std::string type_name() const;
+
+    // get data stored inside value: const and non-const forms
+    // get<int>
+    // get<bool>
+    // get<std::string>
+    // get<Value::Array>
+    // get<Value::Map>
+    template <typename T>
+    T& get() {
+        try {
+            return std::get<T>(m_value);
+        } catch (std::bad_variant_access&) {
+            throw type_error("value does not contain type");
+        }
+    }
+    template <typename T>
+    const T& get() const {
+        try {
+            return std::get<T>(m_value);
+        } catch (std::bad_variant_access&) {
+            throw type_error("value does not contain type");
+        }
+    }
+
+    // printing
+    friend std::ostream& operator<<(std::ostream &os, const Value &v);
+
+private:
+    value_t m_value;
+};
+
+// ============== Part 2: GameManager.cpp ==============
+#include <iostream>
+
+#include "Game.h"
+#include "GameConfig.h"
+#include "GameManager.h"
+
+using namespace std;
+using namespace game;
+
+GameConfig GameManager::gc;
+
+GameManager::GameManager() {
+}
+
+GameManager::~GameManager() {
+}
+
+void GameManager::createNewGame(const Connection& creatorConnection){    
+	std::unique_ptr game = std::make_unique<game::Game>(gc, creatorConnection.id, gameId++);     
+    bufferedMessages.push_back( {creatorConnection, "Join code: " + game->getJoinCode() + "\n"} );    
+    gameMap.insert(std::make_pair(game->getGameId(), std::move(game)));	
+}
+
+std::deque<Message> GameManager::sendMessagesToServer() {
+    auto msgs = bufferedMessages;
+    bufferedMessages.clear();
+    return msgs;
+}
+
+void GameManager::update() {    
+    for (const auto &[_, gameptr] : gameMap) {
+        gameptr->update();
+        auto gameMessages = gameptr->sendMessage();        
+        for (auto gameMessage : gameMessages) {
+            bufferedMessages.push_back({gameMessage.player.getConnection(), gameMessage.text});
+        }        
+
+    }
+    
+}
+
+void GameManager::terminateGame(string gameId){}
+void GameManager::addPlayerToGame(std::uint32_t gameId, Connection playerConnection){    
+    auto it = gameMap.find(gameId);
+    if (it != gameMap.end()) {
+
+        std::string defaultName = "Nick Sumner" + std::to_string((it->second)->getPlayers().size());
+        Player player{defaultName, playerConnection};
+        (it->second)->addPlayer(player);
+
+        bufferedMessages.push_back({playerConnection, "Joined Game " + player.getName() + "\n"});
+        connectionsToGamesMap[playerConnection] = it->first;
+    }
+    else {
+        bufferedMessages.push_back({playerConnection, "Game code not found: " + std::to_string(gameId) + "\n"});
+    }
+}
+void GameManager::removePlayerFromGame(Connection playerConnection){
+    auto it = connectionsToGamesMap.find(playerConnection);
+    if (it != connectionsToGamesMap.end()) {
+        auto gamesIt = gameMap.find(it->second);
+        if (gamesIt != gameMap.end()) {
+            try
+            {
+                Player player  = (gamesIt->second)->getPlayer(playerConnection);
+                (gamesIt->second)->removePlayer(player);
+
+                bufferedMessages.push_back({playerConnection, "Goodbye " + player.getName() + "!\n"});
+            }
+            catch(const std::exception& e)
+            {
+                std::cerr << e.what() << '\n';
+            }
+        }
+                
+    }
+}
+
+void GameManager::addMessageForGames(Message message){
+    auto it = connectionsToGamesMap.find(message.connection);
+    if (it != connectionsToGamesMap.end()) {
+        auto gamesIt = gameMap.find(it->second);
+        if (gamesIt != gameMap.end()) {
+            try
+            {
+                Player player  = (gamesIt->second)->getPlayer(message.connection);
+                GameMessage gameMessage{player, message.text};
+                (gamesIt->second)->recieveMessage(gameMessage);
+            }
+            catch(const std::exception& e)
+            {
+                std::cerr << e.what() << '\n';
+            }
+        }
+                
+    }
+        
+}

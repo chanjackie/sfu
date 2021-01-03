@@ -1,0 +1,4 @@
+/mnt/c/sfu-cmpt/cmpt-373/e1/tmpinstall/lib/libsortIntegers.a
+/mnt/c/sfu-cmpt/cmpt-373/e1/tmpinstall/include/SortIntegers.h
+/mnt/c/sfu-cmpt/cmpt-373/e1/tmpinstall/bin/fibSorter
+/mnt/c/sfu-cmpt/cmpt-373/e1/tmpinstall/bin/cursesExample

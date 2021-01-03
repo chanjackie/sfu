@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../lib/liblist_rules.a  CMakeFiles/list_rules.dir/GameVarList.cpp.o
+/usr/bin/ranlib ../../../lib/liblist_rules.a

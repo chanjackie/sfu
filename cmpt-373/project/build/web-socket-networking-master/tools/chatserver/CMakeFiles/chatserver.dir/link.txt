@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -fno-rtti   CMakeFiles/chatserver.dir/chatserver.cpp.o  -o ../../../bin/chatserver  ../../../lib/libjson_interpreter.a ../../../lib/libgame.a ../../../lib/libchatwindow.a ../../../lib/libnetworking.a -lpthread ../../../lib/libjson_interpreter.a ../../../lib/libgame.a -lcurses /usr/lib/x86_64-linux-gnu/libform.so /usr/lib/libboost_system.so 

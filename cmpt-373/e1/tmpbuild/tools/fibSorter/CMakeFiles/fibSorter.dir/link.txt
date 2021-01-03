@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/fibSorter.dir/main.cpp.o  -o ../../bin/fibSorter  ../../lib/libsortIntegers.a 

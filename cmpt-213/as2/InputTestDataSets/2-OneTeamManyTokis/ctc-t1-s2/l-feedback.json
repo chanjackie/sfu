@@ -1,0 +1,37 @@
+{
+  "team": [
+    {
+       "name": "Team1 Toki2",
+       "id": "ctc-t1-s2",
+       "compatibility": {
+          "score": 16.6,
+          "comment": "From 'Team1 Toki2' to 'Team1 Toki2'\n'done!'"
+       }
+    }
+    ,{
+       "name": "Team1 Toki4",
+       "id": "mmi-t1-s4",
+       "compatibility": {
+          "score": 0.4,
+          "comment": "From 'Team1 Toki2' to 'Team1 Toki4'\n'done!'"
+       }
+    }
+    ,{
+       "name": "Team1 Toki3",
+       "id": "pco-t1-s3",
+       "compatibility": {
+          "score": 39.1,
+          "comment": "From 'Team1 Toki2' to 'Team1 Toki3'\n'done!'"
+       }
+    }
+    ,{
+       "name": "Team1 Toki1",
+       "id": "eyr-t1-s1",
+       "compatibility": {
+          "score": 23.9,
+          "comment": "From 'Team1 Toki2' to 'Team1 Toki1'\n'done!'"
+       }
+    }
+  ],
+  "extra_comments": "That's all! It was 'fun'! (said Team1 Toki2)"
+}

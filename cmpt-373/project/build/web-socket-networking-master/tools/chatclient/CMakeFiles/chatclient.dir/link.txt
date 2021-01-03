@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -fno-rtti   CMakeFiles/chatclient.dir/chatclient.cpp.o  -o ../../../bin/chatclient  ../../../lib/libnetworking.a ../../../lib/libchatwindow.a -lpthread /usr/lib/libboost_system.so -lcurses /usr/lib/x86_64-linux-gnu/libform.so 

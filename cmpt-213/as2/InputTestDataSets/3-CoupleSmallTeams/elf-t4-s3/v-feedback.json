@@ -1,0 +1,29 @@
+{
+  "team": [
+    {
+       "name": "Team4 Toki3",
+       "id": "elf-t4-s3",
+       "compatibility": {
+          "score": 5.4,
+          "comment": "From 'Team4 Toki3' to 'Team4 Toki3'\n'done!'"
+       }
+    }
+    ,{
+       "name": "Team4 Toki1",
+       "id": "nln-t4-s1",
+       "compatibility": {
+          "score": 31.2,
+          "comment": "From 'Team4 Toki3' to 'Team4 Toki1'\n'done!'"
+       }
+    }
+    ,{
+       "name": "Team4 Toki2",
+       "id": "oie-t4-s2",
+       "compatibility": {
+          "score": 23.4,
+          "comment": "From 'Team4 Toki3' to 'Team4 Toki2'\n'done!'"
+       }
+    }
+  ],
+  "extra_comments": "That's all! It was 'fun'! (said Team4 Toki3)"
+}

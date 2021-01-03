@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../lib/libchatwindow.a  CMakeFiles/chatwindow.dir/src/ChatWindow.cpp.o
+/usr/bin/ranlib ../../../lib/libchatwindow.a

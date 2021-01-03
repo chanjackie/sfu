@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/sfu-cmpt/cmpt-373/e3/exercise-unit-tests/lib/simple/Awards.cpp
+Awards.h
+/mnt/c/sfu-cmpt/cmpt-373/e3/exercise-unit-tests/lib/simple/Awards.h
+
+/mnt/c/sfu-cmpt/cmpt-373/e3/exercise-unit-tests/lib/simple/Matthews.cpp
+Matthews.h
+/mnt/c/sfu-cmpt/cmpt-373/e3/exercise-unit-tests/lib/simple/Matthews.h
+
+/mnt/c/sfu-cmpt/cmpt-373/e3/exercise-unit-tests/lib/simple/Parallelogram.cpp
+cassert
+-
+cmath
+-
+Parallelogram.h
+/mnt/c/sfu-cmpt/cmpt-373/e3/exercise-unit-tests/lib/simple/Parallelogram.h
+
+/mnt/c/sfu-cmpt/cmpt-373/e3/exercise-unit-tests/lib/simple/include/Awards.h
+string
+-
+
+/mnt/c/sfu-cmpt/cmpt-373/e3/exercise-unit-tests/lib/simple/include/Matthews.h
+cstdint
+-
+
+/mnt/c/sfu-cmpt/cmpt-373/e3/exercise-unit-tests/lib/simple/include/Parallelogram.h
+stdint.h
+-
+

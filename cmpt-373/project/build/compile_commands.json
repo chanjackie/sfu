@@ -1,0 +1,97 @@
+[
+{
+  "directory": "/mnt/c/sfu-cmpt/cmpt-373/project/build/web-socket-networking-master/lib/networking",
+  "command": "/usr/bin/c++   -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/networking/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/networking/src   -Wall -fno-rtti   -std=gnu++17 -o CMakeFiles/networking.dir/src/Server.cpp.o -c /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/networking/src/Server.cpp",
+  "file": "/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/networking/src/Server.cpp"
+},
+{
+  "directory": "/mnt/c/sfu-cmpt/cmpt-373/project/build/web-socket-networking-master/lib/networking",
+  "command": "/usr/bin/c++   -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/networking/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/networking/src   -Wall -fno-rtti   -std=gnu++17 -o CMakeFiles/networking.dir/src/Client.cpp.o -c /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/networking/src/Client.cpp",
+  "file": "/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/networking/src/Client.cpp"
+},
+{
+  "directory": "/mnt/c/sfu-cmpt/cmpt-373/project/build/web-socket-networking-master/lib/json_interpreter",
+  "command": "/usr/bin/c++   -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src -I/mnt/c/sfu-cmpt/cmpt-373/project/build/_deps/json-src/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/game/include   -Wall -fno-rtti   -std=gnu++17 -o CMakeFiles/json_interpreter.dir/src/Parser.cpp.o -c /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/Parser.cpp",
+  "file": "/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/Parser.cpp"
+},
+{
+  "directory": "/mnt/c/sfu-cmpt/cmpt-373/project/build/web-socket-networking-master/lib/json_interpreter",
+  "command": "/usr/bin/c++   -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src -I/mnt/c/sfu-cmpt/cmpt-373/project/build/_deps/json-src/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/game/include   -Wall -fno-rtti   -std=gnu++17 -o CMakeFiles/json_interpreter.dir/src/Config.cpp.o -c /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/Config.cpp",
+  "file": "/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/Config.cpp"
+},
+{
+  "directory": "/mnt/c/sfu-cmpt/cmpt-373/project/build/web-socket-networking-master/lib/json_interpreter",
+  "command": "/usr/bin/c++   -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src -I/mnt/c/sfu-cmpt/cmpt-373/project/build/_deps/json-src/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/game/include   -Wall -fno-rtti   -std=gnu++17 -o CMakeFiles/json_interpreter.dir/src/PerPlayer.cpp.o -c /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/PerPlayer.cpp",
+  "file": "/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/PerPlayer.cpp"
+},
+{
+  "directory": "/mnt/c/sfu-cmpt/cmpt-373/project/build/web-socket-networking-master/lib/json_interpreter",
+  "command": "/usr/bin/c++   -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src -I/mnt/c/sfu-cmpt/cmpt-373/project/build/_deps/json-src/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/game/include   -Wall -fno-rtti   -std=gnu++17 -o CMakeFiles/json_interpreter.dir/src/PerAudience.cpp.o -c /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/PerAudience.cpp",
+  "file": "/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/PerAudience.cpp"
+},
+{
+  "directory": "/mnt/c/sfu-cmpt/cmpt-373/project/build/web-socket-networking-master/lib/json_interpreter",
+  "command": "/usr/bin/c++   -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src -I/mnt/c/sfu-cmpt/cmpt-373/project/build/_deps/json-src/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/game/include   -Wall -fno-rtti   -std=gnu++17 -o CMakeFiles/json_interpreter.dir/src/Constants.cpp.o -c /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/Constants.cpp",
+  "file": "/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/Constants.cpp"
+},
+{
+  "directory": "/mnt/c/sfu-cmpt/cmpt-373/project/build/web-socket-networking-master/lib/json_interpreter",
+  "command": "/usr/bin/c++   -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src -I/mnt/c/sfu-cmpt/cmpt-373/project/build/_deps/json-src/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/game/include   -Wall -fno-rtti   -std=gnu++17 -o CMakeFiles/json_interpreter.dir/src/Variables.cpp.o -c /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/Variables.cpp",
+  "file": "/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/Variables.cpp"
+},
+{
+  "directory": "/mnt/c/sfu-cmpt/cmpt-373/project/build/web-socket-networking-master/lib/chatwindow",
+  "command": "/usr/bin/c++   -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/chatwindow/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/chatwindow/src   -Wall -fno-rtti   -std=gnu++17 -o CMakeFiles/chatwindow.dir/src/ChatWindow.cpp.o -c /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/chatwindow/src/ChatWindow.cpp",
+  "file": "/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/chatwindow/src/ChatWindow.cpp"
+},
+{
+  "directory": "/mnt/c/sfu-cmpt/cmpt-373/project/build/web-socket-networking-master/lib/game",
+  "command": "/usr/bin/c++   -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/game/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/game/src -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/include   -Wall -fno-rtti   -std=gnu++17 -o CMakeFiles/game.dir/src/GameState.cpp.o -c /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/game/src/GameState.cpp",
+  "file": "/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/game/src/GameState.cpp"
+},
+{
+  "directory": "/mnt/c/sfu-cmpt/cmpt-373/project/build/web-socket-networking-master/lib/game",
+  "command": "/usr/bin/c++   -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/game/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/game/src -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/include   -Wall -fno-rtti   -std=gnu++17 -o CMakeFiles/game.dir/src/GameVarList.cpp.o -c /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/game/src/GameVarList.cpp",
+  "file": "/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/game/src/GameVarList.cpp"
+},
+{
+  "directory": "/mnt/c/sfu-cmpt/cmpt-373/project/build/web-socket-networking-master/tools/chatserver",
+  "command": "/usr/bin/c++   -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/game/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/chatwindow/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/networking/include   -Wall -fno-rtti   -std=gnu++17 -o CMakeFiles/chatserver.dir/chatserver.cpp.o -c /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/tools/chatserver/chatserver.cpp",
+  "file": "/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/tools/chatserver/chatserver.cpp"
+},
+{
+  "directory": "/mnt/c/sfu-cmpt/cmpt-373/project/build/web-socket-networking-master/tools/chatclient",
+  "command": "/usr/bin/c++   -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/networking/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/chatwindow/include   -Wall -fno-rtti   -std=gnu++17 -o CMakeFiles/chatclient.dir/chatclient.cpp.o -c /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/tools/chatclient/chatclient.cpp",
+  "file": "/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/tools/chatclient/chatclient.cpp"
+},
+{
+  "directory": "/mnt/c/sfu-cmpt/cmpt-373/project/build/web-socket-networking-master/test",
+  "command": "/usr/bin/c++   -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/game/include -isystem /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googlemock/include -isystem /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googlemock -isystem /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googletest/include -isystem /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googletest   -Wall -fno-rtti   -o CMakeFiles/runAllTests.dir/ConfigTests.cpp.o -c /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/ConfigTests.cpp",
+  "file": "/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/ConfigTests.cpp"
+},
+{
+  "directory": "/mnt/c/sfu-cmpt/cmpt-373/project/build/web-socket-networking-master/test",
+  "command": "/usr/bin/c++   -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/json_interpreter/src/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/lib/game/include -isystem /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googlemock/include -isystem /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googlemock -isystem /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googletest/include -isystem /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googletest   -Wall -fno-rtti   -o CMakeFiles/runAllTests.dir/ConstantsParserTests.cpp.o -c /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/ConstantsParserTests.cpp",
+  "file": "/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/ConstantsParserTests.cpp"
+},
+{
+  "directory": "/mnt/c/sfu-cmpt/cmpt-373/project/build/web-socket-networking-master/test/gtest/googlemock",
+  "command": "/usr/bin/c++   -isystem /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googlemock/include -isystem /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googlemock -isystem /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googletest/include -isystem /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googletest   -Wall -fno-rtti   -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++11 -o CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -c /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googlemock/src/gmock_main.cc",
+  "file": "/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googlemock/src/gmock_main.cc"
+},
+{
+  "directory": "/mnt/c/sfu-cmpt/cmpt-373/project/build/web-socket-networking-master/test/gtest/googlemock",
+  "command": "/usr/bin/c++   -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googlemock/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googlemock -isystem /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googletest/include -isystem /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googletest   -Wall -fno-rtti   -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++11 -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googlemock/src/gmock-all.cc",
+  "file": "/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googlemock/src/gmock-all.cc"
+},
+{
+  "directory": "/mnt/c/sfu-cmpt/cmpt-373/project/build/web-socket-networking-master/test/gtest/googletest",
+  "command": "/usr/bin/c++   -isystem /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googletest/include -isystem /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googletest   -Wall -fno-rtti   -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++11 -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googletest/src/gtest_main.cc",
+  "file": "/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googletest/src/gtest_main.cc"
+},
+{
+  "directory": "/mnt/c/sfu-cmpt/cmpt-373/project/build/web-socket-networking-master/test/gtest/googletest",
+  "command": "/usr/bin/c++   -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googletest/include -I/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googletest   -Wall -fno-rtti   -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++11 -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googletest/src/gtest-all.cc",
+  "file": "/mnt/c/sfu-cmpt/cmpt-373/project/social-gaming/web-socket-networking-master/test/gtest/googletest/src/gtest-all.cc"
+}
+]

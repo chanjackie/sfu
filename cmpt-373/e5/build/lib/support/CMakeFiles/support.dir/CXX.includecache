@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/sfu-cmpt/cmpt-373/e5/se-inheritance-template/lib/support/T1Interpreter.cpp
+algorithm
+-
+cassert
+-
+cstdio
+-
+numeric
+-
+sstream
+-
+Support.h
+/mnt/c/sfu-cmpt/cmpt-373/e5/se-inheritance-template/lib/support/Support.h
+
+/mnt/c/sfu-cmpt/cmpt-373/e5/se-inheritance-template/lib/support/include/Support.h
+algorithm
+-
+iterator
+-
+memory
+-
+ostream
+-
+stack
+-
+string
+-
+unordered_map
+-
+vector
+-
+

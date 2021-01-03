@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Bikachu",
+    "weight": 50.5,
+    "height": 69.0,
+    "ability": "electric",
+    "strength": 100,
+    "color": "yellow"
+  },
+  {
+    "id": 2,
+    "name": "Barizard",
+    "weight": 250.5,
+    "height": 205.0,
+    "ability": "fire",
+    "strength": 100,
+    "color": "red"
+  },
+  {
+    "id": 3,
+    "name": "ayy",
+    "weight": 100.0,
+    "height": 10.0,
+    "ability": "fire",
+    "strength": 100,
+    "color": "red"
+  },
+  {
+    "id": 4,
+    "name": "alsgkj",
+    "weight": 100.0,
+    "height": 10.0,
+    "ability": "fire",
+    "strength": 100,
+    "color": "red"
+  }
+]

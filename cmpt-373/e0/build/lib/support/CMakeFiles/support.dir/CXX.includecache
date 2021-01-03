@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/sfu-cmpt/cmpt-373/e0/se-background-template/lib/support/Support.cpp
+cassert
+-
+cstdio
+-
+malloc.h
+-
+Support.h
+/mnt/c/sfu-cmpt/cmpt-373/e0/se-background-template/lib/support/Support.h
+
+/mnt/c/sfu-cmpt/cmpt-373/e0/se-background-template/lib/support/include/Support.h
+algorithm
+-
+iterator
+-
+ostream
+-
+string
+-
+vector
+-
+

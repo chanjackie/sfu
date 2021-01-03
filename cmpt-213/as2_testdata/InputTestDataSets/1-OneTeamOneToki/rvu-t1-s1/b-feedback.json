@@ -1,0 +1,13 @@
+{
+  "team": [
+    {
+       "name": "Toki 1",
+       "id": "toki-t1-s1",
+       "compatibility": {
+          "score": 20.0,
+          "comment": "From 'Team1 Toki1' to 'Team1 Toki1'\n'done!'"
+       }
+    }
+  ],
+  "extra_comments": "That's all! It was 'fun'! (said Team1 Toki1)"
+}
